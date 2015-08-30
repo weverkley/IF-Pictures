@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-    <head>
-        <?php require_once "header.php"; ?>
-    </head>
     <body id="voltar-topo">
         <section class="header">
             <div class="text-center">
@@ -23,7 +18,7 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <?php require_once "nav.php"; ?>
+                    <?php require_once 'nav.php'; ?>
                 </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -217,6 +212,3 @@
         		</div>
         	</div>
         </section>
-        <?php require_once "footer.php"; ?>
-    </body>
-</html>

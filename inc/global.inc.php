@@ -1,7 +1,7 @@
 <?php
-require_once "config.php";
+require_once 'config.php';
 
-include "./classes/Mongo.class.php";
+include './classes/Mongo.class.php';
 
 set_include_path(implode(PATH_SEPARATOR, array(
     realpath(ROOT_PATH.DS.CLASSES_DIR),
@@ -12,15 +12,15 @@ set_include_path(implode(PATH_SEPARATOR, array(
 
 function showPage() {
 	if (isset($_GET['p'])) {
-	    $file = "/public/" . $_GET['p'] . ".php";
+	    $file = "/public/" . $_GET['p'] . '.php';
 	    if (file_exists($file)) {
-	        include ("$file");
+	        include ('$file');
 	    } 
 	    else {
-	        include "/public/404.php";
+	        include '/public/404.php';
 	    }
 	} else {
-		include "/public/inicio.php";
+		include '/public/inicio.php';
 	}
 }
 ?>

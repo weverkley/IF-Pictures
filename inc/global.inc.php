@@ -19,6 +19,6 @@ function showPage() {
 			$file = PUBLIC_DIR.'/'.$_GET['p'];
 		    (file_exists($file)) ? include PUBLIC_DIR.'/'.$_GET['p'] : include PUBLIC_DIR.'/404.html';
 		} elseif (empty($_GET['p']) || !file_exists($_GET['p'])) include PUBLIC_DIR.'/404.html';
-	} else include PUBLIC_DIR.'/inicio.php';
+	} else include PUBLIC_DIR.'/inicio.html';
 }
 ?>

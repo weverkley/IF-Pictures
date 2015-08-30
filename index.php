@@ -1,4 +1,3 @@
-<?php require_once 'classes/DB.class.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
@@ -58,14 +57,12 @@
                 <div class="header-content-inner wow fadeIn">
                     <h1>Temos o melhor site para compartilhar suas imagens!</h1>
                     <hr class="secondary">
-                    <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
                 </div>
             </div>
         </header>
         <section>
             <div class="container">
                 <div class="row">
-                    <!-- <div class="col-lg-8 col-lg-offset-2 text-center"> -->
                     <div class="text-center wow fadeInDown">
                         <a href="#" class="btn btn-primary btn-xl"><span class="fa fa-check-square-o"></span> Cadastro</a> <a href="#" class="btn btn-success btn-xl"><span class="fa fa-user"></span> Entrar</a>
                     </div>
@@ -272,7 +269,6 @@
             $(document).ready(function(){
                 $('#nav').affix({
                     offset: {
-                        //top: $('header').height()
                         top: 173
                     }
                 });

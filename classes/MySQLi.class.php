@@ -1,12 +1,16 @@
 <?php
+/**
+*  Classe para conexão com banco de dados MySQLi
+*/
 class DB
 {
-    
-    private $_conn;
-    private $_host = "localhost";
-    private $_username = "root";
-    private $_password = "";
-    private $_database = "test";
+	
+    private $MySQLi;
+    private $host = "localhost";
+    private $username = "root";
+    private $password = null;
+    private $database = "test";
+    private $type = null;
     /*echo DB::$counter;*/
     public static $counter = 0;
     
@@ -14,7 +18,7 @@ class DB
     public function __construct() {
         mysqli_report(MYSQLI_REPORT_STRICT);
         try {
-            $this->_conn = new mysqli($this->_host, $this->_username, $this->_password, $this->_database);
+            $this->MySQLi = new mysqli($this->host, $this->username, $this->password, $this->database);
         }
         catch(Exception $e) {
             echo "Error Code: " . $e->getCode();
@@ -23,13 +27,13 @@ class DB
     }
     
     public function __destruct() {
-        if ($this->_conn) $this->disconnect();
+        if ($this->MySQLi) $this->disconnect();
     }
     
     public function query($query) {
         self::$counter++;
-        $full_query = $this->_conn->query($query);
-        if ($this->_conn->error) return false;
+        $full_query = $this->MySQLi->query($query);
+        if ($this->MySQLi->error) return false;
         else return true;
     }
     
@@ -48,9 +52,9 @@ class DB
         $values = '(' . implode(', ', $values) . ')';
         
         $sql.= $fields . ' VALUES ' . $values;
-        $query = $this->_conn->query($sql);
+        $query = $this->MySQLi->query($sql);
         
-        if ($this->_conn->error) return false;
+        if ($this->MySQLi->error) return false;
         else return true;
     }
     
@@ -81,8 +85,8 @@ class DB
         if ($limit != '') {
             $query.= ' LIMIT ' . $limit;
         }
-        $result = $this->_conn->query($query);
-        if ($this->_conn->error) {
+        $result = $this->MySQLi->query($query);
+        if ($this->MySQLi->error) {
             return false;
         } 
         else {
@@ -117,8 +121,8 @@ class DB
         if (!empty($limit)) {
             $sql.= ' LIMIT ' . $limit;
         }
-        $query = $this->_conn->query($sql);
-        if ($this->_conn->error) return false;
+        $query = $this->MySQLi->query($sql);
+        if ($this->MySQLi->error) return false;
         else return true;
     }
     
@@ -140,15 +144,15 @@ class DB
             $sql.= " LIMIT " . $limit;
         }
         
-        $query = $this->_conn->query($sql);
-        if ($this->_conn->error) return false;
+        $query = $this->MySQLi->query($sql);
+        if ($this->MySQLi->error) return false;
         else return true;
     }
     
     public function num_rows($query) {
         self::$counter++;
-        $num_rows = $this->_conn->query($query);
-        if ($this->_conn->error) {
+        $num_rows = $this->MySQLi->query($query);
+        if ($this->MySQLi->error) {
             return false;
         } 
         else {
@@ -203,7 +207,7 @@ class DB
     }
     
     public function disconnect() {
-        $this->_conn->close();
+        $this->MySQLi->close();
     }
 }
 ?>

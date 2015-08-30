@@ -12,15 +12,13 @@ set_include_path(implode(PATH_SEPARATOR, array(
 
 function showPage() {
 	if (isset($_GET['p'])) {
-	    $file = "/public/" . $_GET['p'] . '.php';
-	    if (file_exists($file)) {
-	        include ('$file');
-	    } 
-	    else {
-	        include '/public/404.php';
-	    }
-	} else {
-		include '/public/inicio.php';
-	}
+		if (preg_match('/.php/i', $_GET['p'])) {
+			$file = PUBLIC_DIR.'/'.$_GET['p'];
+			(file_exists($file)) ? include PUBLIC_DIR.'/'.$_GET['p'] : include PUBLIC_DIR.'/404.html';
+		} elseif (preg_match('/.html/i', $_GET['p'])) {
+			$file = PUBLIC_DIR.'/'.$_GET['p'];
+		    (file_exists($file)) ? include PUBLIC_DIR.'/'.$_GET['p'] : include PUBLIC_DIR.'/404.html';
+		} elseif (empty($_GET['p']) || !file_exists($_GET['p'])) include PUBLIC_DIR.'/404.html';
+	} else include PUBLIC_DIR.'/inicio.php';
 }
 ?>

@@ -24,6 +24,8 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Sintony', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .nav>li>a {
@@ -133,16 +135,13 @@ header .header-content {
 }
 
 header .header-content .header-content-inner h2 {
-    margin-top: 0;
+    margin-top: 10%;
     margin-bottom: 0;
     text-transform: uppercase;
     font-weight: 700;
     color: #3861AA;
 }
 
-header .header-content .header-content-inner hr {
-    margin: 30px auto;
-}
 
 header .header-content .panel-body {
     color: #3861AA;
@@ -162,6 +161,9 @@ header .header-content .callout {
 .spacer-callout {
     margin-right: 25px;
     margin-left: 25px;
+}
+.spacer-callout p{
+    color: gray;
 }
 
 .has-feedback .form-control {

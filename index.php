@@ -2,8 +2,8 @@
 // requerir arquivo global
 require_once 'inc/global.inc.php';
 // monstrar páginas
-include 'public/header.php';
+require_once 'public/header.html';
 // incluir páginas
 showPage();
-include 'public/footer.php';
+require_once 'public/footer.html';
 ?>

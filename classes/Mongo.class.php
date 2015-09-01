@@ -13,8 +13,12 @@ class DB
 	 */
 	public function __construct($db="ifpi")
 	{
-		$this->mongo = new MongoClient();
-		$this->db = $this->mongo->selectDB($db);
+		try{
+			$this->mongo = new MongoClient();
+			$this->db = $this->mongo->selectDB($db);
+		} catch (MongoConnectionException $e) {
+			throw $e;
+		}
 	}
 }
 ?>

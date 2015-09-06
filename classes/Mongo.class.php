@@ -4,7 +4,7 @@
 */
 class DB
 {
-	
+
 	private $mongo = null;
 	private $db = null;
 
@@ -19,6 +19,10 @@ class DB
 		} catch (MongoConnectionException $e) {
 			throw $e;
 		}
+	}
+
+	public function __destruct(){
+		$this->mongo->close();
 	}
 }
 ?>

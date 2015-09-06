@@ -1,4 +1,6 @@
 <?php 
+ini_set("error_reporting", "true");
+error_reporting(E_ALL|E_STRCT);
 // timezone padrão
 date_default_timezone_set( 'America/Sao_Paulo' );
 

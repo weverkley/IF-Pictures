@@ -7,7 +7,7 @@
 		        <span class="sr-only">Mudar navegação</span>
 		        <span class="fa fa-bars fa-2x"></span>
 		      </button>
-		      <a class="page-scroll" href="#voltar-topo"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/logo.png" alt="IF - Logo"></a>
+		      <a class="page-scroll" href="#voltar-topo"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
 		    </div>
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -17,26 +17,107 @@
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
-        <section>
-            <div class="container">
-                <div class="row">
-                    <div class="text-center wow fadeInDown">
-                        <p>
-                        	<?php
-                        		$users = new User();
-                        		$data = array('name' => 'Wever Kley', 'password' => md5('123456'));
-                        		$users->Insert($data);
-                        	?>
-                        </p>
-                    </div>
-                    <div class="divider">
-                        <div class="box">
-                            <span class="fa fa-angle-down"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+	<section>
+		<div class="container">
+			<div class="col-md-6">
+				<h3>Informações de acesso</h3>
+				<div class="form-group col-lg-12">
+					<label>Usuário</label>
+					<input type="" name="" class="form-control" id="" value="">
+				</div>
+				<div class="form-group col-lg-6">
+					<label>Digite sua Senha</label>
+					<input type="password" name="" class="form-control" id="" value="">
+				</div>
+				<div class="form-group col-lg-6">
+					<label>Digite a senha novamente</label>
+					<input type="password" name="" class="form-control" id="" value="">
+				</div>
+				<div class="form-group col-lg-6">
+					<label>Endereço de Email</label>
+					<input type="" name="" class="form-control" id="" value="">
+				</div>
+				<div class="form-group col-lg-6">
+					<label>Digite novamente seu Email</label>
+					<input type="" name="" class="form-control" id="" value="">
+				</div>
+				<div class="col-sm-12">
+				<label>Qual seu sexo?</label>
+					<div class="row">
+						<div class="form-group col-lg-6">
+							<div class="radio">
+								<label class="custom-option button">
+									<input type="radio" name="sex" class="checkbox" value="m" checked>
+									<span class="button-radio"></span>
+								</label>
+								<label for="sex">Masculino</label>
+
+								<label class="custom-option button">
+									<input type="radio" name="sex" class="checkbox" value="f">
+									<span class="button-radio"></span>
+								</label>
+								<label for="sex">Feminino</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<h3>Segurança</h3>
+				<div class="form-group col-lg-12">
+					<label>Pergunta secreta</label>
+					<select name="" class="form-control">
+						<option value=""></option>
+						<option value=""></option>
+						<option value=""></option>
+						<option value=""></option>
+					</select>
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Resposta</label>
+					<input type="password" name="" class="form-control" id="" value="">
+				</div>
+				<div class="form-group col-lg-12">
+					<div class="checkbox">
+						<label class="custom-option button">
+							<input type="checkbox" id="terms" name="terms" value="1">
+							<span class="button-checkbox"></span>
+						</label>
+						<label for="terms">Você aceita os <a href="#">termos e condições?</a></label>
+					</div>
+				</div>
+				<div class="col-lg-12">
+					<input type="submit" name="" class="btn btn-info" id="" value="Registrar">
+					<input type="reset" name="" class="btn btn-info" id="" value="Limpar">
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-md-6">
+				<h3>Recuperação</h3>
+				<div class="form-group col-lg-12">
+					<label>Email</label>
+					<input type="email" name="" class="form-control" id="" value="">
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Pergunta secreta</label>
+					<select name="" class="form-control">
+						<option value=""></option>
+						<option value=""></option>
+						<option value=""></option>
+						<option value=""></option>
+					</select>
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Resposta</label>
+					<input type="text" name="" class="form-control" id="" value="">
+				</div>
+				<div class="col-lg-12">
+					<input type="submit" name="" class="btn btn-info" id="" value="Recuperar">
+				</div>
+			</div>
+		</div>
+	</section>
         <section class="section-4">
         	<div class="container">
         		<div class="row">

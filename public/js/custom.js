@@ -21,8 +21,6 @@ $(document).ready(function() {
 					console.log(data);
 				} else {
 					console.log(data);
-					$('#login').prop('disabled', false);
-					$('#password').prop('disabled', false);
 				}
 			},
 			error: function(data)

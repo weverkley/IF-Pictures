@@ -119,7 +119,7 @@ header {
     text-align: center;
     color: #fff;
     margin-top: -20px;
-    background-image: url(../img/backgrounds/bg.jpg);
+    background-image: url(../img/layout/bg/bg.jpg);
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -142,7 +142,6 @@ header .header-content .header-content-inner h2 {
     color: #3861AA;
 }
 
-
 header .header-content .panel-body {
     color: #3861AA;
     padding-left: 0px;
@@ -162,7 +161,8 @@ header .header-content .callout {
     margin-right: 25px;
     margin-left: 25px;
 }
-.spacer-callout p{
+
+.spacer-callout p {
     color: gray;
 }
 
@@ -180,97 +180,6 @@ header .header-content .callout {
     line-height: 34px;
     text-align: center;
     pointer-events: none;
-}
-
-
-/*
-    Checkbox, radio and toggles
-*/
-
-label.custom-option {
-    position: relative;
-    display: inline-block;
-    padding: 0;
-    height: 20px;
-    vertical-align: top;
-}
-
-label.custom-option + label {
-    padding: 0 10px;
-}
-
-label.custom-option input[type="checkbox"], label.custom-option .button-checkbox {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-label.custom-option input[type="checkbox"] {
-    margin: 0;
-    opacity: 0;
-}
-
-label.custom-option .button-checkbox {
-    border: 1px solid #ccc;
-    background: #fff;
-}
-
-label.custom-option input[type="checkbox"]:checked + .button-checkbox {
-    border-color: #4fd0fb;
-}
-
-label.custom-option input[type="checkbox"] + .button-checkbox:after {
-    position: absolute;
-    content: '';
-    z-index: 2;
-}
-
-
-/* Toggles */
-
-label.custom-option.toggle {
-    width: 46px;
-}
-
-label.custom-option.toggle:before, label.custom-option.toggle:after {
-    position: absolute;
-    top: 1px;
-    width: 24px;
-    font-size: 8px;
-    line-height: 19px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    color: #777;
-    z-index: 1;
-}
-
-label.custom-option.toggle:before {
-    content: attr(data-on);
-    left: 1px;
-}
-
-label.custom-option.toggle:after {
-    content: attr(data-off);
-    right: 1px;
-}
-
-label.custom-option.toggle input[type="checkbox"] + .button-checkbox:after {
-    display: block;
-    top: 1px;
-    bottom: 1px;
-    left: 1px;
-    width: 20px;
-    background: #ccc;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
-}
-
-label.custom-option.toggle input[type="checkbox"]:checked + .button-checkbox:after {
-    left: 23px;
-    background: #4fd0fb;
 }
 
 @media(min-width: 768px) {
@@ -303,7 +212,7 @@ section {
 }
 
 .section-1 {
-    background: url("../img/backgrounds/bg-1.jpg") center center fixed;
+    background: url(../img/layout/bg/bg-1.jpg) center center fixed;
 }
 
 .divider {
@@ -508,4 +417,79 @@ footer {
     position: relative;
     background-color: #475268;
     color: white;
+}
+
+
+/*
+    Checkbox, radio and toggles
+*/
+
+.radio-inline, .checkbox-inline {
+    padding: 0;
+}
+
+label.custom-option {
+    position: relative;
+    display: inline-block;
+    padding: 0;
+    height: 20px;
+    vertical-align: top;
+}
+
+label.custom-option + label {
+    padding: 0 10px;
+}
+
+label.custom-option input[type="checkbox"], label.custom-option input[type="radio"], label.custom-option .button-checkbox, label.custom-option .button-radio {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+label.custom-option input[type="checkbox"], label.custom-option input[type="radio"] {
+    margin: 0;
+    opacity: 0;
+}
+
+label.custom-option .button-checkbox, label.custom-option .button-radio {
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+label.custom-option input[type="checkbox"]:checked + .button-checkbox, label.custom-option input[type="radio"]:checked+ .button-radio {
+    border-color: #4fd0fb;
+}
+
+label.custom-option input[type="checkbox"] + .button-checkbox:after, label.custom-option input[type="radio"] + .button-radio:after {
+    position: absolute;
+    content: '';
+    z-index: 2;
+}
+
+label.custom-option .button-radio, label.custom-option .button-radio:after {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+
+/* Checkbox and radio */
+
+label.custom-option {
+    width: 20px;
+}
+
+label.custom-option.button input[type="checkbox"] + .button-checkbox:after, label.custom-option.button input[type="radio"] + .button-radio:after {
+    display: none;
+    top: 5px;
+    bottom: 5px;
+    left: 5px;
+    width: 8px;
+    background: #4fd0fb;
+}
+
+label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:after, label.custom-option.button input[type="radio"]:checked + .button-radio:after {
+    display: block;
 }

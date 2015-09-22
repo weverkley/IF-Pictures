@@ -3,8 +3,17 @@ $(document).ready(function() {
 	$('#login-form').submit(function(event) {
 		event.preventDefault();	//STOP default action
 	    // TODO
-	    $('#login').prop('disabled', true);
-		$('#password').prop('disabled', true);
+	    function disableInput (status){
+	    	if (status == 'on') {
+			    $('#login').prop('disabled', true),
+				$('#password').prop('disabled', true)
+	    	} else {
+			    $('#login').prop('disabled', false).focus(),
+				$('#password').prop('disabled', false).val("")
+	    	};
+	    }
+
+	    disableInput('on');
 
 		var login = $('#login').val();
 		var password = $('#password').val();
@@ -17,10 +26,31 @@ $(document).ready(function() {
 			data : data,
 			success:function(data)
 			{
-				if(data['error'] == '1'){
+				if(data == '0'){
 					console.log(data);
 				} else {
-					console.log(data);
+					if (data == 1) {
+						msgInfo = "Senhas digitadas não são iguais",
+						msgType = "warning"
+					} else {
+						msgInfo = "Este usuário não existe",
+						msgType = "danger"
+					}
+					$.notify({
+						//icon: 'fa fa-paw',
+						message: msgInfo
+					}, {
+						type: msgType,
+						animate: {
+							enter: 'animated bounceIn',
+							exit: 'animated bounceOut'
+						},
+						placement: {
+							from: "bottom",
+							align: "left"
+						},
+						onClose: disableInput('false')
+					});
 				}
 			},
 			error: function(data)

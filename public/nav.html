@@ -1,2 +1,14 @@
+<?php if (isset($_SESSION['logged-in'])){ ?>
+	<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	 	<span class="fa fa-user"></span> Admin <b class="caret"></b></a>
+	    <ul class="dropdown-menu">
+	        <li><a href="#"><span class="fa fa-user"></span> Profile</a></li>
+	        <li><a href="#"><span class="fa fa-cog"></span> Settings</a></li>
+	        <li class="divider"></li>
+	        <li><a href="" id="logout" ><span class="fa fa-power-off"></span> Sair</a></li>
+	    </ul>
+	</li>
+<?php }else{ ?>
 <li <?php if(!isset($_GET['p']) || $_GET['p'] == 'inicio.html') echo 'class="active"'; ?>><a href="<?php echo SITE_URL; ?>/index.php?p=inicio.html">Ínicio</a></li>
 <li <?php if(isset($_GET['p']) && $_GET['p'] == 'registro.html') echo 'class="active"'; ?>><a href="<?php echo SITE_URL; ?>/index.php?p=registro.html">Registro</a></li>
+<?php } ?>

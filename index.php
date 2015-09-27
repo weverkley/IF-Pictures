@@ -1,4 +1,4 @@
-<?php 
+<?php
 // requerir arquivo global
 require_once 'inc/global.inc.php';
 // monstrar páginas

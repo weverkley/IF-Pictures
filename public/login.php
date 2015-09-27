@@ -6,6 +6,7 @@ $where = array('name' => $_POST['login']);
 if ($array = $user->SelectOne($where)){
 	if ($array['password'] == md5($_POST['password'])) {
 		echo $data = 0;
+		$_SESSION['logged-in'] = true;
 	} else {
 		echo $data = 1; //"Senhas digitadas não são iguais";
 	}

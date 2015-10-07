@@ -25,65 +25,94 @@ $(document).ready(function() {
 	$('#login-form').submit(function(event) {
 		event.preventDefault();	//STOP default action
 	    // TODO
-	    function disableInput (status){
+	    function manageInput (status, input){
 	    	if (status == 'on') {
 			    $('#login').prop('disabled', true),
 				$('#password').prop('disabled', true)
 	    	} else {
-			    $('#login').prop('disabled', false).focus(),
-				$('#password').prop('disabled', false).val("")
+			    $('#login').prop('disabled', false),
+				$('#password').prop('disabled', false)
 	    	};
+
+	    	$(input).focus();
 	    }
 
-	    disableInput('on');
+	    manageInput('on');
 
 		var login = $('#login').val();
 		var password = $('#password').val();
-		var remember = $('#remember').val();
-		var data = 'login='+login+'&password='+password+'&remember='+remember;
-		$.ajax(
-		{
-			url : $(this).attr('action'),
-			type: $(this).attr('method'),
-			data : data,
-			success:function(data)
+		if ($('#login').val() && $('#password').val()) {
+			var remember = 0;
+			if ($('#remember').is(':checked')) remember = 1;
+			var data = 'login='+login+'&password='+password+'&remember='+remember;
+			$.ajax(
 			{
-				if(data == '0'){
-					//console.log(data);
-					location.reload();
-				} else {
-					if (data == 1) {
-						msgInfo = "Senhas digitadas não são iguais",
-						msgType = "warning"
+				url : $(this).attr('action'),
+				type: $(this).attr('method'),
+				data : data,
+				success:function(data)
+				{
+					if(data == '0'){
+						//console.log(data);
+						location.reload();
 					} else {
-						msgInfo = "Este usuário não existe",
-						msgType = "danger"
+						var inputFocus;
+						if (data == 1) {
+							msgInfo = 'Senhas digitadas não são iguais',
+							msgType = 'warning',
+							msgIcon = 'fa fa-exclamation',
+							$('#password').val(""),
+							inputFocus = '#password'
+						} else {
+							msgInfo = 'Este usuário não existe',
+							msgType = 'danger',
+							msgIcon = 'fa fa-exclamation-triangle',
+							$('#login').val(""),
+							$('#password').val(""),
+							inputFocus = '#login'
+						}
+						$.notify({
+							icon: msgIcon,
+							message: msgInfo
+						}, {
+							type: msgType,
+							animate: {
+								enter: 'animated bounceIn',
+								exit: 'animated bounceOut'
+							},
+							placement: {
+								from: "bottom",
+								align: "left"
+							},
+							onClose: manageInput('false', inputFocus)
+						});
 					}
-					$.notify({
-						//icon: 'fa fa-paw',
-						message: msgInfo
-					}, {
-						type: msgType,
-						animate: {
-							enter: 'animated bounceIn',
-							exit: 'animated bounceOut'
-						},
-						placement: {
-							from: "bottom",
-							align: "left"
-						},
-						onClose: disableInput('false')
-					});
+				},
+				error: function(data)
+				{
+					console.log( "Request failed: " + data );
+					$('#login').prop('disabled', false);
+					$('#password').prop('disabled', false);
 				}
-			},
-			error: function(data)
-			{
-				console.log( "Request failed: " + data );
-				$('#login').prop('disabled', false);
-				$('#password').prop('disabled', false);
-			}
-		});
-        return false; // avoid to execute the actual submit of the form.
+			});
+	        return false; // avoid to execute the actual submit of the form.
+		} else {
+			$.notify({
+				//icon: 'fa fa-paw',
+				message: 'Os campos devem ser preenchidos'
+			}, {
+				type: 'danger',
+				animate: {
+					enter: 'animated bounceIn',
+					exit: 'animated bounceOut'
+				},
+				placement: {
+					from: "bottom",
+					align: "left"
+				},
+				onClose: manageInput('false', '#login')
+			});
+		};
 	});
 });
 

@@ -11,6 +11,7 @@ set_include_path(implode(PATH_SEPARATOR, array(
 )));
 
 require_once realpath(dirname(__FILE__).'/../classes/User.class.php');
+require_once realpath(dirname(__FILE__).'/../classes/DB.class.php');
 
 function showPage() {
 	if (!isset($_SESSION['logged-in'])) {

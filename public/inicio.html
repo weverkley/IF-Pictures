@@ -1,7 +1,7 @@
     <body id="voltar-topo">
         <section class="header">
             <div class="text-center">
-                <h2><a href="#"><font class="if-logo">IF - </font><font class="pictures-logo">PICTURES</font></a></h2>
+                <h2><a href="<?php echo SITE_URL; ?>"><font class="if-logo">IF - </font><font class="pictures-logo">PICTURES</font></a></h2>
                 <h4>Bem vindos ao IF - Pictures</h4>
             </div>
         </section>
@@ -13,7 +13,7 @@
 		        <span class="sr-only">Mudar navegação</span>
 		        <span class="fa fa-bars fa-2x"></span>
 		      </button>
-		      <a class="page-scroll" href="#voltar-topo"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
+		      <a class="page-scroll" href="<?php echo SITE_URL; ?>"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
 		    </div>
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -38,13 +38,13 @@
                                 <form id="login-form" action="<?php echo PUBLIC_DIR; ?>/login.php" method="POST" accept-charset="utf-8">
                                     <div class="form-group">
                                         <div class="has-feedback">
-                                            <input type="text" id="login" name="login" class="form-control" autofocus>
+                                            <input type="text" id="login" name="login" class="form-control" size="5" maxlength="20" autofocus required title="Digite o seu login.">
                                             <span class="fa fa-user form-control-feedback"></span>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="has-feedback">
-                                            <input type="password" id="password" name="password" class="form-control">
+                                            <input type="password" id="password" name="password" class="form-control" size="5" maxlength="20" required title="Digite a sua senha.">
                                             <span class="fa fa-lock form-control-feedback"></span>
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@
                                         <div class="pull-left">
                                             <div class="checkbox">
                                                 <label class="custom-option button">
-                                                    <input type="checkbox" id="remember" name="remember" value="1">
+                                                    <input type="checkbox" id="remember" name="remember">
                                                     <span class="button-checkbox"></span>
                                                 </label>
                                                 <label for="remember">Lembrar?</label>

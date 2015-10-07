@@ -1,23 +1,14 @@
 <?php
+require_once 'DB.class.php';
 /**
 * Classe para gestão de usuários
 */
-class User
+class User extends DB
 {
-	/**
-	* Variável para instânciar a conexão;
-	*/
-	private $mongo;
-
 	/**
 	* Variável para tabela de usuário;
 	*/
 	private $users;
-
-	/**
-	* Variável para setar o banco de dados;
-	*/
-	private $db;
 
 	/**
 	*
@@ -40,8 +31,7 @@ class User
 	function __construct()
 	{
 		try {
-			$this->mongo = new MongoClient();
-			$this->db = $this->mongo->selectDB('ifpi');
+			parent::__construct();
 			$this->users = $this->mongo->selectCollection($this->db, 'users');
 		} catch (MongoConnectionException $e) {
 			throw $e;
@@ -138,6 +128,32 @@ class User
 	*	$users->Count();
 	*/
 	public function Count(){
+		try {
+			return $this->users->count();
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+
+	/**
+	* Método para logar usuários no painel.
+	*	$users = new user();
+	*	$users->Login();
+	*/
+	public function Login($login, $password){
+		try {
+			//
+		} catch (Exception $e) {
+			return false;
+		}
+	}
+
+	/**
+	* Método para deslogar usuários no painel.
+	*	$users = new user();
+	*	$users->Logout();
+	*/
+	public function Logout(){
 		try {
 			return $this->users->count();
 		} catch (Exception $e) {

@@ -705,3 +705,9 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
     background-color: #F1F3FA;
     color: gray;
 }
+
+.warning-input{
+    outline: none;
+    border-color: #FF0000;
+    box-shadow: 0 0 5px #FF0000;
+}

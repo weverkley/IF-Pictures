@@ -1,12 +1,12 @@
-<?php 
+<?php
 /**
 *  Classe para conexão com banco de dados MongoDB
 */
 class DB
 {
 
-	private $mongo = null;
-	private $db = null;
+	protected $mongo = null;
+	protected $db = null;
 
 	/**
 	 * Construtor para a classe.
@@ -17,7 +17,8 @@ class DB
 			$this->mongo = new MongoClient();
 			$this->db = $this->mongo->selectDB($db);
 		} catch (MongoConnectionException $e) {
-			throw $e;
+			//throw $e;
+			throw new Exception('Erro na conexão com o banco de dados!');
 		}
 	}
 

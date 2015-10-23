@@ -9,6 +9,6 @@
 	    </ul>
 	</li>
 <?php }else{ ?>
-<li <?php if(!isset($_GET['p']) || $_GET['p'] == 'inicio.html') echo 'class="active"'; ?>><a href="<?php echo SITE_URL; ?>/index.php?p=inicio.html">Ínicio</a></li>
+<li <?php if(!isset($_GET['p']) || $_GET['p'] == 'inicio.html') echo 'class="active"'; ?>><a href="<?php echo SITE_URL; ?>">Ínicio</a></li>
 <li <?php if(isset($_GET['p']) && $_GET['p'] == 'registro.html') echo 'class="active"'; ?>><a href="<?php echo SITE_URL; ?>/index.php?p=registro.html">Registro</a></li>
 <?php } ?>

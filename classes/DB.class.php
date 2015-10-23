@@ -15,9 +15,8 @@ class DB
 	{
 		try{
 			$this->mongo = new MongoClient();
-			$this->db = $this->mongo->selectDB($db);
+			$this->db = ($this->mongo->selectDB($db))? : $this->mongo->$db;
 		} catch (MongoConnectionException $e) {
-			//throw $e;
 			throw new Exception('Erro na conexão com o banco de dados!');
 		}
 	}

@@ -32,7 +32,8 @@ class User extends DB
 	{
 		try {
 			parent::__construct();
-			$this->users = $this->mongo->selectCollection($this->db, 'users');
+
+			$this->users = ($this->mongo->selectCollection($this->db, 'users'))? : $this->db->createCollection('users');
 		} catch (MongoConnectionException $e) {
 			throw $e;
 		}

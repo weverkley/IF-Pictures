@@ -1,0 +1,99 @@
+<body id="voltar-topo">
+    <div class="container-fluid">
+        <div id="wrapper" class="active">
+
+            <!-- Sidebar -->
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul id="sidebar_menu" class="sidebar-nav">
+                    <li class="sidebar-brand"><a id="menu-toggle" href="">Menu<span id="main_icon" class="fa fa-align-justify"></span></a></li>
+                </ul>
+                <ul class="sidebar-nav" id="sidebar">
+                    <?php require_once'nav_painel.html'; ?>
+                </ul>
+            </div>
+            <nav class="navbar-panel navbar-default">
+              <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Mudar navegação</span>
+                    <span class="fa fa-bars fa-2x"></span>
+                  </button>
+                  <a class="page-scroll" href="<?php echo SITE_URL; ?>"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
+                <button class="button-upload btn btn-danger btn-file" type="button" data-toggle="tooltip" data-placement="bottom" title="Selecione suas imagens que deseja fazer upload.">UPLOAD <i class="fa fa-upload"></i>
+                    <form id="formupload" enctype="multipart/form-data" action="<?php echo PUBLIC_DIR; ?>/php/upload.php" method="POST">
+                        <input name="upload" id="upload" type="file" multiple="multiple">
+                    </form>
+                </button>
+                <button id="startupload" class="btn btn-info">Iniciar</button>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="upload-search">
+                            <form class="navbar-form navbar-left" role="search">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Pesquisar imagens">
+                                </div>
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </form>
+                        </li>
+                        <?php require_once 'nav.html'; ?>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+            <section class="sort-image">
+                <ul class="pull-right">
+                    <li>Ordenar <i class="fa fa-table"></i></li>
+                </ul>
+            </section>
+            <div id="upload-status" class="alert alert-info alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <i class="fa fa-image"></i> Fila de upload: <span id="current-file"></span>
+                <div class="progress">
+                    <div id="progressBar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"><span class="sr-only">0% Completado</span></div>
+                </div>
+                <div id="queue"></div>
+            </div>
+            <!-- Page content -->
+            <div id="page-content-wrapper">
+                <!-- Keep all page content within the page-content inset div! -->
+                <div class="page-content inset">
+                    <div class="row">
+                        <div class="col-md-12">
+	                           <?php
+									// open connection to MongoDB server
+									$conn = new MongoClient();
+
+									// access database
+									$db = $conn->ifpi;
+
+									// get GridFS files collection
+									$grid = $db->getGridFS();
+									$cursor = $grid->find(array('filename' => new MongoRegex('/^thumb_/')));
+
+									foreach ($cursor as $obj) {// iterate through the results
+										echo '<div class="col-lg-3 col-md-4 col-xs-6 thumb">';
+									    echo '<img class="img-responsive lazy" data-original="public/php/search.php?id='.$obj->file['_id'].'"><br>';
+									    echo '</div>';
+									}
+	                           ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer id="footer-panel">
+                <div class="container">
+                    <div class="row">
+                        <hr>
+                        <p>© 2015 IF - Pictures. All Rights Reserved.
+                        <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i style="color: gray;" class="fa fa-2x fa-angle-up"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>

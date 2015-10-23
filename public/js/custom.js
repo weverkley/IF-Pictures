@@ -121,17 +121,93 @@ $("#menu-toggle").click(function(e) {
         $("#wrapper").toggleClass("active"),
         $("#user-picture").toggleClass("active");
 });
-
+function logout(){
+	$.ajax({
+	   url: 'public/php/logout.php',
+	   type: 'post',
+	   data:{action:'logout'},
+	   success: function(data){
+	       location.reload();
+	       //window.location.href = data;
+	   }
+	});
+}
 //logout usuário
 $( "#logout" ).click(function() {
   	//alert( "Handler for .click() called." );
-	$.ajax({
-	    url: 'public/logout.php',
-	    type: 'post',
-	    data:{action:'logout'},
-	    success: function(data){
-	        location.reload();
-	        //window.location.href = data;
-	    }
-	});
+  	logout();
 });
+
+//UPLOAD DE IMAGENS
+var selDiv = "";
+var storedFiles = [];
+$(document).ready(function() {
+	$("#upload").on("change", fileSelected);
+	selDiv = $("#queue");
+	$("body").on("click", ".selFile", removeFile);
+	$("#startupload").on("click", startUpload);
+});
+
+function fileSelected(e) {
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
+	filesArr.forEach(function(f) {
+		if(!f.type.match("image.*")) {
+			return;
+		}
+		storedFiles.push(f);
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			var html = "<p><img width=\"50px\" height=\"50px\" src=\"" + e.target.result + "\" data-file='"+f.name+"'>" + f.name + "<i class='fa fa-trash pull-right selFile btn btn-danger' title='Clique para Remover'></i></p>";
+			selDiv.append(html);
+		}
+		reader.readAsDataURL(f);
+	});
+}
+
+function removeFile(e) {
+	var file = $(this).data("file");
+	for(var i=0;i<storedFiles.length;i++) {
+		if(storedFiles[i].name === file) {
+			storedFiles.splice(i,1);
+			break;
+		}
+	}
+	$(this).parent().remove();
+}
+
+function startUpload(e) {
+	e.preventDefault();
+	for(var i=0, j=storedFiles.length; i<j; i++)
+	{
+        var data = new FormData();
+        data.append("upload", storedFiles[i]);
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+        xhr.addEventListener("load", uploadComplete, false);
+        xhr.addEventListener("error", uploadFailed, false);
+        xhr.addEventListener("abort", uploadCanceled, false);
+        xhr.open("POST", "public/php/upload.php");
+        xhr.send(data);
+	}
+}
+function uploadProgress(e){
+    var percentComplete = (e.loaded / e.total) * 100;
+    $('#progressBar').css('width', percentComplete+'%');
+    $("#progressBar").html(percentComplete+'%');
+}
+
+function uploadComplete(e) {
+    /* This event is raised when the server send back a response */
+    console.log(e.target.responseText+'upload feito');
+    $('#progressBar').css('width', '0%');
+    $("#progressBar").html('0%');
+}
+
+function uploadFailed(e) {
+    alert("There was an error attempting to upload the file.");
+}
+
+function uploadCanceled(e) {
+    alert("The upload has been canceled by the user or the browser dropped the connection.");
+}

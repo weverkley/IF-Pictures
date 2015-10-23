@@ -2,7 +2,7 @@
 if (empty($_POST['login']) || empty($_POST['password'])) {
 	echo $data = 2; //"Este usuário não existe";
 } else {
-	require_once realpath(dirname(__FILE__).'/../inc/global.inc.php');
+	require_once '../../inc/global.inc.php';
 	$user = new User();
 	$where = array('name' => $_POST['login']);
 	if ($array = $user->SelectOne($where)){
@@ -11,6 +11,7 @@ if (empty($_POST['login']) || empty($_POST['password'])) {
 				$_SESSION['remember'] = 'lembrar';
 			}
 			$_SESSION['logged-in'] = true;
+			$_SESSION['_id'] = $array['_id'];
 			echo $data = 0;
 		} else {
 			echo $data = 1; //"Senhas digitadas não são iguais";

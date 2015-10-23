@@ -23,4 +23,6 @@ if (!defined('CLASSES_DIR')) define('CLASSES_DIR', 'classes');
 if (!defined('PUBLIC_DIR')) define('PUBLIC_DIR', 'public');
 // diretório include
 if (!defined('INC_DIR')) define('INC_DIR', 'inc');
+// diretório php
+if (!defined('PHP_DIR')) define('PHP_DIR', 'php');
 ?>

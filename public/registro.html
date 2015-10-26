@@ -22,92 +22,111 @@
 			<div class="col-md-offset-3 col-md-6">
 				<h3 id="info">Informações de acesso</h3>
 				<hr>
-				<div class="form-group col-lg-6">
-					<label>Nome</label>
-					<input type="text" name="name" class="form-control" id="name">
-				</div>
-				<div class="form-group col-lg-6">
-					<label>Sobrenome</label>
-					<input type="text" name="surname" class="form-control" id="surname">
-				</div>
-				<div class="form-group col-lg-6">
-					<label>Data de nascimento</label>
-					<input type="text" id="born-date" class="form-control">
-				</div>
-				<div class="col-sm-12">
-				<label>Qual seu sexo?</label>
-					<div class="row">
-						<div class="form-group col-lg-6">
-							<div class="radio">
-								<label class="custom-option button">
-									<input type="radio" name="sex" class="checkbox" value="m" checked>
-									<span class="button-radio"></span>
-								</label>
-								<label for="sex">Masculino</label>
+				<form id="registerForm" action="<?php echo PUBLIC_DIR; ?>/php/registro.php" method="post">
+					<div class="form-group col-lg-6">
+						<label>Nome</label>
+						<input type="text" name="name" class="form-control" required data-bv-notempty-message="O primeiro nome obrigatório.">
+					</div>
+					<div class="form-group col-lg-6">
+						<label>Sobrenome</label>
+						<input type="text" name="surname" class="form-control" required data-bv-notempty-message="Sobrenome obrigatório.">
+					</div>
+					<div class="form-group col-lg-6">
+						<label>Data de nascimento</label>
+						<input type="text" name="born-date" id="born-date" class="form-control" required data-bv-date="false" data-bv-notempty-message="Data de nascimento obrigatoria, ANO/MÊS/DIA." data-bv-date-format="DD/MM/YYYY" data-bv-date-message="The birthday is not valid" />
+					</div>
+					<div class="col-sm-12">
+					<label>Qual seu sexo?</label>
+						<div class="row">
+							<div class="form-group col-lg-6">
+								<div class="radio">
+									<label class="custom-option button">
+										<input type="radio" name="sex" class="checkbox" value="m" required data-bv-notempty-message="Selecione seu sexo.">
+										<span class="button-radio"></span>
+									</label>
+									<label for="sex">Masculino</label>
 
-								<label class="custom-option button">
-									<input type="radio" name="sex" class="checkbox" value="f">
-									<span class="button-radio"></span>
-								</label>
-								<label for="sex">Feminino</label>
+									<label class="custom-option button">
+										<input type="radio" name="sex" class="checkbox" value="f">
+										<span class="button-radio"></span>
+									</label>
+									<label for="sex">Feminino</label>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-sm-12">
-				<h3 id="sec">Segurança</h3>
-				<hr>
-				</div>
-				<div class="form-group col-lg-12">
-					<label>Usuário</label>
-					<input type="" name="" class="form-control" id="" value="">
-				</div>
-				<div class="form-group col-lg-6">
-					<label>Digite sua Senha</label>
-					<input type="password" name="" class="form-control" id="" value="">
-				</div>
-				<div class="form-group col-lg-6">
-					<label>Digite a senha novamente</label>
-					<input type="password" name="" class="form-control" id="" value="">
-				</div>
-				<div class="form-group col-lg-6">
-					<label>Endereço de Email</label>
-					<input type="" name="" class="form-control" id="" value="">
-				</div>
-				<div class="form-group col-lg-6">
-					<label>Digite novamente seu Email</label>
-					<input type="" name="" class="form-control" id="" value="">
-				</div>
-				<div class="form-group col-lg-12">
-					<label>Pergunta secreta</label>
-					<select name="" class="form-control">
-						<option value=""></option>
-						<option value=""></option>
-						<option value=""></option>
-						<option value=""></option>
-					</select>
-				</div>
-				<div class="form-group col-lg-12">
-					<label>Resposta</label>
-					<input type="password" name="" class="form-control" id="" value="">
-				</div>
-				<div class="form-group col-lg-12">
-					<div class="checkbox">
-						<label class="custom-option button">
-							<input type="checkbox" id="terms" name="terms" value="1">
-							<span class="button-checkbox"></span>
-						</label>
-						<label for="terms">Você aceita os <a href="#">termos e condições?</a></label>
+					<div class="col-sm-12">
+					<h3 id="sec">Segurança</h3>
+					<hr>
 					</div>
-				</div>
-				<div class="col-lg-12">
-					<input type="submit" name="" class="btn btn-info" id="" value="Registrar">
-					<input type="reset" name="" class="btn btn-info" id="" value="Limpar">
-				</div>
+					<div class="form-group col-lg-12">
+						<label>Usuário</label>
+						<input type="text" name="login" class="form-control" data-bv-message="The username is not valid"
+                                   required data-bv-notempty-message="Usuário obrigatório, permitindo entre 6 e 30 caracteres."
+                                   pattern="^[a-zA-Z0-9]+$" data-bv-regexp-message="The username can only consist of alphabetical and digits"
+                                   data-bv-stringlength="true" data-bv-stringlength-min="6" data-bv-stringlength-max="30" data-bv-stringlength-message="The username must be more than 6 and less than 30 characters long"
+                                   data-bv-different="true" data-bv-different-field="password" data-bv-different-message="The username and password cannot be the same as each other"
+                                   data-bv-remote="false" data-bv-remote-url="remote.php" data-bv-remote-message="The username is not available">
+					</div>
+					<div class="form-group col-lg-6">
+						<label>Digite sua Senha</label>
+						<input type="password" name="password" class="form-control"  required data-bv-notempty-message="Senha obrigatoria."
+                                   data-bv-identical="true" data-bv-identical-field="confirmPassword" data-bv-identical-message="The password and its confirm are not the same"
+                                   data-bv-different="true" data-bv-different-field="username" data-bv-different-message="The password cannot be the same as username">
+					</div>
+					<div class="form-group col-lg-6">
+						<label>Digite a senha novamente</label>
+						<input type="password" name="rpassword" class="form-control" required data-bv-notempty-message="Digite sua senha novamente."
+                                   data-bv-identical="true" data-bv-identical-field="password" data-bv-identical-message="As senhas não correspondem."
+                                  >
+					</div>
+					<div class="form-group col-lg-12">
+						<label>Endereço de E-mail</label>
+						<input type="email" name="email" class="form-control" required data-bv-stringlength-min="6" data-bv-notempty-message="E-mail inválido." data-bv-emailaddress-message="The input is not a valid email address">
+					</div>
+					<div class="form-group col-lg-12">
+						<label>Pergunta secreta</label>
+						<select name="question" class="form-control" data-bv-notempty data-bv-notempty-message="Selecione uma pergunta.">
+							<option value="">Por favor escolha uma pergunta!</option>
+							<option value="Em qual cidade você nasceu?">Em qual cidade você nasceu?</option>
+							<option value="Qual é seu personagem favorito?">Qual é seu personagem favorito?</option>
+							<option value="Qual é o seu login?">Qual é o seu login?</option>
+							<option value="Qual é sua comida favorita?">Qual é sua comida favorita?</option>
+							<option value="Qual o nome do seu animal?">Qual o nome do seu animal?</option>
+							<option value="Quem é seu super heroi?">Quem é seu super heroi?</option>
+							<option value="Qual é seu esporte favorito?">Qual é seu esporte favorito?</option>
+							<option value="Quem foi seu primeiro professor?">Quem foi seu primeiro professor?</option>
+							<option value="Qual é o seu passa tempo?">Qual é o seu passa tempo?</option>
+							<option value="Qual foi seu primeiro emprego?">Qual foi seu primeiro emprego?</option>
+						</select>
+					</div>
+					<div class="form-group col-lg-12">
+						<label>Resposta</label>
+						<input type="text" name="ansewr" class="form-control" required data-bv-notempty-message="Digite sua resposta.">
+					</div>
+					<div class="form-group col-lg-12">
+						<div class="checkbox">
+							<label class="custom-option button">
+								<input type="checkbox" id="terms" name="terms" value="1" data-bv-message="Please specify at least one language you can speak">
+								<span class="button-checkbox"></span>
+							</label>
+							<label for="terms">Você aceita os <a href="#">termos e condições?</a></label>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<input type="submit" name="" class="btn btn-info" id="" value="Registrar">
+						<input type="reset" name="" class="btn btn-info" id="" value="Limpar">
+					</div>
+				</form>
 			</div>
 		</div>
 		<div class="container">
 			<div class="col-md-offset-3 col-md-6">
+
+
+			<!--OUTRA PAGINA PHP-->
+
+
 				<h3 id="rec">Recuperação</h3>
 				<hr>
 				<div class="form-group col-lg-12">
@@ -116,7 +135,7 @@
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Pergunta secreta</label>
-					<select name="" class="form-control">
+					<select name="question" class="form-control">
 						<option value=""></option>
 						<option value=""></option>
 						<option value=""></option>
@@ -125,7 +144,7 @@
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Resposta</label>
-					<input type="text" name="" class="form-control" id="" value="">
+					<input type="text" name="ansewr" class="form-control" id="" value="">
 				</div>
 				<div class="col-lg-12">
 					<input type="submit" name="" class="btn btn-info" id="" value="Recuperar">

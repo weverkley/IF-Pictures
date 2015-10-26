@@ -143,12 +143,18 @@ var storedFiles = [];
 var c = 0;
 var b = 0;
 var d = 1;
+var search;
 $(document).ready(function() {
 	$('#upload').on('change', fileSelected);
 	$('body').on("click", '.cancel', removeFile);
 	$('#startupload').on('click', startUpload);
 	$('#upload-container').hide();
 	$('#container-close').on('click', containerHide);
+	$('#cancelupload').on('click', abort_all_xhr);
+	$('#search').on('keyup', function(){
+		search = $('#search').val();
+		console.log(search);
+	});
 });
 function containerHide(e) {
 	$('#upload-container').hide();
@@ -216,6 +222,16 @@ var DataURLFileReader = {
     }
 };
 
+function abort_all_xhr(){
+  if (storedFiles.length>0) {
+        for(var i=0; i<storedFiles.length; i++){
+            storedFiles[i].abort();
+        }
+        storedFiles.length = 0;
+        $(this).parents('tr').remove();
+    };
+}
+
 function removeFile(e) {
 	var file = $(this).data("file");
 	for(var i=0;i<storedFiles.length;i++) {
@@ -272,22 +288,28 @@ function uploadCanceled(e) {
 }
  
 //  INFINITE SCROLL PARA O RETORNO DE IMAGENS
+var ajax_arry = [];
+var ajax_index = 0;
+var sctp = 100;
 
- var ajax_arry = [];
- var ajax_index = 0;
- var sctp = 100;
  $(function() {
-     $('#loading').show();
-     $.ajax({
-         url: "public/php/scroll.php",
-         type: "POST",
-         data: "page=1",
-         cache: false,
-         success: function(response) {
-             $('#loading').hide();
-             $('#gallery').html(response);
-         }
-     });
+    $('#loading').show();
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = processReqChange;
+    xhr.open("GET", "public/php/scroll.php?page=1&search="+search, true);
+    xhr.send();
+	function processReqChange() { 
+	    // only if req shows "loaded" 
+	    if (xhr.readyState == 4) { 
+	        // only if "OK" 
+	        if (xhr.status == 200) { 
+	        	$('#loading').hide();
+	            $('#gallery').html(xhr.responseText); 
+	        } else { 
+	            alert("Ouve um problema com o servidor:\n" + xhr.statusText); 
+	        } 
+	    } 
+	}
      $(window).scroll(function() {
          var height = $('#gallery').height();
          var scroll_top = $(this).scrollTop();
@@ -302,10 +324,10 @@ function uploadCanceled(e) {
          if ($(window).scrollTop() == ( $(document).height() - $(window).height()) && isload == 'true') {
              $('#loading').show();
              var ajaxreq = $.ajax({
-                 url: "public/php/scroll.php",
+                 url: 'public/php/scroll.php?page='+page+'&search='+search,
                  type: "POST",
-                 data: "page=" + page,
                  cache: false,
+                 async: true,
                  success: function(response) {
                      $('#gallery').find('.nextpage').remove();
                      $('#gallery').find('.isload').remove();

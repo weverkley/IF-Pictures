@@ -1,7 +1,7 @@
 <?php
 require_once '../../inc/global.inc.php';
-if (isset($_POST['page']) && $_POST['page'] != '') {
-    $page = $_POST['page'];
+if (isset($_GET['page']) && $_GET['page'] != '') {
+    $page = $_GET['page'];
     $limit = 16;
     ($page == 1)? $skip = 0 : $skip = ($page - 1) * $limit;
 

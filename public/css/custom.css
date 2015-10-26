@@ -207,7 +207,7 @@ header .header-content .callout {
         padding-top: 30px;
         padding-bottom: 30px;
     }
-    .button-upload{
+    .button-upload {
         margin-left: 50px;
     }
 }
@@ -499,7 +499,6 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
     display: block;
 }
 
-
 #wrapper {
     padding-left: 70px;
     transition: all .4s ease 0s;
@@ -525,21 +524,24 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
     margin: 0;
     padding: 0;
 }
+
 #page-content-wrapper {
     padding-left: 0;
     margin-left: 0;
     width: 100%;
     height: auto;
 }
+
 #wrapper.active {
     padding-left: 150px;
 }
+
 #wrapper.active #sidebar-wrapper {
     left: 150px;
 }
 
 #page-content-wrapper {
-  width: 100%;
+    width: 100%;
 }
 
 #sidebar_menu li a, .sidebar-nav li a {
@@ -557,6 +559,7 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
     -ms-transition: background .5s;
     transition: background .5s;
 }
+
 .sidebar_name {
     padding-top: 25px;
     color: #fff;
@@ -564,64 +567,63 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
 }
 
 .sidebar-nav li {
-  line-height: 40px;
-  text-indent: 20px;
+    line-height: 40px;
+    text-indent: 20px;
 }
 
 .sidebar-nav li a {
-  color: #999999;
-  display: block;
-  text-decoration: none;
+    color: #999999;
+    display: block;
+    text-decoration: none;
 }
 
 .sidebar-nav li a:hover {
-  color: #fff;
-  background: rgba(255,255,255,0.2);
-  text-decoration: none;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
 }
 
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-  text-decoration: none;
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
 }
 
 .sidebar-nav > .sidebar-brand {
-  height: 65px;
-  line-height: 60px;
-  font-size: 18px;
+    height: 65px;
+    line-height: 60px;
+    font-size: 18px;
 }
 
 .sidebar-nav > .sidebar-brand a {
-  color: #999999;
+    color: #999999;
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
-  color: #fff;
-  background: none;
+    color: #fff;
+    background: none;
 }
 
-#main_icon
-{
-   float:right;
-   padding-right: 30px;
-   padding-top:20px;
+#main_icon {
+    float: right;
+    padding-right: 30px;
+    padding-top: 20px;
 }
-.sub_icon
-{
-    float:right;
-   padding-right: 30px;
-   padding-top:10px;
+
+.sub_icon {
+    float: right;
+    padding-right: 30px;
+    padding-top: 10px;
 }
+
 .content-header {
-  height: 65px;
-  line-height: 65px;
+    height: 65px;
+    line-height: 65px;
 }
 
 .content-header h1 {
-  margin: 0;
-  margin-left: 20px;
-  line-height: 65px;
-  display: inline-block;
+    margin: 0;
+    margin-left: 20px;
+    line-height: 65px;
+    display: inline-block;
 }
 
 @media (max-width:767px) {
@@ -640,8 +642,7 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
         width: 150px;
         transition: all .4s ease 0s;
     }
-
-    .button-upload{
+    .button-upload {
         margin-left: 10px;
     }
 }
@@ -652,31 +653,40 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
     margin-bottom: 10px;
 }
 
+
 /*Scrollbar navegador*/
 
 ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
 }
+
 ::-webkit-scrollbar-track {
     background-color: #eaeaea;
     border-left: 1px solid #ccc;
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: #ccc;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background-color: #aaa;
 }
 
+
 /*Seleção navegador*/
 
 ::selection {
-  background: #A4FFD1; /* WebKit/Blink Browsers */
+    background: #A4FFD1;
+    /* WebKit/Blink Browsers */
 }
+
 ::-moz-selection {
-  background: #A4FFD1; /* Gecko Browsers */
+    background: #A4FFD1;
+    /* Gecko Browsers */
 }
+
 
 /*CSS perfil*/
 
@@ -694,33 +704,33 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
     -webkit-animation: affixFadeIn 0.9s;
 }
 
-.profile-name{
-	color: white;
-	font-weight: bold;
+.profile-name {
+    color: white;
+    font-weight: bold;
 }
 
-#user-picture.active{
-	display: none;
+#user-picture.active {
+    display: none;
 }
 
-#footer-panel{
-	padding: 10px;
+#footer-panel {
+    padding: 10px;
     width: 100%;
     background-color: #F1F3FA;
     color: gray;
 }
 
-.warning-input{
+.warning-input {
     outline: none;
     border-color: #FF0000;
     box-shadow: 0 0 5px #FF0000;
 }
 
-.upload-search{
+.upload-search {
     margin-top: 16px;
 }
 
-.sort-image{
+.sort-image {
     margin-right: -15px;
     margin-left: -15px;
     margin-top: -10px;
@@ -735,7 +745,7 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
     color: gray;
 }
 
-.sort-image ul>li:hover{
+.sort-image ul>li:hover {
     color: #000000;
     font-weight: bold;
 }
@@ -744,6 +754,7 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -760,7 +771,78 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
     display: block;
 }
 
-#upload-status{
+#upload-status {
     margin-left: -15px;
     margin-right: -15px;
+}
+
+.spinner-wave {
+    margin: 0 auto;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+
+.spinner-wave > div {
+    background-color: #2ECC71;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    -webkit-animation: wave 1.2s infinite ease-in-out;
+    animation: wave 1.2s infinite ease-in-out;
+}
+
+.spinner-wave div:nth-child(2) {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner-wave div:nth-child(3) {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner-wave div:nth-child(4) {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner-wave div:nth-child(5) {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes wave {
+    0%, 40%, 100% {
+        -webkit-transform: scaleY(0.4)
+    }
+    20% {
+        -webkit-transform: scaleY(1.0)
+    }
+}
+
+@keyframes wave {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+    }
+    20% {
+        transform: scaleY(1.0);
+    }
+}
+
+#loading{
+    display: none;
+    position: fixed;
+    left:50%;
+    top:50%;
+    bottom: 10%;
+    top: 90%;
+    z-index: 9999;
+}
+
+.upload-container{
+    padding: 20px;
+    margin-left: -15px;
+    margin-right: -15px;
+    background-color: #C0C0C0;
 }

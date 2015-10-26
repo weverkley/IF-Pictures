@@ -67,6 +67,7 @@ class Image extends DB
 		try {
 		    $this->thumbName = Utils::clearText('thumb_'.$FILE['name']);
 		    $this->fileName = Utils::clearText($FILE['name']);
+		    $filetype = $FILE['type'];
 
 		    self::makeThumb($FILE);
 
@@ -74,8 +75,8 @@ class Image extends DB
 		    foreach ($files as $thumbTemp){
 		        if(($thumbTemp != '.') && ($thumbTemp != '..') && ($thumbTemp == $this->thumbName)){
 		            $realpath = $_SERVER['DOCUMENT_ROOT'].'/IF-Pictures/public/php/'.$this->path.$thumbTemp; // Caminho absoluto até o arquivo
-		            $this->idThumb = $this->grid->storeFile($realpath, array('filename' => $this->thumbName)); // Guardar thumbnail
-		            $this->idMain = $this->grid->storeUpload('upload', array('filename' => $this->fileName)); // Upload da imagem
+		            $this->idThumb = $this->grid->storeFile($realpath, array('filename' => $this->thumbName, 'filetype' => $filetype)); // Guardar thumbnail
+		            $this->idMain = $this->grid->storeUpload('upload', array('filename' => $this->fileName, 'filetype' => $filetype)); // Upload da imagem
 		            unlink($realpath);
 		        }
 		    }
@@ -109,6 +110,20 @@ class Image extends DB
 		$img->crop(250, 150, 0, 0);
 		$img->save($this->path.Utils::clearText($this->thumbName));
 	}
+
+	/**
+	* Método para retornar imagens.
+	*/
+	public function Gridfind($array){
+		return $this->grid->find($array);
+	}
+
+	/**
+	* Método para retornar uma imagen.
+	*/
+	public function GridfindOne($array){
+		return $this->grid->findOne($array);
+	} 
 
 	public function __destruct(){
 		$this->mongo->close();

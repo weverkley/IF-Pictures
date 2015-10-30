@@ -53,46 +53,6 @@
                         invalid: 'fa fa-remove',
                         validating: 'fa fa-refresh'
                     }
-                }).on('success.form.bv', function(e) {
-                    // Prevent form submission
-                    e.preventDefault();
-
-                    // Get the form instance
-                    var $form = $(e.target);
-
-                    // Get the BootstrapValidator instance
-                    var bv = $form.data('bootstrapValidator');
-
-                    // Use Ajax to submit form data
-                    $.post($form.attr('action'), $form.serialize(), function(result) {
-                        if (result == 1) {
-                        	mensagem = "Usuário Cadastrado com sucesso!";
-                        	msgtipo = "success";
-                        	msicon = 'fa fa-check';
-
-                        }
-                        else{
-                        	mensagem = "ERRO: Usuário não foi Cadastrado, problema na conexão com o banco de dados.";
-                        	msgtipo = "danger";
-                        	msicon = 'fa fa-remove';
-                        }
-                        $.notify({
-                        	icon: msicon,
-                        	message: mensagem
-                        }, {
-                        	type: msgtipo,
-                        	animate:{
-                        		enter: 'animated bounceIn',
-                        		exit: 'animated bounceOut'
-                        	},
-                        	placement:{
-                        		from: "bottom",
-                        		align: "left"
-                        	}
-                        });
-                        $('#registerForm').trigger("reset");
-                        console.log(result);
-                    }, 'json');
                 });
             });
         </script>

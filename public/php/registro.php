@@ -21,9 +21,14 @@ $data = array(
 	'login' => $login,
 	'password' => md5($password),
 	'email' => $email,
-	'question' => $question,   
+	'question' => $question,
 	'ansewr' => $ansewr
 );
-$user->Insert($data);
+if($user->Insert($data)){
+	echo json_encode("1");
+}
+else {
+	echo json_encode("2");
+}
 
 ?>

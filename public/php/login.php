@@ -4,7 +4,7 @@ if (empty($_POST['login']) || empty($_POST['password'])) {
 } else {
 	require_once '../../inc/global.inc.php';
 	$user = new User();
-	$where = array('name' => $_POST['login']);
+	$where = array('login' => $_POST['login']);
 	if ($array = $user->SelectOne($where)){
 		if ($array['password'] == md5($_POST['password'])) {
 			if ($_POST['remember'] == '1'){

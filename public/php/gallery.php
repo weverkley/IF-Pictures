@@ -2,11 +2,11 @@
 require_once '../../inc/global.inc.php';
 if (isset($_GET['page']) && $_GET['page'] != '') {
     $page = $_GET['page'];
-    $limit = 16;
+    $limit = 12;
     ($page == 0)? $skip = 0 : $skip = ($page - 1) * $limit;
     $data = array();
     $image = new Image();
-	$cursor = $image->Gridfind(array('filename' => new MongoRegex('/^thumb_/'), 'owner' => $_SESSION['_id']))->skip($skip)->limit($limit);
+	$cursor = $image->Gridfind(array('filename' => new MongoRegex('/^thumb_/')))->skip($skip)->limit($limit);
     foreach ($cursor as $obj) {
 	   $data[] = $obj->file['_id'];
 	}

@@ -694,6 +694,10 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
 }
 
 #user-picture.active {
+    display: block;
+}
+
+#user-picture.disabled {
     display: none;
 }
 

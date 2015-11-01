@@ -1,7 +1,6 @@
 <body id="voltar-topo">
     <div class="container-fluid">
         <div id="wrapper">
-
             <!-- Sidebar -->
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
@@ -84,46 +83,57 @@
         </div>
     </div>
     <ul id="context-menu" class="context-menu">
-            <a class="context-menu-link" href="" title="" data-action="preview">
+        <a class="context-menu-link" href="" title="" data-action="preview" data-toggle="modal" data-target="#preview-modal">
+            <li class="context-menu-item">
+                <i class="fa fa-eye"></i> Visualizar
+            </li>
+        </a>
+        <a class="context-menu-link" href="" title="" data-action="share">
+            <li class="context-menu-item">
+                <i class="fa fa-share"></i> Compartilhar
+            </li>
+        </a>
+        <a class="context-menu-link" href="" title="" data-action="copyLink">
+            <li class="context-menu-item">
+                <i class="fa fa-link"></i> Copiar Link
+            </li>
+        </a>
+        <a class="context-menu-link" href="" title="" data-action="favorite">
+            <li class="context-menu-item">
+                <i class="fa fa-star"></i> Favorito
+            </li>
+        </a>
+        <a class="context-menu-link" href="" title="" data-action="rename">
+            <li class="context-menu-item">
+                <i class="fa fa-pencil"></i> Renomear
+            </li>
+        </a>
+        <a class="context-menu-link" href="" title="" data-action="download">
         <li class="context-menu-item">
-            <i class="fa fa-eye"></i> Preview
-        </li>
-            </a>
-            <a class="context-menu-link" href="" title="" data-action="share">
-        <li class="context-menu-item">
-            <i class="fa fa-share"></i> Share
-        </li>
-            </a>
-            <a class="context-menu-link" href="" title="" data-action="copyLink">
-        <li class="context-menu-item">
-            <i class="fa fa-link"></i> Copy Link
-        </li>
-            </a>
-            <a class="context-menu-link" href="" title="" data-action="favorite">
-        <li class="context-menu-item">
-            <i class="fa fa-star"></i> Favorite
-        </li>
-            </a>
-            <a class="context-menu-link" href="" title="" data-action="rename">
-        <li class="context-menu-item">
-            <i class="fa fa-pencil"></i> Rename
-        </li>
-            </a>
-            <a class="context-menu-link" href="" title="" data-action="copy">
-        <li class="context-menu-item">
-            <i class="fa fa-docs"></i> Make a copy
-        </li>
-            </a>
-            <a class="context-menu-link" href="" title="" data-action="download">
-        <li class="context-menu-item">
-            <i class="fa fa-download"></i> Download
-        </li>
-            </a>
+                <i class="fa fa-download"></i> Download
+            </li>
+        </a>
         <li class="separator"></li>
-            <a class="context-menu-link" href="" title="" data-action="delete">
-        <li class="context-menu-item">
-            <i class="fa fa-trash"></i> Remove
-        </li>
-            </a>
+        <a class="context-menu-link" href="" title="" data-action="delete">
+            <li class="context-menu-item">
+                <i class="fa fa-trash"></i> Apagar
+            </li>
+        </a>
     </ul>
+    <div class="modal fade" id="preview-modal" tabindex="-1" role="dialog" aria-labelledby="preview-modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="preview-modalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <img id="large-image" class="img-responsive" src="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>        
+                </div>
+            </div>
+        </div>
+    </div>
 </body>

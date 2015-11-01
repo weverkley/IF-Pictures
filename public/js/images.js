@@ -11,10 +11,6 @@ $(document).ready(function() {
 	$('#upload-container').hide();
 	$('#container-close').on('click', containerHide);
 	$('#cancelupload').on('click', abort_all_xhr);
-	$('#search').on('keyup', function(){
-		search = $('#search').val();
-		console.log(search);
-	});
 });
 function containerHide(e) {
 	$('#upload-container').hide();
@@ -372,7 +368,19 @@ function uploadCanceled(e) {
    */
   function menuItemListener( link ) {
     console.log( "Task ID - " + taskItemInContext.getAttribute("data-id") + ", Task action - " + link.getAttribute("data-action"));
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET" ,"public/php/preview.php?id="+taskItemInContext.getAttribute("data-id")+"");
+    xhr.addEventListener('readystatechange', function(){
+        if(xhr.readyState === 4){
+            if(xhr.status === 200){
+            	$('.modal-body').html().show();
+                //$('#large-image').attr('src', 'public/php/search.php?id='+xhr.responseText+'')
+            };
+        }
+    }, false);
+    xhr.send();
     toggleMenuOff();
+
   }
 
   /**
@@ -382,16 +390,31 @@ function uploadCanceled(e) {
 
 })();
 
+$(document).ready(function () {
+    $('#preview-modal').on('show.bs.modal', function (event) { // id of the modal with event
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      var title = 'Visualizando imagem'
+      var content = ''
+      // Update the modal's content.
+      var modal = $(this)
+      modal.find('.modal-title').text(title)
+      //modal.find('.modal-body').text(content)     
+      modal.find('button.btn-danger').val()
+    })
+});
+
 //  INFINITE SCROLL PARA O RETORNO DE IMAGENS
 var pageIndex = 0;
 var noresults = 0;
 var returned = 0;
 $(document).ready(function () {
-    GetData();
+	if(noresults == 0) GetData();
     $(window).scroll(function () {
         if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-            GetData();
-			if(noresults == 0) $('#loading').show();
+            if(noresults == 0) {
+                GetData();
+                $('#loading').show();
+            }
         }
     });
 });
@@ -399,7 +422,7 @@ function GetData() {
 	//creating a ajax request
 	pageIndex++;
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET" ,"public/php/scroll.php?page="+pageIndex+"");
+	xhr.open("GET" ,"public/php/scroll.php?page="+pageIndex+"", true);
 	xhr.addEventListener('readystatechange', function(){
 		if(xhr.readyState === 4){
 			if(xhr.status === 200){
@@ -408,24 +431,25 @@ function GetData() {
 			 	//format the result and display them
 			 	if(result.length && noresults == 0){
 			 		for (var i = 0; i < result.length; i++) {
-			 			resultMarkup = '<div class="col-lg-3 col-md-4 col-xs-6">';
-		    			resultMarkup += '<img class="img-responsive lazy thumbnail" src="public/php/search.php?id='+result[i].$id+'" ><br>';
-		    			resultMarkup += '</div>';
-		    			//console.log(result[i].$id);
-			 			$('#gallery').append(resultMarkup);
+			 			resultMarkup = '<div class="col-lg-3 col-md-4 col-xs-6">',
+		    			resultMarkup += '<img data-id="'+result[i].$id+'"class="img-responsive thumbnail" src="public/php/search.php?id='+result[i].$id+'" ><br>',
+		    			resultMarkup += '</div>',
+		    			//console.log(result[i].$id),
+			 			$('#gallery').append(resultMarkup)
 			 		};
 			 		//append the results to the results div
 			 		//empty the resultMarkup variable
-			 		resultMarkup = '';
+			 		resultMarkup = '',
 			 		returned++;
 			 	}else{
 			 		if (returned == 0) p = '<div class="container"><p class="col-lg-12 text-center">Você não possui imagens.</p><div>';
 			 		else p = '<div class="container"><p class="col-lg-12 text-center">Não há mais imagens a serem carregadas.</p><div>';
-			 		if (noresults == 0) $('#gallery').append(p);
-			 		noresults = 1;
+			 		if (noresults == 0) $('#gallery').append(p); 
+			 		noresults++;
 			 	}
 			}
 		}
 	}, false);
+    xhr.setRequestHeader('Cache-Control', 'cache');
 	xhr.send();
 }

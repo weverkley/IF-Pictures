@@ -75,8 +75,20 @@ class Image extends DB
 		    foreach ($files as $thumbTemp){
 		        if(($thumbTemp != '.') && ($thumbTemp != '..') && ($thumbTemp == $this->thumbName)){
 		            $realpath = $_SERVER['DOCUMENT_ROOT'].'/IF-Pictures/public/php/'.$this->path.$thumbTemp; // Caminho absoluto até o arquivo
-		            $this->idThumb = $this->grid->storeFile($realpath, array('filename' => $this->thumbName, 'filetype' => $filetype, 'owner' => $_SESSION['_id'])); // Guardar thumbnail
-		            $this->idMain = $this->grid->storeUpload('upload', array('filename' => $this->fileName, 'filetype' => $filetype, 'owner' => $_SESSION['_id'])); // Upload da imagem
+		            $main = new MongoId();
+		            $thumb = new MongoId();
+		            $this->idThumb = $this->grid->storeFile($realpath, array(
+		            	'_id' => $thumb,
+		            	'filename' => $this->thumbName, 
+		            	'filetype' => $filetype, 
+		            	'owner' => $_SESSION['_id'], 
+		            	'main' => $main)); // Guardar thumbnail
+		            $this->idMain = $this->grid->storeUpload('upload', array(
+		            	'_id' => $main,
+		            	'filename' => $this->fileName, 
+		            	'filetype' => $filetype, 
+		            	'owner' => $_SESSION['_id'], 
+		            	'thumb' => $thumb)); // Upload da imagem
 		            unlink($realpath);
 		        }
 		    }

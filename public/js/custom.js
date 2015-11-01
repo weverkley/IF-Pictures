@@ -119,13 +119,12 @@ $(document).ready(function() {
 $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("active"),
-        $("#user-picture").toggleClass("active");
+        $("#user-picture").toggleClass('disabled');
 });
 function logout(){
 	$.ajax({
-	   url: 'public/php/logout.php',
-	   type: 'post',
-	   data:{action:'logout'},
+	   url: 'public/php/logout.php?action=logout',
+	   cache: false,
 	   success: function(data){
 	       location.reload();
 	       //window.location.href = data;

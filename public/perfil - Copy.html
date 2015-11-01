@@ -1,0 +1,160 @@
+<body id="voltar-topo">
+    <div class="container-fluid">
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul id="sidebar_menu" class="sidebar-nav">
+                    <li class="sidebar-brand"><a id="menu-toggle" href="">Menu<span id="main_icon" class="fa fa-align-justify"></span></a></li>
+                </ul>
+                <ul class="sidebar-nav" id="sidebar">
+                    <?php require_once'nav_painel.html'; ?>
+                </ul>
+            </div>
+            <nav class="navbar-panel navbar-default">
+              <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Mudar navegação</span>
+                    <span class="fa fa-bars fa-2x"></span>
+                  </button>
+                  <a class="page-scroll" href="<?php echo SITE_URL; ?>"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <?php require_once 'nav.html'; ?>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+            <!-- Page content -->
+            <div id="page-content-wrapper">
+                <!-- Keep all page content within the page-content inset div! -->
+                <div class="page-content inset">
+                    <div class="row">
+                        <br>
+                        <div class="col-md-12">
+                            <div class="col-md-3">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <p class="text-center"><img class="lazy img-circle" data-original="<?php echo PUBLIC_DIR; ?>/img/panel/user_male.png" alt="profile" width="100"></p>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-info">Editar meu Perfil</button>
+                                </div>
+                                <br>
+                                <div class="list-group">
+                                    <button type="button" class="list-group-item"><i class="fa fa-info"></i> Cras justo odio</button>
+                                    <button type="button" class="list-group-item"><i class="fa fa-info"></i> Dapibus ac facilisis in</button>
+                                    <button type="button" class="list-group-item"><i class="fa fa-info"></i> Morbi leo risus</button>
+                                    <button type="button" class="list-group-item"><i class="fa fa-info"></i> Porta ac consectetur ac</button>
+                                    <button type="button" class="list-group-item"><i class="fa fa-info"></i> Vestibulum at eros</button>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <h4 style="text-transform: none;"><?php echo $user['name']; ?></h4>
+                                        <hr>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                        <p class="button-social">
+                                        <hr>
+                                            <a class="btn btn-social btn-bitbucket">
+                                                <i class="fa fa-bitbucket"></i> Bitbucket
+                                            </a>
+                                            <a class="btn btn-social btn-dropbox">
+                                                <i class="fa fa-dropbox"></i> Dropbox
+                                            </a>
+                                            <a class="btn btn-social btn-facebook">
+                                                <i class="fa fa-facebook"></i> Facebook
+                                            </a>
+                                            <a class="btn btn-social btn-flickr">
+                                                <i class="fa fa-flickr"></i> Flickr
+                                            </a>
+                                            <a class="btn btn-social btn-github">
+                                                <i class="fa fa-github"></i> GitHub
+                                            </a>
+                                            <a class="btn btn-social btn-google">
+                                                <i class="fa fa-google-plus"></i> Google
+                                            </a>
+                                            <a class="btn btn-social btn-instagram">
+                                                <i class="fa fa-instagram"></i> Instagram
+                                            </a>
+                                            <a class="btn btn-social btn-linkedin">
+                                                <i class="fa fa-linkedin"></i> LinkedIn
+                                            </a>
+                                            <a class="btn btn-social btn-pinterest">
+                                                <i class="fa fa-pinterest"></i> Pinterest
+                                            </a>
+                                            <a class="btn btn-social btn-reddit">
+                                                <i class="fa fa-reddit"></i> Reddit
+                                            </a>
+                                            <a class="btn btn-social btn-soundcloud">
+                                                <i class="fa fa-soundcloud"></i> SoundCloud
+                                            </a>
+                                            <a class="btn btn-social btn-tumblr">
+                                                <i class="fa fa-tumblr"></i> Tumblr
+                                            </a>
+                                            <a class="btn btn-social btn-twitter">
+                                                <i class="fa fa-twitter"></i> Twitter
+                                            </a>
+                                            <a class="btn btn-social btn-vimeo">
+                                                <i class="fa fa-vimeo-square"></i> Vimeo
+                                            </a>
+                                            <a class="btn btn-social btn-vk">
+                                                <i class="fa fa-vk"></i> VK
+                                            </a>
+                                            <a class="btn btn-social btn-yahoo">
+                                                <i class="fa fa-yahoo"></i> Yahoo!
+                                            </a>
+                                        </p>
+                                        <hr>
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                                            <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+                                            <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+                                        </ul>
+
+                                        <div class="tab-content">
+                                            <div id="home" class="tab-pane fade in active">
+                                                <h3>HOME</h3>
+                                                <p>Some content.</p>
+                                            </div>
+                                            <div id="menu1" class="tab-pane fade">
+                                                <h3>Menu 1</h3>
+                                                <p>Some content in menu 1.</p>
+                                            </div>
+                                            <div id="menu2" class="tab-pane fade">
+                                                <h3>Menu 2</h3>
+                                                <p>Some content in menu 2.</p>
+                                            </div>
+                                        </div>
+                                     </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer id="footer-panel">
+                <div class="container">
+                    <div class="row">
+                        <hr>
+                        <p>© 2015 IF - Pictures. All Rights Reserved.
+                        <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i style="color: gray;" class="fa fa-2x fa-angle-up"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+</body>

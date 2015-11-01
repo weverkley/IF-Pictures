@@ -1,7 +1,118 @@
 <body id="voltar-topo">
+    <style type="text/css" media="screen">
+    *{
+        font-family: 'Open Sans', sans-serif;
+    }
+    .well {
+        margin-top:-20px;
+        background-color:#007FBD;
+        border:2px solid #0077B2;
+        text-align:center;
+        cursor:pointer;
+        font-size: 25px;
+        padding: 15px;
+        border-radius: 0px !important;
+    }
+    .well:hover {
+        margin-top:-20px;
+        background-color:#0077B2;
+        border:2px solid #0077B2;
+        text-align:center;
+        cursor:pointer;
+        font-size: 25px;
+        padding: 15px;
+        border-radius: 0px !important;
+        border-bottom : 2px solid rgba(97, 203, 255, 0.65);
+    }
+    body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #fff;
+    background-color: #F1F1F1;
+    }
+    .bg_blur
+    {
+        background-image:url('http://data2.whicdn.com/images/139218968/large.jpg');
+        height: 300px;
+        background-size: cover;
+    }
+    .follow_btn {
+        text-decoration: none;
+        position: absolute;
+        left: 35%;
+        top: 42.5%;
+        width: 35%;
+        height: 15%;
+        background-color: #007FBE;
+        padding: 10px;
+        padding-top: 6px;
+        color: #fff;
+        text-align: center;
+        font-size: 20px;
+        border: 4px solid #007FBE;
+    }
+    .follow_btn:hover {
+        text-decoration: none;
+        position: absolute;
+        left: 35%;
+        top: 42.5%;
+        width: 35%;
+        height: 15%;
+        background-color: #007FBE;
+        padding: 10px;
+        padding-top: 6px;
+        color: #fff;
+        text-align: center;
+        font-size: 20px;
+        border: 4px solid rgba(255, 255, 255, 0.8);
+    }
+    .heade-cover{
+        color : #808080;
+        margin-left:10%;
+        margin-top:70px;
+    }
+    .picture{
+        height:150px;
+        width:150px;
+        position:absolute;
+        top: 75px;
+        left:-75px;
+    }
+    .picture_mob{
+        position: absolute;
+        width: 35%;
+        left: 35%;
+        bottom: 70%;
+    }
+    .btn-style{
+        color: #fff;
+        background-color: #007FBE;
+        border-color: #adadad;
+        width: 33.3%;
+    }
+    .btn-style:hover {
+        color: #333;
+        background-color: #3D5DE0;
+        border-color: #adadad;
+        width: 33.3%;
+
+    }
+    @media (max-width: 767px) {
+        .heade-cover{
+            text-align : center;
+        }
+        
+        
+        
+        .nav{
+            margin-top : 30px;
+        }
+    }
+        
+    </style>
     <div class="container-fluid">
         <div id="wrapper">
-
             <!-- Sidebar -->
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
@@ -13,49 +124,89 @@
                 </ul>
             </div>
             <nav class="navbar-panel navbar-default">
-              <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-                    <span class="sr-only">Mudar navegação</span>
-                    <span class="fa fa-bars fa-2x"></span>
-                  </button>
-                  <a class="page-scroll" href="<?php echo SITE_URL; ?>"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <?php require_once 'nav.html'; ?>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-              </div><!-- /.container-fluid -->
-            </nav>
-            <!-- Page content -->
-            <div id="page-content-wrapper">
-                <!-- Keep all page content within the page-content inset div! -->
-                <div class="page-content inset">
-                    <div class="row">
-                        <br>
-                        <div class="col-md-12">
-                            <div class="col-md-12">
-                                <div class="cover">
-                                    
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                        <span class="sr-only">Mudar navegação</span>
+                        <span class="fa fa-bars fa-2x"></span>
+                        </button>
+                        <a class="page-scroll" href="<?php echo SITE_URL; ?>"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <?php require_once 'nav.html'; ?>
+                        </ul>
+                        </div><!-- /.navbar-collapse -->
+                        </div><!-- /.container-fluid -->
+                    </nav>
+                    <!-- Page content -->
+                    <div id="page-content-wrapper">
+                        <!-- Keep all page content within the page-content inset div! -->
+                        <div class="page-content inset">
+                            <div class="row">
+                                <br>
+                                <div class="col-md-12">
+                                    <div class="col-md-12">
+                                        <div class="cover">
+                                            <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+                                                <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
+                                                    <div class="row panel">
+                                                        <div class="col-md-4 bg_blur ">
+                                                            <a href="#" class="follow_btn hidden-xs">Seguir</a>
+                                                        </div>
+                                                        <div class="col-md-8  col-xs-12">
+                                                            <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img-thumbnail picture hidden-xs" />
+                                                            <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img-thumbnail visible-xs picture_mob" />
+                                                            <div class="heade-cover">
+                                                                <h1>Denilson</h1>
+                                                                <h4>Lindo</h4>
+                                                                <span>Eu Amo a Gabriela Soares de Almeida Campos</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row nav">
+                                                        <div class="col-md-4"></div>
+                                                        <div class="col-md-8 col-xs-12" style="margin: 0px;padding: 0px;">
+                                                            <div class="col-md-4 col-xs-4 well"><i class="fa fa-picture-o"></i> Imagens </div>
+                                                            <div class="col-md-4 col-xs-4 well"><i class="fa fa-users"></i> Amigos </div>
+                                                            <div class="col-md-4 col-xs-4 well"><i class="fa fa-comments-o"></i> Comentários </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-6">
+                        <section class="panel">
+                            
+                            <form>
+                                <textarea placeholder=" O que está em sua mente agora?" rows="2" class="form-control input-lg p-text-area"></textarea>
+                            </form>
+                            <footer class="panel-footer">
+                                <button class="btn btn-danger pull-right">Postar</button>
+
+                            </footer>
+                        </section>
+                        </div>
+                        <footer id="footer-panel">
+                            <div class="container">
+                                <div class="row">
+                                    <hr>
+                                    <p>© 2015 IF - Pictures. All Rights Reserved.
+                                    <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i style="color: gray;" class="fa fa-2x fa-angle-up"></i></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </footer>
                     </div>
                 </div>
-            </div>
-            <footer id="footer-panel">
-                <div class="container">
-                    <div class="row">
-                        <hr>
-                        <p>© 2015 IF - Pictures. All Rights Reserved.
-                        <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i style="color: gray;" class="fa fa-2x fa-angle-up"></i></a>
-                        </p>
-                    </div>
-                </div>
-            </footer>
-        </div>
-    </div>
-</body>
+            </body>

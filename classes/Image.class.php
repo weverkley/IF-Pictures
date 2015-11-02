@@ -18,31 +18,6 @@ class Image extends DB
 	/**
 	*
 	*/
-	private $idThumb;
-
-	/**
-	*
-	*/
-	private $idMain;
-
-	/**
-	*
-	*/
-	private $idImage;
-
-	/**
-	* diretório temporário para armazenar imagens
-	*/
-	private $path = 'temp/';
-
-	/**
-	*
-	*/
-	private $thumbName;
-
-	/**
-	*
-	*/
 	private $fileName;
 	/**
 	* Construtor da classe extendendo a conexão com o banco.
@@ -65,62 +40,48 @@ class Image extends DB
 	*/
 	public function upload($FILE){
 		try {
-		    $this->thumbName = Utils::clearText('thumb_'.$FILE['name']);
-		    $this->fileName = Utils::clearText($FILE['name']);
-		    $filetype = $FILE['type'];
+		    $base = dirname(__DIR__);
+		    $thumbnail = sprintf('%s/%s', $base, "public/img/thumbnail/");
+		    $large = sprintf('%s/%s', $base, "public/img/large/");
 
-		    self::makeThumb($FILE);
+		    $path_parts = pathinfo($FILE['name']);
+		    $extension = $path_parts['extension'];
+		    $this->fileName = md5($FILE['name']).'_'.date('dmYHis').'.'.$extension;
+		    //check and set folder permission 
+		    
+		    Utils::createFolder($thumbnail);
+		    Utils::createFolder($large);
 
-		    $files = scandir($this->path);
-		    foreach ($files as $thumbTemp){
-		        if(($thumbTemp != '.') && ($thumbTemp != '..') && ($thumbTemp == $this->thumbName)){
-		            $realpath = $_SERVER['DOCUMENT_ROOT'].'/IF-Pictures/public/php/'.$this->path.$thumbTemp; // Caminho absoluto até o arquivo
-		            $main = new MongoId();
-		            $thumb = new MongoId();
-		            $this->idThumb = $this->grid->storeFile($realpath, array(
-		            	'_id' => $thumb,
-		            	'filename' => $this->thumbName, 
-		            	'filetype' => $filetype, 
-		            	'owner' => $_SESSION['_id'], 
-		            	'main' => $main)); // Guardar thumbnail
-		            $this->idMain = $this->grid->storeUpload('upload', array(
-		            	'_id' => $main,
-		            	'filename' => $this->fileName, 
-		            	'filetype' => $filetype, 
-		            	'owner' => $_SESSION['_id'], 
-		            	'thumb' => $thumb)); // Upload da imagem
-		            unlink($realpath);
-		        }
-		    }
+		    $imgThumb = new SimpleImage();
+		    $imgThumb->load($FILE['tmp_name']);
+		    $imgThumb->best_fit(350, 200);
+		    //$img->crop(250, 150, 0, 0);
+		    $imgThumb->save($thumbnail.$this->fileName);
+
+		    $imgLarge = new SimpleImage();
+		    $imgLarge->load($FILE['tmp_name']);
+		    $imgLarge->save($large.$this->fileName);
 
 		    $data = array(
 		    	'owner' => $_SESSION['_id'],
 		    	'imageName' => $this->fileName,
-		    	'imageId' => $this->idMain,
-		    	'thumbName' => $this->thumbName,
-		    	'thumbId' => $this->idThumb,
-		    	'type' => $FILE['type'],
 		    	'date' => new MongoDate(),
 		    	'protected' =>  false
 			);
 
-			$this->idImage = $this->images->insert($data);
+			$this->images->insert($data);
 
-		    return 'Main ID: '.$this->idMain.'<br>Thumbnail ID: '.$this->idThumb;
+		    return 'Main file: '.$this->fileName;
 		} catch (Exception $e) {
 		    throw new Exception($e->getMessage());
 		}
 	}
 
 	/**
-	* Método para criar a thumbnail.
+	* Método para retornar imagens.
 	*/
-	public function makeThumb($FILE){
-		$img = new SimpleImage();
-		$img->load($FILE['tmp_name']);
-		$img->resize(250, 150);
-		$img->crop(250, 150, 0, 0);
-		$img->save($this->path.Utils::clearText($this->thumbName));
+	public function ImageFind($array){
+		return $this->images->find($array);
 	}
 
 	/**

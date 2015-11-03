@@ -19,7 +19,7 @@ require_once realpath(dirname(__FILE__).'/../classes/Image.class.php');
 
 function incPage($default, $get, $notallowed = array()) {
 	if (isset($_GET[$get])) {
-		$notallowed = array('login.php', 'logout.php', 'painel.html'); // array com páginas bloqueadas;
+		//$notallowed = array('login.php', 'logout.php', 'painel.html'); // array com páginas bloqueadas;
 		if (preg_match('/.php/i', $_GET[$get])) {
 			$file = PUBLIC_DIR.'/'.$_GET[$get];
 			(file_exists($file)) ? require_once PUBLIC_DIR.'/'.$_GET[$get] : require_once PUBLIC_DIR.'/404.html';
@@ -35,7 +35,7 @@ function showPage() {
 	if (!isset($_SESSION['logged-in'])) {
 		incPage('/inicio.html', 'p', $notallowed = array('login.php', 'logout.php', 'painel.html'));
 	} else {
-		incPage('/painel.html', 'u', $notallowed = array('login.php', 'logout.php', 'painel.html', 'inicio.html'));
+		incPage('/painel.html', 'u', $notallowed = array('login.php', 'logout.php', 'inicio.html'));
 	}
 }
 

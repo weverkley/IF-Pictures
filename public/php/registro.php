@@ -10,7 +10,7 @@ $password = $_POST['password'];
 $rpassword = $_POST['rpassword'];
 $email = $_POST['email'];
 $question = $_POST['question'];
-$ansewr = $_POST['ansewr'];
+$answer = $_POST['answer'];
 
 $user = new User();
 $data = array(
@@ -22,7 +22,14 @@ $data = array(
 	'password' => md5($password),
 	'email' => $email,
 	'question' => $question,
-	'ansewr' => $ansewr
+	'answer' => $answer,
+	//----//
+	'avatar' => null,
+	'cover' => null,
+	'thoughts' => array(),
+	'job' => null,
+	'state' => null,
+	'city' => null,
 );
 if($user->Insert($data)){
 	echo json_encode("1");

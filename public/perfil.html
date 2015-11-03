@@ -1,116 +1,28 @@
 <body id="voltar-topo">
-    <style type="text/css" media="screen">
-    *{
-        font-family: 'Open Sans', sans-serif;
-    }
-    .well {
-        margin-top:-20px;
-        background-color:#007FBD;
-        border:2px solid #0077B2;
-        text-align:center;
-        cursor:pointer;
-        font-size: 25px;
-        padding: 15px;
-        border-radius: 0px !important;
-    }
-    .well:hover {
-        margin-top:-20px;
-        background-color:#0077B2;
-        border:2px solid #0077B2;
-        text-align:center;
-        cursor:pointer;
-        font-size: 25px;
-        padding: 15px;
-        border-radius: 0px !important;
-        border-bottom : 2px solid rgba(97, 203, 255, 0.65);
-    }
-    body {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #fff;
-    background-color: #F1F1F1;
-    }
-    .bg_blur
-    {
-        background-image:url('http://data2.whicdn.com/images/139218968/large.jpg');
-        height: 300px;
-        background-size: cover;
-    }
-    .follow_btn {
-        text-decoration: none;
-        position: absolute;
-        left: 35%;
-        top: 42.5%;
-        width: 35%;
-        height: 15%;
-        background-color: #007FBE;
-        padding: 10px;
-        padding-top: 6px;
-        color: #fff;
-        text-align: center;
-        font-size: 20px;
-        border: 4px solid #007FBE;
-    }
-    .follow_btn:hover {
-        text-decoration: none;
-        position: absolute;
-        left: 35%;
-        top: 42.5%;
-        width: 35%;
-        height: 15%;
-        background-color: #007FBE;
-        padding: 10px;
-        padding-top: 6px;
-        color: #fff;
-        text-align: center;
-        font-size: 20px;
-        border: 4px solid rgba(255, 255, 255, 0.8);
-    }
-    .heade-cover{
-        color : #808080;
-        margin-left:10%;
-        margin-top:70px;
-    }
-    .picture{
-        height:150px;
-        width:150px;
-        position:absolute;
-        top: 75px;
-        left:-75px;
-    }
-    .picture_mob{
-        position: absolute;
-        width: 35%;
-        left: 35%;
-        bottom: 70%;
-    }
-    .btn-style{
-        color: #fff;
-        background-color: #007FBE;
-        border-color: #adadad;
-        width: 33.3%;
-    }
-    .btn-style:hover {
-        color: #333;
-        background-color: #3D5DE0;
-        border-color: #adadad;
-        width: 33.3%;
+<link rel="stylesheet" type="text/css" href="<?php echo PUBLIC_DIR; ?>/timeline.css">
+<style type="text/css" media="screen">
+	@media (min-width: 768px){
+		.navbar-nav>li>a {
+		    padding-top: none;
+		    padding-bottom: none;
+		}
+		.nav>li>a {
+		    position: relative;
+		    display: block;
+		    padding: none;
+		}
 
-    }
-    @media (max-width: 767px) {
-        .heade-cover{
-            text-align : center;
-        }
-        
-        
-        
-        .nav{
-            margin-top : 30px;
-        }
-    }
-        
-    </style>
+		.navbar-cover li a {
+			border-right: none;
+		}
+	}
+	@media (min-width: 768px){
+		.navbar-nav>li>a {
+		    padding-top: 15px;
+		    padding-bottom: 15px;
+		}
+	}
+</style>		
     <div class="container-fluid">
         <div id="wrapper">
             <!-- Sidebar -->
@@ -148,65 +60,101 @@
                             <div class="row">
                                 <br>
                                 <div class="col-md-12">
-                                    <div class="col-md-12">
-                                        <div class="cover">
-                                            <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-                                                <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-                                                <div class="container" style="margin-top: 20px; margin-bottom: 20px;">
-                                                    <div class="row panel">
-                                                        <div class="col-md-4 bg_blur ">
-                                                            <a href="#" class="follow_btn hidden-xs">Seguir</a>
-                                                        </div>
-                                                        <div class="col-md-8  col-xs-12">
-                                                            <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img-thumbnail picture hidden-xs" />
-                                                            <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img-thumbnail visible-xs picture_mob" />
-                                                            <div class="heade-cover">
-                                                                <h1>Denilson</h1>
-                                                                <h4>Lindo</h4>
-                                                                <span>Eu Amo a Gabriela Soares de Almeida Campos</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row nav">
-                                                        <div class="col-md-4"></div>
-                                                        <div class="col-md-8 col-xs-12" style="margin: 0px;padding: 0px;">
-                                                            <div class="col-md-4 col-xs-4 well"><i class="fa fa-picture-o"></i> Imagens </div>
-                                                            <div class="col-md-4 col-xs-4 well"><i class="fa fa-users"></i> Amigos </div>
-                                                            <div class="col-md-4 col-xs-4 well"><i class="fa fa-comments-o"></i> Comentários </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div class="cover-container" style="background-image:url(public/upload/cover/game.jpg);">
+											<div class="social-cover"></div>
+											<div class="social-avatar" >
+												<img class="img-avatar" src="public/img/panel/user_male.png" height="100" width="100"> 
+												<h4 class="fg-white text-center text-shadow"><?php echo $user['name']; ?></h4>
+												<h5 class="fg-white text-center" style="opacity:0.8;"><?php echo $user['job']; ?></h5>
+												<hr class="border-black75 text-shadow" style="border-width:2px;" >
+												<div class="text-center"> <button role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue" type="button"> <i class="fa fa-plus"> Adicionar</i></button> </div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div class="panel-options">
+											<div class="navbar navbar-default navbar-cover">
+												<div class="container-fluid">
+													<div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#profile-opts-navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> </div>
+													<div class="collapse navbar-collapse" id="profile-opts-navbar">
+														<ul class="nav navbar-nav navbar-right">
+															<li class="active"><a href="#"><i class="fa fa-tasks"></i>Timeline</a></li>
+															<li><a href="about.html"><i class="fa fa-info-circle"></i>About</a></li>
+															<li><a href="friends.html"><i class="fa fa-users"></i>Friends</a></li>
+															<li><a href="photos.html"><i class="fa fa-file-image-o"></i>Photos</a></li>
+															<li><a href="messages.html"><i class="fa fa-comment"></i>Messages</a></li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+                                </div>
+                                <div class="container-fluid">
+                                <div class="col-md-5 user-detail">
+									<div class="panel panel-default panel-user-detail">
+										<div class="panel-body">
+											<ul class="list-unstyled">
+												<li><i class="fa fa-suitcase"></i>Works at <a href="#">software development</a></li>
+												<li><i class="fa fa-calendar"></i>Aniversário <?php echo Utils::birthday($user['borndate']); ?></li>
+												<li><i class="fa fa-users"></i>Nº de Amigos 0 </li>
+											</ul>
+										</div>
+										<div class="panel-footer text-center"> <a href="#" class="btn btn-success">Veja mais...</a></div>
+									</div>
+									<div class="panel panel-white panel-friends">
+										<div class="panel-heading">
+											<a href="#" class="pull-right">View all&nbsp;<i class="fa fa-share-square-o"></i></a> 
+											<h3 class="panel-title">Friends</h3>
+										</div>
+										<div class="panel-body text-center">
+											<ul class="friends">
+												<li><a href="" title=""></a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="panel panel-white">
+										<div class="panel-heading">
+											<a href="#" class="pull-right">View all&nbsp;<i class="fa fa-share-square-o"></i></a> 
+											<h3 class="panel-title">Photos</h3>
+										</div>
+										<div class="panel-body text-center">
+											<ul class="photos">
+												<li><a href="" title=""></a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-7">
+	                                	<div class="panel profile-info panel-success">
+	                                		<form>
+	                                			<textarea class="form-control input-lg p-text-area" rows="2" placeholder="O que está pensando hoje?"></textarea>
+	                                		<div class="panel-footer">
+	                                			<div class="pull-right">
+	                                				<button type="submit" class="btn btn-success">Postar</button>
+	                                				<button type="reset" class="btn btn-danger">Limpar</button>
+	                                			</div>
+	                                		</form>
+	                                			<br><br>
+	                                		</div>
+	                                	</div>
+                                	</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                        <section class="panel">
-                            
-                            <form>
-                                <textarea placeholder=" O que está em sua mente agora?" rows="2" class="form-control input-lg p-text-area"></textarea>
-                            </form>
-                            <footer class="panel-footer">
-                                <button class="btn btn-danger pull-right">Postar</button>
-
-                            </footer>
-                        </section>
-                        </div>
-                        <footer id="footer-panel">
-                            <div class="container">
-                                <div class="row">
-                                    <hr>
-                                    <p>© 2015 IF - Pictures. All Rights Reserved.
-                                    <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i style="color: gray;" class="fa fa-2x fa-angle-up"></i></a>
-                                    </p>
-                                </div>
-                            </div>
-                        </footer>
                     </div>
+                    <footer id="footer-panel">
+                        <div class="container">
+                            <div class="row">
+                                <hr>
+                                <p>© 2015 IF - Pictures. All Rights Reserved.
+                                <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i style="color: gray;" class="fa fa-2x fa-angle-up"></i></a>
+                                </p>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
-            </body>
+            </div>
+        </body>

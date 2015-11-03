@@ -305,20 +305,22 @@ function uploadCanceled(e) {
         clickCoords = getPosition(e);
         clickCoordsX = clickCoords.x;
         clickCoordsY = clickCoords.y;
-        menuWidth = menu.offsetWidth + 4;
+        menuWidth = menu.offsetWidth + 20;
         menuHeight = menu.offsetHeight + 4;
         windowWidth = window.innerWidth;
         windowHeight = window.innerHeight;
+        //menu.style.left = clickCoordsX + "px";
+        menu.style.top = clickCoordsY + "px";
         if ((windowWidth - clickCoordsX) < menuWidth) {
             menu.style.left = windowWidth - menuWidth + "px";
         } else {
             menu.style.left = clickCoordsX + "px";
         }
-        if ((windowHeight - clickCoordsY) < menuHeight) {
+        /*if ((windowHeight - clickCoordsY) < menuHeight) {
             menu.style.top = windowHeight - menuHeight + "px";
         } else {
             menu.style.top = clickCoordsY + "px";
-        }
+        }*/
     }
     /**
      * Dummy action function that logs an action when a menu item link is clicked
@@ -327,7 +329,7 @@ function uploadCanceled(e) {
      */
     function menuItemListener(link) {
         console.log("Task ID - " + taskItemInContext.getAttribute("data-id") + ", Task action - " + link.getAttribute("data-action"));
-        $('#large-image').attr('src', 'public/img/large/'+taskItemInContext.getAttribute("data-id")+'');
+        $('#large-image').attr('src', 'public/upload/large/'+taskItemInContext.getAttribute("data-id")+'');
         toggleMenuOff();
     }
     /**
@@ -378,7 +380,7 @@ function GetData() {
                 if (result.length && noresults == 0) {
                     for (var i = 0; i < result.length; i++) {
                         resultMarkup = '<div class="Image_Wrapper">',
-                            resultMarkup += '<a><img data-id="' + result[i].name+ '"class="context" src="public/img/thumbnail/' + result[i].name + '" ></a>',
+                            resultMarkup += '<a><img data-id="' + result[i].hash+ '"class="context" src="public/upload/thumbnail/' + result[i].hash + '" ></a>',
                             resultMarkup += '</div>',
                             //console.log(result[i].$id),
                             $('#gallery').append(resultMarkup)

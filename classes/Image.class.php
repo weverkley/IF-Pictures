@@ -41,12 +41,13 @@ class Image extends DB
 	public function upload($FILE){
 		try {
 		    $base = dirname(__DIR__);
-		    $thumbnail = sprintf('%s/%s', $base, "public/img/thumbnail/");
-		    $large = sprintf('%s/%s', $base, "public/img/large/");
+		    $thumbnail = sprintf('%s/%s', $base, "public/upload/thumbnail/");
+		    $large = sprintf('%s/%s', $base, "public/upload/large/");
 
 		    $path_parts = pathinfo($FILE['name']);
 		    $extension = $path_parts['extension'];
-		    $this->fileName = md5($FILE['name']).'_'.date('dmYHis').'.'.$extension;
+		    $this->fileName = $FILE['name'];
+		    $hash = md5($FILE['name']).'_'.date('dmYHis').'.'.$extension;
 		    //check and set folder permission 
 		    
 		    Utils::createFolder($thumbnail);
@@ -56,16 +57,20 @@ class Image extends DB
 		    $imgThumb->load($FILE['tmp_name']);
 		    $imgThumb->best_fit(350, 200);
 		    //$img->crop(250, 150, 0, 0);
-		    $imgThumb->save($thumbnail.$this->fileName);
+		    $imgThumb->save($thumbnail.$hash);
 
 		    $imgLarge = new SimpleImage();
 		    $imgLarge->load($FILE['tmp_name']);
-		    $imgLarge->save($large.$this->fileName);
+		    $imgLarge->save($large.$hash);
 
 		    $data = array(
 		    	'owner' => $_SESSION['_id'],
-		    	'imageName' => $this->fileName,
-		    	'date' => new MongoDate(),
+		    	'hash' => $hash,
+		    	'name' => $this->fileName,
+		    	'descripton' => null,
+		    	'comments' => array(),
+		    	'total' => 0,
+		    	'uploaded' => new MongoDate(),
 		    	'protected' =>  false
 			);
 

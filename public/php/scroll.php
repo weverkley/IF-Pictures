@@ -12,7 +12,7 @@ if (isset($_GET['page']) && $_GET['page'] != '') {
 	//$cursor = $image->ImageFind(array('owner' => $_SESSION['_id']))->skip($skip)->limit($limit);
 	//var_dump($cursor);
     foreach ($cursor as $obj) {
-	   $data[]['name'] = $obj['imageName'];
+	   $data[]['hash'] = $obj['hash'];
 	   //$data[]['name'] = $obj['name'];
 	   //$data[]['link'] = $obj['link'];
 	   //$data[]['description'] = $obj['description'];

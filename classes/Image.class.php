@@ -85,7 +85,7 @@ class Image extends DB
 	/**
 	* Método para retornar imagens.
 	*/
-	public function ImageFind($array){
+	public function ImageFind($array = array()){
 		return $this->images->find($array);
 	}
 

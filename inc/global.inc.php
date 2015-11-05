@@ -38,5 +38,4 @@ function showPage() {
 		incPage('/painel.html', 'u', $notallowed = array('login.php', 'logout.php', 'inicio.html'));
 	}
 }
-
 ?>

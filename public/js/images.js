@@ -27,7 +27,7 @@ function fileSelected(e) {
             if (err != null) {
                 alert('Arquivo diferente de imagem!');
             } else {
-                var html = '<tr id="file_' + c + '" class="template-upload fade in">' + '<td><img width="50" height="50" src="' + fileInfo.fileContent + '" alt="' + fileInfo.name + '"></td>' + '<td><p class="name">' + fileInfo.name + '</p><strong class="error text-danger"></strong></td>' + '<td style="width: 30%;"><p class="size">' + fileInfo.size() + '</p><div class="progress"><div id="bar_' + c + '" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div></td>' + '<td class="pull-right">' + '<button class="btn btn-primary start"><i class="fa fa-upload"></i><span>Start</span></button> ' + '<button class="btn btn-warning cancel"><i class="fa fa-minus-circle"></i><span>Remover</span></button>' + '</td></tr>';
+                var html = '<tr id="file_' + c + '" class="template-upload fade in">' + '<td><img width="50" height="50" src="' + fileInfo.fileContent + '" alt="' + fileInfo.name + '"></td>' + '<td><p class="name">' + fileInfo.name + '</p><strong class="error text-danger"></strong></td>' + '<td style="width: 30%;"><p class="size">' + fileInfo.size() + '</p><div class="progress"><div id="bar_' + c + '" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div></td>' + '<td class="pull-right">' + '<button class="btn btn-warning cancel"><i class="fa fa-minus-circle"></i><span>Remover</span></button>' + '</td></tr>';
                 $('#queue').append(html);
                 c++;
             }

@@ -1,4 +1,11 @@
-<body id="voltar-topo">	
+<body id="voltar-topo">
+<style type="text/css" media="screen">
+.savebtn {
+
+    display: none;
+}
+
+</style>
     <div class="container-fluid">
         <div id="wrapper">
             <!-- Sidebar -->
@@ -55,8 +62,8 @@
 													<div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#profile-opts-navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> </div>
 													<div class="collapse navbar-collapse" id="profile-opts-navbar">
 														<ul class="nav navbar-nav navbar-right">
-															<li class="active"><a href="<?php echo SITE_URL; ?>/index.php?u=perfil.html"><i class="fa fa-tasks"></i>Timeline</a></li>
-															<li><a href="<?php echo SITE_URL; ?>/index.php?u=sobre.html"><i class="fa fa-info-circle"></i>About</a></li>
+															<li><a href="<?php echo SITE_URL; ?>/index.php?u=perfil.html"><i class="fa fa-tasks"></i>Timeline</a></li>
+															<li class="active"><a href="<?php echo SITE_URL; ?>/index.php?u=sobre.html"><i class="fa fa-info-circle"></i>About</a></li>
 															<li><a href="friends.html"><i class="fa fa-users"></i>Friends</a></li>
 															<li><a href="photos.html"><i class="fa fa-file-image-o"></i>Photos</a></li>
 															<li><a href="messages.html"><i class="fa fa-comment"></i>Messages</a></li>
@@ -68,55 +75,90 @@
 									</div>
 								</div>
                                 </div>
-                                <div class="container-fluid">
-                                <div class="col-md-5 user-detail">
-									<div class="panel panel-default panel-user-detail">
-										<div class="panel-body">
-											<ul class="list-unstyled">
-												<li><i class="fa fa-suitcase"></i>Works at <a href="#">software development</a></li>
-												<li><i class="fa fa-calendar"></i>Aniversário <?php echo Utils::birthday($user['borndate']); ?></li>
-												<li><i class="fa fa-users"></i>Nº de Amigos 0 </li>
-											</ul>
-										</div>
-										<div class="panel-footer text-center"> <a href="#" class="btn btn-success">Veja mais...</a></div>
-									</div>
-									<div class="panel panel-white panel-friends">
-										<div class="panel-heading">
-											<a href="#" class="pull-right">View all&nbsp;<i class="fa fa-share-square-o"></i></a> 
-											<h3 class="panel-title">Friends</h3>
-										</div>
-										<div class="panel-body text-center">
-											<ul class="friends">
-												<li><a href="" title=""></a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="panel panel-white">
-										<div class="panel-heading">
-											<a href="#" class="pull-right">View all&nbsp;<i class="fa fa-share-square-o"></i></a> 
-											<h3 class="panel-title">Photos</h3>
-										</div>
-										<div class="panel-body text-center">
-											<ul class="photos">
-												<li><a href="" title=""></a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-7">
-	                                	<div class="panel profile-info panel-success">
-	                                		<form>
-	                                			<textarea class="form-control input-lg p-text-area" rows="2" placeholder="O que está pensando hoje?"></textarea>
-	                                		<div class="panel-footer">
-	                                			<div class="pull-right">
-	                                				<button type="submit" class="btn btn-success">Postar</button>
-	                                				<button type="reset" class="btn btn-danger">Limpar</button>
-	                                			</div>
-	                                		</form>
-	                                			<br><br>
-	                                		</div>
-	                                	</div>
-                                	</div>
+                                    <div class="container-fluid">
+			<div class="panel panel-white panel-about">
+              <div class="panel-heading">
+                <h3 class="panel-title">Sobre <?php echo $user['name']; ?>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div class="col-md-12 col-sm-12 col-xs-12 about-tab-container">
+                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 about-tab-menu">
+                    <div class="list-group">
+                      <a href="#" class="list-group-item active text-center">
+                        <h4 class="fa fa-child"></h4><br/>Visão geral
+                      </a>
+                      <a href="#" class="list-group-item text-center">
+                        <h4 class="fa fa-briefcase"></h4><br/>Comercial
+                      </a>
+                      <a href="#" class="list-group-item text-center">
+                        <h4 class="fa fa-newspaper-o"></h4><br/>Informações de Contato
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 about-tab">
+                    <!-- Overview section -->
+                    <div class="about-tab-content active">
+				
+
+				<div class="form-group gear">
+					<label class="col-md-4 control-label">Primary E-Mail:</label>
+					<span id="pemail" class="datainfo">myaddress@googlemail.com</span>
+					<a href="#" class="editlink pull-right"><i class="fa fa-edit"></i> Editar</a>
+					<a class="savebtn btn btn-info pull-right">Save</a>
+				</div>
+				
+				<div class="form-group gear">
+					<label class="col-md-4 control-label">Full Name:</label>
+					<span id="fullname" class="datainfo">Johnny Appleseed</span>
+					<a href="#" class="editlink pull-right"><i class="fa fa-edit"></i> Editar</a>
+					<a class="savebtn btn btn-info pull-right">Save</a>
+				</div>
+				
+				<div class="form-group gear">
+					<label class="col-md-4 control-label">Birthday:</label>
+					<span id="birthday" class="datainfo">August 21, 1989</span>
+					<a href="#" class="editlink pull-right"><i class="fa fa-edit"></i> Editar</a>
+					<a class="savebtn btn btn-info pull-right">Save</a>
+				</div>
+				
+				<div class="form-group gear">
+					<label class="col-md-4 control-label">City/Town:</label>
+					<span id="citytown" class="datainfo">Los Angeles, CA</span>
+					<a href="#" class="editlink pull-right"><i class="fa fa-edit"></i> Editar</a>
+					<a class="savebtn btn btn-info pull-right">Save</a>
+				</div>
+				
+				<div class="form-group gear">
+					<label class="col-md-4 control-label">Occupation:</label>
+					<span id="occupation" class="datainfo">Freelance Web Developer</span>
+					<a href="#" class="editlink pull-right"><i class="fa fa-edit"></i> Editar</a>
+					<a class="savebtn btn btn-info pull-right">Save</a>
+				</div>
+
+
+                    </div>
+                    <!-- Work section -->
+                    <div class="about-tab-content">
+                       <ul class="list-group">
+                        <li class="list-group-item"><i class="fa fa-briefcase"></i>&nbsp; Software developer at <a href="#">Deystrap</a></li>
+                        <li class="list-group-item"><i class="fa fa-cubes"></i>&nbsp;Web designer at <a href="#">Dey-Dey</a></li>
+                      </ul>
+                    </div>
+
+                    <!-- Contact section -->
+                    <div class="about-tab-content">
+                      <ul class="list-group">
+                        <li class="list-group-item"><i class="fa fa-phone"></i>&nbsp; 533 44 55</li>
+                        <li class="list-group-item"><i class="fa fa-mobile"></i>&nbsp; +57 328 999 444 2</li>
+                        <li class="list-group-item"><i class="fa fa-cubes"></i>&nbsp;@username (twitter) <i class="fa fa-twitter text-twitter"></i></li>
+                        <li class="list-group-item"><i class="fa fa-envelope"></i>&nbsp; username@email.com</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

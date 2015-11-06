@@ -7,12 +7,12 @@ if (empty($_POST['login']) || empty($_POST['password'])) {
 	$where = array('login' => $_POST['login']);
 	if ($array = $user->SelectOne($where)){
 		if ($array['password'] == md5($_POST['password'])) {
-			if ($_POST['remember'] == '1'){
+			/*if ($_POST['remember'] == '1'){
 				$_SESSION['remember'] = 'lembrar';
-			}
+			}*/
 			$_SESSION['logged-in'] = true;
 			$_SESSION['_id'] = $array['_id'];
-			echo $data = 0;
+			echo $data = 3;
 		} else {
 			echo $data = 1; //"Senhas digitadas não são iguais";
 		}

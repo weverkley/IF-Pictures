@@ -1,11 +1,8 @@
 <body id="voltar-topo">
-<style type="text/css" media="screen">
-.savebtn {
-
-    display: none;
-}
-
-</style>
+<style type="text/css">
+            .ui-state-hover { background-color: #ffC }
+            .inlineEdit-placeholder { font-style: italic; color: #555; }
+        </style>
     <div class="container-fluid">
         <div id="wrapper">
             <!-- Sidebar -->
@@ -99,44 +96,20 @@
                   <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 about-tab">
                     <!-- Overview section -->
                     <div class="about-tab-content active">
-				
+                            <div class="col-md-3"><p><strong>Nome:</strong></p></div>
+                            <div class="col-md-9"><?php echo "<p><span id='name' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu nome.'>".$user['name']."</span></p>"; ?></div>
 
-				<div class="form-group gear">
-					<label class="col-md-4 control-label">Primary E-Mail:</label>
-					<span id="pemail" class="datainfo">myaddress@googlemail.com</span>
-					<a href="#" class="editlink pull-right"><i class="fa fa-edit"></i> Editar</a>
-					<a class="savebtn btn btn-info pull-right">Save</a>
-				</div>
-				
-				<div class="form-group gear">
-					<label class="col-md-4 control-label">Full Name:</label>
-					<span id="fullname" class="datainfo">Johnny Appleseed</span>
-					<a href="#" class="editlink pull-right"><i class="fa fa-edit"></i> Editar</a>
-					<a class="savebtn btn btn-info pull-right">Save</a>
-				</div>
-				
-				<div class="form-group gear">
-					<label class="col-md-4 control-label">Birthday:</label>
-					<span id="birthday" class="datainfo">August 21, 1989</span>
-					<a href="#" class="editlink pull-right"><i class="fa fa-edit"></i> Editar</a>
-					<a class="savebtn btn btn-info pull-right">Save</a>
-				</div>
-				
-				<div class="form-group gear">
-					<label class="col-md-4 control-label">City/Town:</label>
-					<span id="citytown" class="datainfo">Los Angeles, CA</span>
-					<a href="#" class="editlink pull-right"><i class="fa fa-edit"></i> Editar</a>
-					<a class="savebtn btn btn-info pull-right">Save</a>
-				</div>
-				
-				<div class="form-group gear">
-					<label class="col-md-4 control-label">Occupation:</label>
-					<span id="occupation" class="datainfo">Freelance Web Developer</span>
-					<a href="#" class="editlink pull-right"><i class="fa fa-edit"></i> Editar</a>
-					<a class="savebtn btn btn-info pull-right">Save</a>
-				</div>
+                            <div class="col-md-3"><p><strong>Sobrenome:</strong></p></div>
+                            <div class="col-md-9"><?php echo "<p><span id='surname' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu sobrenome.'>".$user['surname']."</span></p>"; ?></div>
 
+                            <div class="col-md-3"><p><strong>Emprego:</strong></p></div>
+                            <div class="col-md-9"><?php echo "<p><span id='job' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu emprego.'>".$user['job']."</span></p>"; ?></div>
 
+                            <div class="col-md-3"><p><strong>Estado:</strong></p></div>
+                            <div class="col-md-9"><?php echo "<p><span id='state' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu estado.'>".$user['state']."</span></p>"; ?></div>
+
+                            <div class="col-md-3"><p><strong>Cidade:</strong></p></div>
+                            <div class="col-md-9"><?php echo "<p><span id='city' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar sua cidade.'>".$user['city']."</span></p>"; ?></div>
                     </div>
                     <!-- Work section -->
                     <div class="about-tab-content">

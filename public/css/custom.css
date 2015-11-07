@@ -943,7 +943,6 @@ label.custom-option.button input[type="checkbox"]:checked + .button-checkbox:aft
     border:6px solid #FFF;
 }
 
-
 /* In this example, this is the main item being resized */
 .Image_Wrapper{
     /* to get the fade in effect, set opacity to 0 on the first element within the gallery area */
@@ -973,13 +972,11 @@ A library of transitions for revealing the loaded images
 (Heavily) Inspired by http://tympanus.net/codrops/2013/07/02/loading-effects-for-grid-items-with-css-animations/
 
 */
-
 .effect-parent {
     -webkit-perspective: 1300px;
     -moz-perspective: 1300px;
     perspective: 1300px;
     }
-
 
 /* EFFECT 1 */
 .effect-1 {
@@ -1008,8 +1005,6 @@ A library of transitions for revealing the loaded images
     100% { transform: rotateX(0deg); opacity: 1; transform-origin:50% 50% 0; }
 }
 
-
-
 /* EFFECT 2 */
 .effect-2 {
     -webkit-transform: translateY(200px);
@@ -1031,7 +1026,6 @@ A library of transitions for revealing the loaded images
 @keyframes moveUp {
     to { transform: translateY(0); opacity: 1; }
 }
-
 
 /* EFFECT 3 */
 .effect-3 {
@@ -1057,7 +1051,6 @@ A library of transitions for revealing the loaded images
 @keyframes fallPerspective {
     100% { transform: translateZ(0px) translateY(0px) rotateX(0deg); opacity: 1; }
 }
-
 
 /* EFFECT 4 */
 .effect-4 {
@@ -1087,7 +1080,6 @@ A library of transitions for revealing the loaded images
     100% { transform: rotateX(0deg); opacity: 1; }
 }
 
-
 /* EFFECT 5 */
 .effect-5 {
     -webkit-transform-style: preserve-3d;
@@ -1101,7 +1093,6 @@ A library of transitions for revealing the loaded images
     animation: moveUp ease-in-out forwards;
 }
 
-
 /* EFFECT 6 */
 .effect-6 {
 
@@ -1113,10 +1104,6 @@ A library of transitions for revealing the loaded images
     -moz-animation: moveUp ease-in-out forwards;
     animation: moveUp ease-in-out forwards;
 }
-
-
-
-
 
 /* Universal durations */
 .effect-duration-1{

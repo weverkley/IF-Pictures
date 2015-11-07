@@ -261,40 +261,171 @@
         });
         </script>
         <script type="text/javascript">
+            $(document).ready(function() {
+                $('#login-form').bootstrapValidator({
+                    message: 'This value is not valid',
+            //        live: 'disabled',
+                    container: 'tooltip',
+                    feedbackIcons: {
+                        valid: 'fa fa-check',
+                        invalid: 'fa fa-remove',
+                        validating: 'fa fa-refresh'
+                    },
+                    fields: {
+                        login:{
+                            message: 'O usuário não é válido',
+                            validators: {
+                                notEmpty: {
+                                    message: 'O usuário é obrigatório e não pode ficar vazio'
+                                },
+                                stringLength: {
+                                    min: 6,
+                                    max: 30,
+                                    message: 'O usuário deve ter mais de 6 e menos de 30 caracteres'
+                                }
+                            }
+                        },
+                        password:{
+                            message: 'A senha não é válida',
+                            validators: {
+                                notEmpty: {
+                                    message: 'A senha é obrigatório e não pode ficar vazio'
+                                },
+                                stringLength: {
+                                    min: 6,
+                                    max: 30,
+                                    message: 'A resposta deve ter mais de 6 e menos de 30 caracteres'
+                                }
+                            }
+                        }
+                    }
+                }).on('success.form.bv', function(e) {
+                    // Prevent form submission
+                    e.preventDefault();
+                    // Get the form instance
+                    var $form = $(e.target);
+                    // Getthe BootstrapValidator instance
+                    var bv = $form.data('bootstrapValidator');
+                    // Use Ajax to submit form data
+                    $.post($form.attr('action'), $form.serialize(), function(data) {
+                        switch (data) {
+                            case 3:
+                                //console.log(data);
+                                location.reload();
+                                break;
+                            case 2:
+                                msgInfo = 'Este usuário não existe',
+                                msgType = 'danger',
+                                msgIcon = 'fa fa-exclamation-triangle',
+                                $('#login').val(""),
+                                $('#password').val(""),
+                                inputFocus = '#login'
+                                break;
+                            case 1:
+                                msgInfo = 'A senha não confere com o usuário',
+                                msgType = 'warning',
+                                msgIcon = 'fa fa-exclamation',
+                                $('#password').val(""),
+                                inputFocus = '#password'
+                                break;
+                        }
+                        $.notify({
+                                icon: msgIcon,
+                                message: msgInfo
+                            }, {
+                                type: msgType,
+                                animate: {
+                                    enter: 'animated bounceIn',
+                                    exit: 'animated bounceOut'
+                                },
+                                placement: {
+                                    from: "bottom",
+                                    align: "left"
+                                }
+                            });
+                    }, 'json');
+                });
+            });
+        </script>
+        <script type="text/javascript">
         $(document).ready(function() {
-            $('#login-form').bootstrapValidator({
+            $('#recover-form').bootstrapValidator({
                 message: 'This value is not valid',
         //        live: 'disabled',
-                container: 'tooltip',
                 feedbackIcons: {
                     valid: 'fa fa-check',
                     invalid: 'fa fa-remove',
                     validating: 'fa fa-refresh'
                 },
                 fields: {
-                    login:{
-                        message: 'O usuário não é válido',
+                    email: {
                         validators: {
                             notEmpty: {
-                                message: 'O usuário é obrigatório e não pode ficar vazio'
+                                message: 'O e-mail é obrigatório e não pode ficar vazio'
+                            },
+                            emailAddress: {
+                                message: 'O endereço de e-mail não é válido'
                             },
                             stringLength: {
                                 min: 6,
                                 max: 30,
-                                message: 'O usuário deve ter mais de 6 e menos de 30 caracteres'
+                                message: 'O e-mail deve ter mais de 6 e menos de 30 caracteres'
                             }
                         }
                     },
-                    password:{
-                        message: 'A senha não é válida',
+                    question: {
                         validators: {
                             notEmpty: {
-                                message: 'A senha é obrigatório e não pode ficar vazio'
+                                message: 'É necessário selecionar uma questão'
+                            }
+                        }
+                    },
+                     answer:{
+                        message: 'A resposta não é válida',
+                        validators: {
+                            notEmpty: {
+                                message: 'É necessário uma resposta e não pode estar vazio'
+                            },
+                            stringLength: {
+                                min: 4,
+                                max: 30,
+                                message: 'A resposta deve ter mais de 4 e menos de 30 caracteres'
+                            }
+                        }
+                    },
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: 'A senha é necessária e não pode estar vazio'
+                            },
+                            identical: {
+                                field: 'confirmPassword',
+                                message: 'A senha e sua confirmação não são os mesmos'
+                            },
+                            different: {
+                                field: 'username',
+                                message: 'A senha não pode ser o mesmo que o nome do usuário'
                             },
                             stringLength: {
                                 min: 6,
                                 max: 30,
-                                message: 'A resposta deve ter mais de 6 e menos de 30 caracteres'
+                                message: 'O senha deve ter mais de 6 e menos de 30 caracteres'
+                            }
+                        }
+                    },
+                    rpassword: {
+                        validators: {
+                            notEmpty: {
+                                message: 'A senha de confirmação é necessária e não pode estar vazio'
+                            },
+                            identical: {
+                                field: 'password',
+                                message: 'A senha e sua confirmação não são os mesmos'
+                            },
+                            stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'O sobrenome deve ter mais de 6 e menos de 30 caracteres'
                             }
                         }
                     }
@@ -307,42 +438,38 @@
                 // Getthe BootstrapValidator instance
                 var bv = $form.data('bootstrapValidator');
                 // Use Ajax to submit form data
-                $.post($form.attr('action'), $form.serialize(), function(data) {
-                    switch (data) {
-                        case 3:
-                            //console.log(data);
-                            location.reload();
-                            break;
-                        case 2:
-                            msgInfo = 'Este usuário não existe',
-                            msgType = 'danger',
-                            msgIcon = 'fa fa-exclamation-triangle',
-                            $('#login').val(""),
-                            $('#password').val(""),
-                            inputFocus = '#login'
-                            break;
-                        case 1:
-                            msgInfo = 'A senha não confere com o usuário',
-                            msgType = 'warning',
-                            msgIcon = 'fa fa-exclamation',
-                            $('#password').val(""),
-                            inputFocus = '#password'
-                            break;
-                    }
-                    $.notify({
-                            icon: msgIcon,
-                            message: msgInfo
+                $.post($form.attr('action'), $form.serialize(), function(result) {
+                        if (result == 2) {
+                           mensagem = "Senha atulizada com sucesso!";
+                           msgtipo = "success";
+                           msicon = 'fa fa-check';
+
+                        }
+                        else if (result == 1){
+                            mensagem = "Dados invalidos!";
+                            msgtipo = "danger";
+                            msicon = 'fa fa-check';
+                        }
+                        else{
+                           mensagem = "ERRO: Senha não alterada, problema na conexão com o banco de dados.";
+                           msgtipo = "danger";
+                           msicon = 'fa fa-remove';
+                        }
+                        $.notify({
+                           icon: msicon,
+                           message: mensagem
                         }, {
-                            type: msgType,
-                            animate: {
-                                enter: 'animated bounceIn',
-                                exit: 'animated bounceOut'
-                            },
-                            placement: {
-                                from: "bottom",
-                                align: "left"
-                            }
+                           type: msgtipo,
+                           animate:{
+                               enter: 'animated bounceIn',
+                               exit: 'animated bounceOut'
+                           },
+                           placement:{
+                               from: "bottom",
+                               align: "left"
+                           }
                         });
+                    console.log(result);
                 }, 'json');
             });
         });

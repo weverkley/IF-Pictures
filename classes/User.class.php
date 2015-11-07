@@ -94,7 +94,7 @@ class User extends DB
 	*	$data = array('coluna' => 'valor');
 	*	$users->Update($data, $where);
 	*/
-	public function Update($data, $where){
+	public function Update($where, $data){
 		try {
 			$this->users->update($where, $data);
 			return true;

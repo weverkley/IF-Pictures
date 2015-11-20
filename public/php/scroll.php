@@ -1,7 +1,7 @@
 <?php
 require_once '../../inc/global.inc.php';
 if (isset($_GET['page']) && $_GET['page'] != '') {
-    $limit = 12;
+    $limit = 24;
     ($_GET['page'] == 0)? $skip = 0 : $skip = ($_GET['page'] - 1) * $limit;
     $data = array();
 

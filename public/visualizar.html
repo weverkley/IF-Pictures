@@ -1,0 +1,117 @@
+<body id="voltar-topo">
+    <div class="container-fluid">
+        <?php if (isset($_SESSION['logged-in']) && isset($_SESSION['_id'])){ ?>
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul id="sidebar_menu" class="sidebar-nav">
+                    <li class="sidebar-brand"><a id="menu-toggle" href="">Menu<span id="main_icon" class="fa fa-align-justify"></span></a></li>
+                </ul>
+                <ul class="sidebar-nav" id="sidebar">
+                    <?php require_once'nav_painel.html'; ?>
+                </ul>
+            </div>
+        <?php } ?>
+            <nav class="navbar-panel navbar-default">
+              <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Mudar navegação</span>
+                    <span class="fa fa-bars fa-2x"></span>
+                  </button>
+                  <a class="page-scroll" href="<?php echo SITE_URL; ?>"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <?php require_once 'nav.html'; ?>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+              </div><!-- /.container-fluid -->
+            </nav>
+            <?php if (isset($_SESSION['logged-in']) && isset($_SESSION['_id'])){ ?>
+            <!-- Page content -->
+            <div id="page-content-wrapper">
+                <!-- Keep all page content within the page-content inset div! -->
+                <div class="page-content inset">
+                    <div class="row">
+            <?php } else { ?>
+            <div class="container-fluid">
+                <div class="row">
+            <?php } ?>
+            <!-- Content -->
+                <div class="col-md-8">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> asdasd</button>
+                            <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> asdasd</button>
+                            <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> asdasd</button>
+                            <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> asdasd</button>
+                        </div>
+                        <div id="image-preview" class="row">
+                            <?php if (isset($_GET['image']) && strlen($_GET['image']) > 30) { if (Utils::imageExists($_GET['image'])){ ?>
+                                <img src="public/upload/large/<?php echo $_GET['image']; ?>" class="img-responsive center-block">
+                            <?php }} ?>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="text-center">TITULO DA IMAGEM</h4>
+                                </div>
+                                <div class="panel-body">
+                                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                             <h4 class="text-center">Comentários</h4>
+                        </div>
+                        <div class="panel-body">
+                        <div id="new-comment">
+                            <p>Digite seu comentário a baixo:</p>
+                            <textarea class="form-control" name=""></textarea>
+                        </div>
+                        <hr>
+                            <!-- comment -->
+                            <div class="media">
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Start Bootstrap
+                                        <small>August 25, 2014 at 9:30 PM</small>
+                                    </h4>
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                </div>
+                            </div>
+                            <!-- comment -->
+                        </div>
+                    </div>
+                </div>
+            <!-- Content -->
+            <?php if (isset($_SESSION['logged-in']) && isset($_SESSION['_id'])){ ?>
+                    </div>
+                </div>
+            </div>
+            <?php } else { ?>
+                </div>
+            </div>
+            <?php } ?>
+            <footer id="footer-panel">
+                <div class="container">
+                    <div class="row">
+                        <hr>
+                        <p>© 2015 IF - Pictures. All Rights Reserved.
+                        <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i style="color: gray;" class="fa fa-2x fa-angle-up"></i></a>
+                        </p>
+                    </div>
+                </div>
+            </footer>
+        <?php if (isset($_SESSION['logged-in']) && isset($_SESSION['_id'])){ ?></div><?php } ?>
+    </div>
+</body>

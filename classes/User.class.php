@@ -10,19 +10,6 @@ class User extends DB
 	*/
 	private $users;
 
-	/**
-	*
-	*/
-	public $login;
-
-	/**
-	*
-	*/
-	private $password;
-
-	/**
-	* Variável usada para retornar dados;
-	*/
 	private $select;
 
 	/**
@@ -63,9 +50,9 @@ class User extends DB
 	*		echo $user['login'];
 	*	}
 	*/
-	public function Select(){
+	public function Select($where = array()){
 		try {
-			$this->select = $this->users->find();
+			$this->select = $this->users->find($where);
 			return $this->select;
 		} catch (Exception $e) {
 			return false;
@@ -134,36 +121,6 @@ class User extends DB
 		} catch (Exception $e) {
 			return false;
 		}
-	}
-
-	/**
-	* Método para logar usuários no painel.
-	*	$users = new user();
-	*	$users->Login();
-	*/
-	public function Login($login, $password){
-		try {
-			//
-		} catch (Exception $e) {
-			return false;
-		}
-	}
-
-	/**
-	* Método para deslogar usuários no painel.
-	*	$users = new user();
-	*	$users->Logout();
-	*/
-	public function Logout(){
-		try {
-			return $this->users->count();
-		} catch (Exception $e) {
-			return false;
-		}
-	}
-
-	public function __destruct(){
-		$this->mongo->close();
 	}
 }
 ?>

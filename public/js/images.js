@@ -329,14 +329,27 @@ function uploadCanceled(e) {
      */
     function menuItemListener(link) {
         console.log("Task ID - " + taskItemInContext.getAttribute("data-id") + ", Task action - " + link.getAttribute("data-action"));
-        $('#large-image').attr('src', 'public/upload/large/'+taskItemInContext.getAttribute("data-id")+'');
         toggleMenuOff();
+        switch(link.getAttribute("data-action")) {
+            case 'preview':
+                $('#large-image').attr('src', 'public/upload/large/'+taskItemInContext.getAttribute("data-id")+'');
+                break;
+            case 'share':
+                window.open(link.getAttribute("href")+taskItemInContext.getAttribute("data-id"), '_blank');
+                break;
+            case 'download':
+                var ahref = document.createElement('a');
+                ahref.href = link.getAttribute("href");
+                ahref.download = taskItemInContext.getAttribute("data-id");
+                break;
+        }
     }
     /**
      * Run the app.
      */
     init();
 })();
+
 $(document).ready(function() {
     $('#preview-modal').on('show.bs.modal', function(event) { // id of the modal with event
         var button = $(event.relatedTarget) // Button that triggered the modal

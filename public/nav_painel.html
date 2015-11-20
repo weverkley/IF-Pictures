@@ -1,6 +1,7 @@
 <?php
 	$class = new User ();
 	$user = $class->SelectOne(array('_id' => $_SESSION['_id']));
+
 ?>
 <li id="user-picture" class="disabled">
     <p><img class="lazy img-circle" src="<?php echo PUBLIC_DIR; ?>/img/panel/user_male.png" alt="profile" width="100"></p>

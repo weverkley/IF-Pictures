@@ -81,7 +81,7 @@
 
 .cover-container {
     height: 350px;
-    margin-top: -25px;
+    /*margin-top: -25px;*/
     background-size: cover;
     position: relative;
     background-position: center
@@ -499,7 +499,6 @@
     border: 0 solid #fff;
     font-weight: 300;
     box-shadow: none;
-    color: #c3c3c3;
     font-size: 16px;
     resize: vertical
 }
@@ -1220,4 +1219,51 @@ a:active, a:focus, a:hover {
     .navbar-cover li a {
         border-right: none;
     }
+}
+
+.btn-file {
+    overflow: hidden;
+    z-index: 99;
+}
+
+.cover-container{
+    overflow: hidden;
+}
+.cover-container{
+    margin-top: none;
+}
+.cover-container > img{
+    width: 100%;
+}
+
+#timelineShade{
+    margin-bottom: -34px;
+}
+
+.bgSave{
+  margin-bottom: -34px;  
+}
+
+#cover-image{
+    height: 350px;
+}
+
+.indicator{
+    cursor: pointer;
+    color: #5b74a8;
+    font-weight: bold;
+}
+
+.indicator-divider{
+    margin-right: 30px;
+    border-right: 1px solid gray;
+    padding-right: 30px; 
+}
+
+.media-footer{
+    padding: 10px;
+}
+
+#media-body{
+    padding-left: 10px;
 }

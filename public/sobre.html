@@ -1,8 +1,8 @@
 <body id="voltar-topo">
 <style type="text/css">
-            .ui-state-hover { background-color: #ffC }
-            .inlineEdit-placeholder { font-style: italic; color: #555; }
-        </style>
+    .ui-state-hover { background-color: #ffC }
+    .inlineEdit-placeholder { font-style: italic; color: #555; }
+</style>
     <div class="container-fluid">
         <div id="wrapper">
             <!-- Sidebar -->
@@ -40,9 +40,20 @@
                             <div class="row">
                                 <br>
                                 <div class="col-md-12">
-									<div class="col-md-12 col-sm-12 col-xs-12">
-										<div class="cover-container" style="background-image:url(public/upload/cover/game.jpg);">
-											<div class="social-cover"></div>
+                                    <?php $id = $user['cover']; $position = $user['position'];?>
+									<div class="col-md-12">
+										<div id="timelineBackground" class="cover-container">
+                                            <div id="timelineShade">
+                                            <button class="btn btn-warning btn-file" title="Selecione uma imagem para sua capa."><i class="fa fa-camera"></i>
+                                                <form id="bgimageform" method="post" enctype="multipart/form-data" action="<?php echo PUBLIC_DIR; ?>/php/uploadcover.php">
+                                                    <div class="uploadFile timelineUploadBG">
+                                                        <input type="file" name="photoimg" id="bgphotoimg" class="custom-file-input" original-title="Change Cover Picture">
+                                                    </div>
+                                                </form>
+                                            </button>
+                                            </div>
+                                            <img src="<?php echo PUBLIC_DIR."/php/search.php?id=$id";?>" class="bgImage" style="margin-top: <?php echo $position; ?>;">
+                                            <!-- <div class="social-cover"></div> -->
 											<div class="social-avatar" >
 												<img class="img-avatar" src="public/img/panel/user_male.png" height="100" width="100"> 
 												<h4 class="fg-white text-center text-shadow"><?php echo $user['name']; ?></h4>

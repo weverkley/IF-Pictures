@@ -77,5 +77,18 @@ class Utils extends ExtensionBridge
 	    		break;
 	    }
 	}
+
+	public static function getExtension($str){
+	    $i = strrpos($str,".");
+	    if (!$i) { return ""; } 
+	    $l = strlen($str) - $i;
+	    $ext = substr($str,$i+1,$l);
+	    return $ext;
+	}
+
+	public static function imageExists($var){
+		if ('public/upload/large/'.file_exists($var)) return true;
+		else return false;
+	}
 }
 ?>

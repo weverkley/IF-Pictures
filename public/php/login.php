@@ -13,6 +13,7 @@ if (empty($_POST['login']) || empty($_POST['password'])) {
 			$_SESSION['logged-in'] = true;
 			$_SESSION['_id'] = $array['_id'];
 			$_SESSION['name'] = $array['name'];
+			$_SESSION['profilepicture'] = 'public/php/search.php?id='.$array['profilepicture'];
 			echo $data = 3;
 		} else {
 			echo $data = 1; //"Senhas digitadas não são iguais";

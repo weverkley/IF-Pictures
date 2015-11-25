@@ -8,7 +8,7 @@ if (isset($_GET['page']) && $_GET['page'] != '') {
 	/*$conn = new MongoClient();
 	$db = $conn->ifpi;*/
 	$images = new Image();
-	$cursor = $images->ImageFind(array('owner' => $_SESSION['_id']))->skip($skip)->limit($limit);
+	$cursor = $images->ImageFind(array('owner' => $_SESSION['_id']))->sort(array('_id'=> -1 ))->limit($limit)->skip($skip);
 	//$cursor = $image->ImageFind(array('owner' => $_SESSION['_id']))->skip($skip)->limit($limit);
 	//var_dump($cursor);
     foreach ($cursor as $obj) {

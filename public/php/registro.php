@@ -41,7 +41,11 @@ if ($data == 0) {
 		//----//
 		'avatar' => null,
 		'cover' => null,
-		'thoughts' => array(),
+		if ($sex == 'm') {
+			'profilepicture' => 'public/img/panel/user_male.png',
+		} else {
+			'profilepicture' => 'public/img/panel/user_female.png',
+		}
 		'job' => null,
 		'state' => null,
 		'city' => null,

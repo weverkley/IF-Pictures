@@ -17,7 +17,7 @@ if (isset($_POST) && !empty($_POST['post_text'])) {
         <p >
             <span class="fa fa-comment indicator"> Comentários 
             <span id="<?php echo $post_comment_count_id; ?>"><?php echo $post_comment_count;?></span></span>
-            <span class="pull-right"><?php echo $data['timestamp']; ?></span>    
+            <span class="pull-right"><?php echo date('d-m-Y H:i:s', $data['timestamp']->sec) ?></span>    
         </p>
     </div>
     <div class="panel-footer">

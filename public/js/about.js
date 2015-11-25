@@ -99,3 +99,19 @@ $(document).ready(function() {
         return false;
     });
 });
+
+$('#imageProfile').bind('change', function(r) {
+    $("#profilemodal").attr( 'src', 'public/img/panel/spinners.gif');
+    var data = new FormData();
+    data.append('imageProfile', r.target.files[0]);
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function(e) {
+        result = JSON.parse(e.target.responseText);
+            $('#resultImageProfile').html(result.text);
+            $("#profilepicture").attr( 'src', result.imgURL);
+            $("#profilemodal").attr( 'src', result.imgURL);
+    };
+    xhr.open("POST", "public/php/profileimage.php");
+    xhr.send(data);
+
+});

@@ -11,7 +11,6 @@ $(document).ready(function() {
     $('#upload-container').hide();
     $('#container-close').on('click', containerHide);
     $('#cancelupload').on('click', abort_all_xhr);
-    $('#deleteconfirm').on('click', deleteFile);
 });
 
 function containerHide(e) {
@@ -19,25 +18,21 @@ function containerHide(e) {
 }
 
 function fileSelected(e) {
+    $('#upload-container').show();
     var files = e.target.files;
-    if (files.length < 5) {
-        $('#upload-container').show();
-        var filesArr = Array.prototype.slice.call(files);
-        for (var i = 0; i < files.length ; i++) {
-            storedFiles.push(files[i]);
-            DataURLFileReader.read(files[i], function(err, fileInfo) {
-                if (err != null) {
-                    alert('Arquivo diferente de imagem!');
-                } else {
-                    var html = '<tr id="file_' + c + '" class="template-upload fade in">' + '<td><img width="50" height="50" src="' + fileInfo.fileContent + '" alt="' + fileInfo.name + '"></td>' + '<td><p class="name">' + fileInfo.name + '</p><strong class="error text-danger"></strong></td>' + '<td style="width: 30%;"><p class="size">' + fileInfo.size() + '</p><div class="progress"><div id="bar_' + c + '" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div></td>' + '<!--<td class="pull-right"><button class="btn btn-warning cancel"><i class="fa fa-minus-circle"></i><span>Remover</span></button></td>--></tr>';
-                    $('#queue').append(html);
-                    c++;
-                }
-            });
-        }
-    } else {
-        $('#modalAlert').modal();
-    };
+    var filesArr = Array.prototype.slice.call(files);
+    for (var i = 0; i < files.length; i++) {
+        storedFiles.push(files[i]);
+        DataURLFileReader.read(files[i], function(err, fileInfo) {
+            if (err != null) {
+                alert('Arquivo diferente de imagem!');
+            } else {
+                var html = '<tr id="file_' + c + '" class="template-upload fade in">' + '<td><img width="50" height="50" src="' + fileInfo.fileContent + '" alt="' + fileInfo.name + '"></td>' + '<td><p class="name">' + fileInfo.name + '</p><strong class="error text-danger"></strong></td>' + '<td style="width: 30%;"><p class="size">' + fileInfo.size() + '</p><div class="progress"><div id="bar_' + c + '" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div></td>' + '<td class="pull-right">' + '<button class="btn btn-warning cancel"><i class="fa fa-minus-circle"></i><span>Remover</span></button>' + '</td></tr>';
+                $('#queue').append(html);
+                c++;
+            }
+        });
+    }
 }
 var DataURLFileReader = {
     read: function(file, callback) {
@@ -100,7 +95,7 @@ function startUpload(e) {
     $('.start').prop('disabled', true);
     e.preventDefault();
     e.stopPropagation();
-    for (var i = 0, j = 4; i < j; i++) {
+    for (var i = 0, j = storedFiles.length; i < j; i++) {
         var data = new FormData();
         data.append("upload", storedFiles[i]);
         var xhr = new XMLHttpRequest();
@@ -128,7 +123,7 @@ function uploadProgress(e) {
 function uploadComplete(e) {
     /* This event is raised when the server send back a response */
     console.log(e.target.responseText + 'upload feito');
-    if (4 == d) {
+    if (storedFiles.length == d) {
         location.reload()
     };
     d++;
@@ -343,11 +338,9 @@ function uploadCanceled(e) {
                 window.open(link.getAttribute("href") + taskItemInContext.getAttribute("data-id"), '_blank');
                 break;
             case 'download':
-                SaveToDisk('public/upload/large/' + taskItemInContext.getAttribute("data-id"), taskItemInContext.getAttribute("data-id"));
-                break;
-            case 'delete':
-                    $('#deletefile').val(taskItemInContext.getAttribute("data-id"));
-                    $('#modalDelete').modal();
+                var ahref = document.createElement('a');
+                ahref.href = link.getAttribute("href");
+                ahref.download = taskItemInContext.getAttribute("data-id");
                 break;
         }
     }
@@ -356,43 +349,6 @@ function uploadCanceled(e) {
      */
     init();
 })();
-
-function deleteFile(){
-    var id = $('#deletefile').val();
-    var data = new FormData();
-    data.append("file", id);
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', function() {
-        console.log('#'+id);
-        location.reload();
-    });
-    xhr.open("POST", "public/php/deleteimage.php");
-    xhr.send(data);
-}
-
-function SaveToDisk(fileURL, fileName) {
-    // for non-IE
-    if (!window.ActiveXObject) {
-        var save = document.createElement('a');
-        save.href = fileURL;
-        save.target = '_blank';
-        save.download = fileName || 'unknown';
-
-        var event = document.createEvent('Event');
-        event.initEvent('click', true, true);
-        save.dispatchEvent(event);
-        (window.URL || window.webkitURL).revokeObjectURL(save.href);
-    }
-
-    // for IE
-    else if ( !! window.ActiveXObject && document.execCommand)     {
-        var _window = window.open(fileURL, '_blank');
-        _window.document.close();
-        _window.document.execCommand('SaveAs', true, fileName || fileURL)
-        _window.close();
-    }
-}
-
 $(document).ready(function() {
     $('#preview-modal').on('show.bs.modal', function(event) { // id of the modal with event
         var button = $(event.relatedTarget) // Button that triggered the modal
@@ -435,7 +391,7 @@ function GetData() {
                 //format the result and display them
                 if (result.length && noresults == 0) {
                     for (var i = 0; i < result.length; i++) {
-                        resultMarkup = '<div id="'+result[i].hash+'" class="Image_Wrapper"',
+                        resultMarkup = '<div class="Image_Wrapper"',
                             resultMarkup += '<a><img data-id="' + result[i].hash + '"class="context" src="public/upload/thumbnail/' + result[i].hash + '" ></a>',
                             resultMarkup += '</div>',
                             //console.log(result[i].$id),

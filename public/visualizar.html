@@ -1,4 +1,11 @@
 <body id="voltar-topo">
+	<style type="text/css" media="screen">
+		.indicator {
+		    cursor: pointer;
+		    color: #5b74a8;
+		    font-weight: bold;
+		}
+	</style>		
     <div class="container-fluid">
         <?php if (isset($_SESSION['logged-in']) && isset($_SESSION['_id'])){ ?>
         <div id="wrapper">
@@ -21,7 +28,7 @@
                     <span class="sr-only">Mudar navegação</span>
                     <span class="fa fa-bars fa-2x"></span>
                   </button>
-                  <a class="page-scroll" href="<?php echo SITE_URL; ?>"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
+                  <a class="page-scroll" href="<?php echo SITE_URL; ?>"><img class="lazy navbar-brand" src="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -44,10 +51,9 @@
             <!-- Content -->
                 <div class="col-md-8">
                         <div class="form-group">
-                            <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> asdasd</button>
-                            <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> asdasd</button>
-                            <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> asdasd</button>
-                            <button type="button" class="btn btn-primary"><i class="fa fa-pencil"></i> asdasd</button>
+                            <a target="_blank" class="btn btn-primary" href="http://www.facebook.com/sharer.php?u=<?php echo SITE_URL.SITE_URL.'/index.php?p=visualizar.html&image='.$_GET['image']; ?>"><i class="fa fa-facebook"></i> Facebook</a>
+                            <a target="_blank" href="https://plus.google.com/share?url=<?php echo SITE_URL.SITE_URL.'/index.php?p=visualizar.html&image='.$_GET['image']; ?>" class="btn btn-danger"><i class="fa fa-google-plus"></i> Google</a>
+                            <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php echo SITE_URL.'/index.php?p=visualizar.html&image='.$_GET['image']; ?>" class="btn btn-primary"><i class="fa fa-linkedin"></i> Linkedin</a>
                         </div>
                         <div id="image-preview" class="row">
                             <?php if (isset($_GET['image']) && strlen($_GET['image']) > 30) { if (Utils::imageExists($_GET['image'])){ ?>
@@ -58,36 +64,56 @@
                         <div class="row">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="text-center">TITULO DA IMAGEM</h4>
-                                </div>
-                                <div class="panel-body">
-                                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                    <?php 
+                                        $images = new Image();
+                                        $result = $images->getImagem($_GET['image']);
+                                        foreach ($result as $image) {
+                                            $name = $image['name'];
+                                            $id = $image['_id'];
+                                            $comments = $image['totalComments'];
+                                            $comment = $image['comments'];
+                                        }
+                                    ?>
+                                    <p class="lead text-center"><?php echo $name; ?></p>
                                 </div>
                             </div>
                         </div>
                 </div>
                 <div class="col-md-4">
+                    Link de compartilhamento:<br>
+                    <input type="text" value="<?php echo SITE_URL.'/index.php?p=visualizar.html&image='.$_GET['image']; ?>" disabled class="form-control"><br>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                              <h4 class="text-center">Comentários</h4>
                         </div>
                         <div class="panel-body">
-                        <div id="new-comment">
+                        <div>
+                        	<?php if(isset($_SESSION['_id'])){ ?>
                             <p>Digite seu comentário a baixo:</p>
-                            <textarea class="form-control" name=""></textarea>
+                            <textarea class="form-control" placeholder="Escrever um comentário..." id="<?php echo $id; ?>" onKeyPress="return new_comment(this,event,'<?php echo $_SESSION['_id']; ?>')"></textarea>
+                           	<?php } ?>
                         </div>
+						<p><i class="fa fa-comment indicator"></i> Comentários <span id="<?php echo $id.'_comments'; ?>"><?php echo $comments; ?></span></p>
                         <hr>
                             <!-- comment -->
-                            <div class="media">
-                                <a class="pull-left" href="#">
-                                    <img class="media-object" src="http://placehold.it/64x64" alt="">
-                                </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Start Bootstrap
-                                        <small>August 25, 2014 at 9:30 PM</small>
-                                    </h4>
-                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-                                </div>
+                            <div id="comment-list">
+								<?php
+									$posts = new Posts();
+								    for($i=$comments-1;$i >= 0;$i--){
+									$author = $posts->findAuthor($comment[$i]['userId']);
+								?>
+									<div class="comment" id="<?php echo $comment[$i]['_id']; ?>">
+										<a class="pull-left" href="#">
+										    <img width="50px" class="media-object" src="<?php echo $comment[$i]['profilepicture']; ?>" alt="profile">
+										</a>
+										<div class="media-body" style="padding-left: 5px;">
+										    <h4 class="media-heading"><?php echo $author['name']; ?>
+										        <small class="pull-right"><?php echo date('d-m-Y H:i:s', $comment[$i]['timestamp']->sec); ?></small>
+										    </h4>
+										    <p><?php echo $comment[$i]['text']; ?></p>
+										</div>
+									</div>
+								<?php } ?>
                             </div>
                             <!-- comment -->
                         </div>

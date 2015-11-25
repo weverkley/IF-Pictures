@@ -1,8 +1,8 @@
 <body id="voltar-topo">
-<style type="text/css">
-    .ui-state-hover { background-color: #ffC }
-    .inlineEdit-placeholder { font-style: italic; color: #555; }
-</style>
+    <style type="text/css">
+        .ui-state-hover { background-color: #ffC }
+        .inlineEdit-placeholder { font-style: italic; color: #555; }
+    </style>
     <div class="container-fluid">
         <div id="wrapper">
             <!-- Sidebar -->
@@ -23,7 +23,7 @@
                         <span class="sr-only">Mudar navegação</span>
                         <span class="fa fa-bars fa-2x"></span>
                         </button>
-                        <a class="page-scroll" href="<?php echo SITE_URL; ?>"><img class="lazy navbar-brand" data-original="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
+                        <a class="page-scroll" href="<?php echo SITE_URL; ?>"><img class="lazy navbar-brand" src="<?php echo PUBLIC_DIR; ?>/img/layout/logo.png" alt="IF - Logo"></a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -41,122 +41,146 @@
                                 <br>
                                 <div class="col-md-12">
                                     <?php $id = $user['cover']; $position = $user['position'];?>
-									<div class="col-md-12">
-										<div id="timelineBackground" class="cover-container">
+                                    <div class="col-md-12">
+                                        <div id="timelineBackground" class="cover-container">
                                             <div id="timelineShade">
-                                            <button class="btn btn-warning btn-file" title="Selecione uma imagem para sua capa."><i class="fa fa-camera"></i>
+                                                <button class="btn btn-warning btn-file" title="Selecione uma imagem para sua capa."><i class="fa fa-camera"></i>
                                                 <form id="bgimageform" method="post" enctype="multipart/form-data" action="<?php echo PUBLIC_DIR; ?>/php/uploadcover.php">
                                                     <div class="uploadFile timelineUploadBG">
                                                         <input type="file" name="photoimg" id="bgphotoimg" class="custom-file-input" original-title="Change Cover Picture">
                                                     </div>
                                                 </form>
-                                            </button>
+                                                </button>
                                             </div>
                                             <img src="<?php echo PUBLIC_DIR."/php/search.php?id=$id";?>" class="bgImage" style="margin-top: <?php echo $position; ?>;">
                                             <!-- <div class="social-cover"></div> -->
-											<div class="social-avatar" >
-												<img class="img-avatar" src="public/img/panel/user_male.png" height="100" width="100"> 
-												<h4 class="fg-white text-center text-shadow"><?php echo $user['name']; ?></h4>
-												<h5 class="fg-white text-center" style="opacity:0.8;"><?php echo $user['job']; ?></h5>
-												<hr class="border-black75 text-shadow" style="border-width:2px;" >
-												<div class="text-center"> <button role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue" type="button"> <i class="fa fa-plus"> Adicionar</i></button> </div>
-											</div>
-										</div>
-									</div>
-									<div class="col-md-12 col-sm-12 col-xs-12">
-										<div class="panel-options">
-											<div class="navbar navbar-default navbar-cover">
-												<div class="container-fluid">
-													<div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#profile-opts-navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> </div>
-													<div class="collapse navbar-collapse" id="profile-opts-navbar">
-														<ul class="nav navbar-nav navbar-right">
-															<li><a href="<?php echo SITE_URL; ?>/index.php?u=perfil.html"><i class="fa fa-tasks"></i>Timeline</a></li>
-															<li class="active"><a href="<?php echo SITE_URL; ?>/index.php?u=sobre.html"><i class="fa fa-info-circle"></i>About</a></li>
-															<li><a href="friends.html"><i class="fa fa-users"></i>Friends</a></li>
-															<li><a href="photos.html"><i class="fa fa-file-image-o"></i>Photos</a></li>
-															<li><a href="messages.html"><i class="fa fa-comment"></i>Messages</a></li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+                                            <div class="social-avatar" >
+                                                <img id="profilepicture" class="img-avatar" src="public/php/search.php?id=<?php echo $user['profilepicture']; ?>" height="100" width="100">
+                                                <h4 class="fg-white text-center text-shadow"><?php echo $user['name']; ?></h4>
+                                                <h5 class="fg-white text-center" style="opacity:0.8;"><?php echo $user['job']; ?></h5>
+                                                <hr class="border-black75 text-shadow" style="border-width:2px;" >
+                                                <div class="text-center"> <button role="button" class="btn btn-primary" type="button" data-toggle="modal" data-target="#profilePicture"> <i class="fa fa-image"> Imagem do Perfil</i></button> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="panel-options">
+                                            <div class="navbar navbar-default navbar-cover">
+                                                <div class="container-fluid">
+                                                    <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#profile-opts-navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> </div>
+                                                    <div class="collapse navbar-collapse" id="profile-opts-navbar">
+                                                        <ul class="nav navbar-nav navbar-right">
+                                                            <li><a href="<?php echo SITE_URL; ?>/index.php?u=perfil.html"><i class="fa fa-tasks"></i>Timeline</a></li>
+                                                            <li class="active"><a href="<?php echo SITE_URL; ?>/index.php?u=sobre.html"><i class="fa fa-info-circle"></i>About</a></li>
+                                                            <li><a href="friends.html"><i class="fa fa-users"></i>Friends</a></li>
+                                                            <li><a href="photos.html"><i class="fa fa-file-image-o"></i>Photos</a></li>
+                                                            <li><a href="messages.html"><i class="fa fa-comment"></i>Messages</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                    <div class="container-fluid">
-			<div class="panel panel-white panel-about">
-              <div class="panel-heading">
-                <h3 class="panel-title">Sobre <?php echo $user['name']; ?>
-                </h3>
-              </div>
-              <div class="panel-body">
-                <div class="col-md-12 col-sm-12 col-xs-12 about-tab-container">
-                  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 about-tab-menu">
-                    <div class="list-group">
-                      <a href="#" class="list-group-item active text-center">
-                        <h4 class="fa fa-child"></h4><br/>Visão geral
-                      </a>
-                      <a href="#" class="list-group-item text-center">
-                        <h4 class="fa fa-briefcase"></h4><br/>Comercial
-                      </a>
-                      <a href="#" class="list-group-item text-center">
-                        <h4 class="fa fa-newspaper-o"></h4><br/>Informações de Contato
-                      </a>
-                    </div>
-                  </div>
-                  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 about-tab">
-                    <!-- Overview section -->
-                    <div class="about-tab-content active">
-                            <div class="col-md-3"><p><strong>Nome:</strong></p></div>
-                            <div class="col-md-9"><?php echo "<p><span id='name' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu nome.'>".$user['name']."</span></p>"; ?></div>
-
-                            <div class="col-md-3"><p><strong>Sobrenome:</strong></p></div>
-                            <div class="col-md-9"><?php echo "<p><span id='surname' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu sobrenome.'>".$user['surname']."</span></p>"; ?></div>
-
-                            <div class="col-md-3"><p><strong>Emprego:</strong></p></div>
-                            <div class="col-md-9"><?php echo "<p><span id='job' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu emprego.'>".$user['job']."</span></p>"; ?></div>
-
-                            <div class="col-md-3"><p><strong>Estado:</strong></p></div>
-                            <div class="col-md-9"><?php echo "<p><span id='state' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu estado.'>".$user['state']."</span></p>"; ?></div>
-
-                            <div class="col-md-3"><p><strong>Cidade:</strong></p></div>
-                            <div class="col-md-9"><?php echo "<p><span id='city' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar sua cidade.'>".$user['city']."</span></p>"; ?></div>
-                    </div>
-                    <!-- Work section -->
-                    <div class="about-tab-content">
-                       <ul class="list-group">
-                        <li class="list-group-item"><i class="fa fa-briefcase"></i>&nbsp; Software developer at <a href="#">Deystrap</a></li>
-                        <li class="list-group-item"><i class="fa fa-cubes"></i>&nbsp;Web designer at <a href="#">Dey-Dey</a></li>
-                      </ul>
-                    </div>
-
-                    <!-- Contact section -->
-                    <div class="about-tab-content">
-                      <ul class="list-group">
-                        <li class="list-group-item"><i class="fa fa-phone"></i>&nbsp; 533 44 55</li>
-                        <li class="list-group-item"><i class="fa fa-mobile"></i>&nbsp; +57 328 999 444 2</li>
-                        <li class="list-group-item"><i class="fa fa-cubes"></i>&nbsp;@username (twitter) <i class="fa fa-twitter text-twitter"></i></li>
-                        <li class="list-group-item"><i class="fa fa-envelope"></i>&nbsp; username@email.com</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-            </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="panel panel-white panel-about">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Sobre <?php echo $user['name']; ?>
+                                        </h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 about-tab-container">
+                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 about-tab-menu">
+                                                <div class="list-group">
+                                                    <a href="#" class="list-group-item active text-center">
+                                                    <h4 class="fa fa-child"></h4><br/>Visão geral
+                                                    </a>
+                                                    <a href="#" class="list-group-item text-center">
+                                                    <h4 class="fa fa-briefcase"></h4><br/>Comercial
+                                                    </a>
+                                                    <a href="#" class="list-group-item text-center">
+                                                    <h4 class="fa fa-newspaper-o"></h4><br/>Informações de Contato
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 about-tab">
+                                                <!-- Overview section -->
+                                                <div class="about-tab-content active">
+                                                    <div class="col-md-3"><p><strong>Nome:</strong></p></div>
+                                                    <div class="col-md-9"><?php echo "<p><span id='name' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu nome.'>".$user['name']."</span></p>"; ?></div>
+                                                    <div class="col-md-3"><p><strong>Sobrenome:</strong></p></div>
+                                                    <div class="col-md-9"><?php echo "<p><span id='surname' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu sobrenome.'>".$user['surname']."</span></p>"; ?></div>
+                                                    <div class="col-md-3"><p><strong>Emprego:</strong></p></div>
+                                                    <div class="col-md-9"><?php echo "<p><span id='job' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu emprego.'>".$user['job']."</span></p>"; ?></div>
+                                                    <div class="col-md-3"><p><strong>Estado:</strong></p></div>
+                                                    <div class="col-md-9"><?php echo "<p><span id='state' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu estado.'>".$user['state']."</span></p>"; ?></div>
+                                                    <div class="col-md-3"><p><strong>Cidade:</strong></p></div>
+                                                    <div class="col-md-9"><?php echo "<p><span id='city' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar sua cidade.'>".$user['city']."</span></p>"; ?></div>
+                                                </div>
+                                                <!-- Work section -->
+                                                <div class="about-tab-content">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item"><i class="fa fa-briefcase"></i>&nbsp; Software developer at <a href="#">Deystrap</a></li>
+                                                        <li class="list-group-item"><i class="fa fa-cubes"></i>&nbsp;Web designer at <a href="#">Dey-Dey</a></li>
+                                                    </ul>
+                                                </div>
+                                                <!-- Contact section -->
+                                                <div class="about-tab-content">
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item"><i class="fa fa-phone"></i>&nbsp; 533 44 55</li>
+                                                        <li class="list-group-item"><i class="fa fa-mobile"></i>&nbsp; +57 328 999 444 2</li>
+                                                        <li class="list-group-item"><i class="fa fa-cubes"></i>&nbsp;@username (twitter) <i class="fa fa-twitter text-twitter"></i></li>
+                                                        <li class="list-group-item"><i class="fa fa-envelope"></i>&nbsp; username@email.com</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Modal -->
+                                    <div id="profilePicture" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Alterar imagem do perfil</h4>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    <p id="resultImageProfile"></p>
+                                                    <p class="myImage"><img id="profilemodal" src="public/php/search.php?id=<?php echo $user['profilepicture']; ?>" width="100" alt="" /></p>
+                                                    <button class="btn btn-info btn-file" title="Selecione uma imagem para seu perfil."><i class="fa fa-camera"></i> Selecione uma imagem
+                                                    <form id="bgimageform" method="post" enctype="multipart/form-data" action="public/php/uploadcover.php">
+                                                        <div class="uploadFile timelineUploadBG">
+                                                            <input name="imageProfile" id="imageProfile" type="file" />
+                                                        </div>
+                                                    </form>
+                                                    </button>
+                                                    <br><br><br>
+                                                    <p>Tamanho Máximo: <b>256 Kb</b></p>
+                                                    <p>Formatos aceitos: <b>jpg</b>, <b>jpeg</b></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <footer id="footer-panel">
-                        <div class="container">
-                            <div class="row">
-                                <hr>
-                                <p>© 2015 IF - Pictures. All Rights Reserved.
-                                <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i style="color: gray;" class="fa fa-2x fa-angle-up"></i></a>
-                                </p>
-                            </div>
-                        </div>
-                    </footer>
                 </div>
+                <footer id="footer-panel">
+                    <div class="container">
+                        <div class="row">
+                            <hr>
+                            <p>© 2015 IF - Pictures. All Rights Reserved.
+                            <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i style="color: gray;" class="fa fa-2x fa-angle-up"></i></a>
+                            </p>
+                        </div>
+                    </div>
+                </footer>
             </div>
-        </body>
+        </div>
+    </body>

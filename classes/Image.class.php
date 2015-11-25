@@ -70,13 +70,13 @@ class Image extends DB
 		    	'descripton' => null,
 		    	'comments' => array(),
 		    	'total' => 0,
-		    	'uploaded' => new MongoDate(),
+		    	'timestamp' => new MongoDate(),
 		    	'protected' =>  false
 			);
 
 			$this->images->insert($data);
 
-		    return 'Main file: '.$this->fileName;
+		    return $data;
 		} catch (Exception $e) {
 		    throw new Exception($e->getMessage());
 		}
@@ -86,7 +86,18 @@ class Image extends DB
 	* Método para retornar imagens.
 	*/
 	public function ImageFind($array = array()){
-		return $this->images->find($array);
+		return $this->images->find($array)->sort(array('_id'=>-1));
+	}
+
+	/**
+	* Método para apagar imagens.
+	*/
+	public function delete($hash){
+		$feed = $this->mongo->selectCollection($this->db, 'feed');
+		$feed->remove(array('hash' => $hash), array("justOne" => true));
+		$this->images->remove(array('hash' => $hash), array("justOne" => true));
+		unlink(PUBLIC_DIR.'/upload/large/'.$hash);
+		unlink(PUBLIC_DIR.'/upload/thumbnail/'.$hash);
 	}
 
 	/**
@@ -103,6 +114,30 @@ class Image extends DB
 		return $this->grid->findOne($array);
 	} 
 
+	/**
+	* Método para retornar uma imagen.
+	*/
+	public function getImagem($hash){
+		return $this->images->find(array('hash' => $hash))->limit(1);
+	}
+
+	public function insertComment($id, $userid, $text){
+		$data = array (
+		    '_id' => new MongoId(),
+			'userId' => $userid,
+			'profilepicture' => $_SESSION['profilepicture'],
+		    'text' => $text,
+		    'timestamp' => new MongoDate(),
+		    );
+		$res = $this->images->update(array('_id' => $id), array('$push' => array('comments' => $data),'$inc' => array('totalComments' => 1 )));
+
+		if ($res){
+			return $data;
+		} else {
+			return false;
+		}
+	}
+	
 	public function __destruct(){
 		$this->mongo->close();
 	}

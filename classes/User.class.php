@@ -122,5 +122,22 @@ class User extends DB
 			return false;
 		}
 	}
+
+	public function saveCover($pos){
+		$data = array('$set' => array('position' => $pos));
+    	$res = $user->update(array('_id' => $_SESSION['_id']), $data);
+    	if($res) return true;
+    	else return false;
+	}
+
+	/**
+	* Método para retornar o nome do usuário.
+	*/
+	public function getName($id){
+    	$data = $this->users->find(array('_id' => new MongoId($id)));
+    	foreach ($data as $user) {
+    		return $user['name'];
+    	}
+	}
 }
 ?>

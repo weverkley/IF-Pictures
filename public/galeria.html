@@ -1,4 +1,11 @@
     <body id="voltar-topo">
+    <style type="text/css">
+    	.margin{
+    		margin-top: 20%;
+    		bottom: 0px;
+    		position: absolute;
+    	}
+    </style>
 		<nav class="navbar navbar-default" data-spy="affix" data-offset-top="400" id="nav">
 		  <div class="container">
 		    <!-- Brand and toggle get grouped for better mobile display -->
@@ -19,35 +26,25 @@
 		</nav>
 	<section>
 		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<p class="text-center">Faça parte dessa grande comunidade e começe já a compartilhar suas imagens.</p>
-							<div class="text-center">
-								<a href="<?php echo SITE_URL; ?>/index.php?p=registro.html" class="btn btn-success"><span class="fa fa-check-square-o"></span> Registrar</a>
-								<a href="<?php echo SITE_URL; ?>" class="btn btn-info"><span class="fa fa-user"></span> Entrar</a>
-							</div>
-						</div>
-					</div>
-					<div class="list-group">
-						<p class="text-center">Categoria</p>
-						<button type="button" class="list-group-item"><i class="fa fa-info"></i> Cras justo odio</button>
-						<button type="button" class="list-group-item"><i class="fa fa-info"></i> Dapibus ac facilisis in</button>
-						<button type="button" class="list-group-item"><i class="fa fa-info"></i> Morbi leo risus</button>
-						<button type="button" class="list-group-item"><i class="fa fa-info"></i> Porta ac consectetur ac</button>
-						<button type="button" class="list-group-item"><i class="fa fa-info"></i> Vestibulum at eros</button>
-					</div>
-				</div>
-				<div class="col-md-9">
+				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-6 col-md-offset-3">
+						<button id="back" type="button" class="btn btn-info" onclick="location.reload();"><i class="fa fa-chevron-left"></i> Retornar</button>
+						<div id="header" style="margin-top: 50px; margin-bottom: 100px;" class="text-center">
+							<img src="<?php echo SITE_URL; ?>/public/img/layout/logo.png" width="150">
+							<h2>O melhor site para compartilhamento de imagens!</h2>
+						</div>
+						<div id="options" class="col-md-6 col-md-offset-3">
 							<div class="input-group">
-							  	<input type="text" class="form-control" placeholder="Digite o nome da imagem para buscar">
+							  	<input id="name" type="text" class="form-control" placeholder="Digite o nome da imagem para buscar">
 								<span class="input-group-btn">
-							    	<button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+							    	<button id="search-button" class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
 							  	</span>
 							</div><!-- /input-group -->
+							<div id="button-group" class="text-center">
+								<br>
+								<a class="btn btn-primary" href="<?php echo SITE_URL.'/index.php?p=registro.html'; ?>">Registrar</a>
+								<a class="btn btn-primary" href="<?php echo SITE_URL; ?>">Entrar</a>
+							</div>
 						</div>
 					</div>
 	                <div class="row">
@@ -62,14 +59,16 @@
 		                <div class="Collage effect-parent" id="gallery"></div>
 	                </div>
 				</div>
-			</div>
 		</div>
 	</section>
-    <footer>
+	<div id="chevron" class="text-center">
+		<p class="badge "><span class="fa fa-2x fa-chevron-down" title="Role para baixo pare selecionar imagens."></span></p>
+	</div>
+    <footer class="margin" id="footer-panel">
         <div class="container">
             <div class="row">
                 <p>© 2015 IF - Pictures. All Rights Reserved.
-                <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i class="fa fa-2x fa-angle-up"></i></a>
+                <a class="pull-right page-scroll" href="#voltar-topo" title="Voltar ao topo."><i style="color: gray;" class="fa fa-2x fa-angle-up"></i></a>
                 </p>
             </div>
         </div>

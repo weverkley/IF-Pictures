@@ -16,30 +16,18 @@ if ($_POST['login']) {
 }
 
 if ($data == 0) {
-	$name = $_POST['name'];
-	$surname = $_POST['surname'];
-	$borndate = $_POST['born'];
 	$sex = $_POST['sex'];
-	$login = $_POST['login'];
-	$password = $_POST['password'];
-	$rpassword = $_POST['rpassword'];
-	$email = $_POST['email'];
-	$question = $_POST['question'];
-	$answer = $_POST['answer'];
-
 	$user = new User();
 	$data = array(
-		'name' => $name,
-		'surname' => $surname,
-		'borndate' => $borndate,
+		'name' => $_POST['name'],
+		'surname' => $_POST['surname'],
+		'borndate' => $_POST['born'],
 		'sex' => $sex,
-		'login' => $login,
-		'password' => md5($password),
-		'email' => $email,
-		'question' => $question,
-		'answer' => $answer,
-		//----//
-		'avatar' => null,
+		'login' => $_POST['login'],
+		'password' => md5($_POST['password']),
+		'email' => $_POST['email'],
+		'question' => $_POST['question'],
+		'answer' => $_POST['answer'],
 		'cover' => null,
 		if ($sex == 'm') {
 			'profilepicture' => 'public/img/panel/user_male.png',
@@ -54,5 +42,4 @@ if ($data == 0) {
 		echo 3;
 	}
 } else echo $data;
-
 ?>

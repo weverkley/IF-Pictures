@@ -55,15 +55,7 @@ $("#logout").click(function() {
     //alert( "Handler for .click() called." );
     logout();
 });
-/*============= About page ==============*/
-$(".about-tab-menu .list-group-item").click(function(e) {
-    e.preventDefault();
-    $(this).siblings('a.active').removeClass("active");
-    $(this).addClass("active");
-    var index = $(this).index();
-    $("div.about-tab>div.about-tab-content").removeClass("active");
-    $("div.about-tab>div.about-tab-content").eq(index).addClass("active");
-});
+
 // EDIÇÃO DENTRO DO SOBRE
 $(document).ready(function() {
     $(".editlink").on("click", function(e) {
@@ -91,4 +83,30 @@ $(document).ready(function() {
         dataset.html(newval);
         elink.css("display", "block");
     });
+});
+
+if (localStorage.remember && localStorage.remember != '') {
+    $('#login').val(localStorage.login);
+    $('#password').val(localStorage.password);
+} else {
+    $('#login').val('');
+    $('#password').val('');
+}
+
+$('#checkbox').on('click', function(e){
+    if ($("#checkbox").val() == 1){
+        $("#checkbox").attr("checked",false);
+        $('#checkbox').val(0);
+    } else {
+        $("#checkbox").attr("checked",true);
+        $('#checkbox').val(1);
+    }
+});
+
+$('#login-btn').on('click', function(e){
+    if ($("#checkbox").val() == 1){
+        localStorage.login = $('#login').val();
+        localStorage.password = $('#password').val();
+        localStorage.remember = 'remember';
+    }
 });

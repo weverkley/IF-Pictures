@@ -84,21 +84,40 @@
                             <div class="container-fluid">
                                 <div class="panel panel-white panel-about">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Sobre <?php echo $user['name']; ?>
-                                        </h3>
+                                        <h3 class="panel-title">Amigos</h3>
                                     </div>
                                     <div class="panel-body">
                                         <div class="col-md-12">
-                                            <div class="col-md-3"><p><strong>Nome:</strong></p></div>
-                                            <div class="col-md-9"><?php echo "<p><span id='name' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu nome.'>".$user['name']."</span></p>"; ?></div>
-                                            <div class="col-md-3"><p><strong>Sobrenome:</strong></p></div>
-                                            <div class="col-md-9"><?php echo "<p><span id='surname' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu sobrenome.'>".$user['surname']."</span></p>"; ?></div>
-                                            <div class="col-md-3"><p><strong>Emprego:</strong></p></div>
-                                            <div class="col-md-9"><?php echo "<p><span id='job' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu emprego.'>".$user['job']."</span></p>"; ?></div>
-                                            <div class="col-md-3"><p><strong>Estado:</strong></p></div>
-                                            <div class="col-md-9"><?php echo "<p><span id='state' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu estado.'>".$user['state']."</span></p>"; ?></div>
-                                            <div class="col-md-3"><p><strong>Cidade:</strong></p></div>
-                                            <div class="col-md-9"><?php echo "<p><span id='city' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar sua cidade.'>".$user['city']."</span></p>"; ?></div>
+                                            <?php 
+                                                $friends = new Friends();
+                                                $or = array('$or' => array(array('friend_one' => $_SESSION['_id'], 'status' => 1), array('friend_two' => $_SESSION['_id'], 'status' => 1)));
+                                                $find = $friends->select($or);
+                                                $fv = array();
+                                                foreach ($find as $d) {
+                                                    if ($d['friend_one'] != $_SESSION['_id']) {
+                                                        $fv[] = $d['friend_one'];
+                                                    }
+                                                    if ($d['friend_two'] != $_SESSION['_id']) {
+                                                        $fv[] = $d['friend_two'];
+                                                    }
+                                                }
+                                                $userid = new User();
+                                                foreach ($fv as $u) {
+                                                    $data = $userid->Select(array('_id' => $u))->sort(array('_id' => -1));
+                                                    foreach ($data as $user) {?>
+                                                    <div class="col-md-2">
+                                                        <a href="<?php echo SITE_URL.'/index.php?u=perfil.html&search='.$user['_id']; ?>">
+                                                            <div class="well">
+                                                                <img class="center-block" src="public/php/search.php?id=<?php echo $user['profilepicture']; ?>" width="100">
+                                                                <p class="text-center" style="margin-top: 10px;"><?php echo $user['name']; ?></p>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+
+                                                <?php 
+                                                }
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                     <!-- Modal -->

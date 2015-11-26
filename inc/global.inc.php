@@ -12,7 +12,6 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path()
 )));
 
-require_once realpath(dirname(__FILE__).'/../classes/ExtensionBridge.class.php');
 require_once realpath(dirname(__FILE__).'/../classes/DB.class.php');
 require_once realpath(dirname(__FILE__).'/../classes/Utils.class.php');
 require_once realpath(dirname(__FILE__).'/../classes/User.class.php');
@@ -21,6 +20,7 @@ require_once realpath(dirname(__FILE__).'/../classes/Image.class.php');
 require_once realpath(dirname(__FILE__).'/../classes/Friends.class.php');
 require_once realpath(dirname(__FILE__).'/../classes/Update.class.php');
 require_once realpath(dirname(__FILE__).'/../classes/Posts.class.php');
+require_once realpath(dirname(__FILE__).'/../classes/Feed.class.php');
 
 function incPage($default, $get, $notallowed = array(), $allowed = array()) {
 	if (isset($_GET[$get])) {
@@ -43,7 +43,7 @@ function showPage() {
 		incPage('/inicio.html', 'p', $notallowed, $allowed);
 	} else {
 		$notallowed = array('login.php', 'logout.php', 'inicio.html');
-		$allowed = array('painel.html', 'perfil.html', 'imagens.html', 'painel.html', 'visualizar.html', 'sobre.html');
+		$allowed = array('painel.html', 'perfil.html', 'imagens.html', 'painel.html', 'visualizar.html', 'sobre.html', 'amigos.html');
 		incPage('/painel.html', 'u', $notallowed, $allowed);
 	}
 }

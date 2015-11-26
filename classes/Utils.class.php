@@ -2,7 +2,7 @@
 /**
  * summary
  */
-class Utils extends ExtensionBridge
+class Utils
 {
     /**
      * Utils::ClearText($var);

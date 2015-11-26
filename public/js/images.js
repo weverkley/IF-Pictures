@@ -435,8 +435,13 @@ function GetData() {
                 //format the result and display them
                 if (result.length && noresults == 0) {
                     for (var i = 0; i < result.length; i++) {
-                        resultMarkup = '<div id="'+result[i].hash+'" class="Image_Wrapper"',
+                            resultMarkup = '<div class="Image_Wrapper ImageWrapper ContentWrapperB chrome-fix">',
                             resultMarkup += '<a><img data-id="' + result[i].hash + '"class="context" src="public/upload/thumbnail/' + result[i].hash + '" ></a>',
+                            resultMarkup += '<div class="ContentB">',
+                            resultMarkup += '<div class="Content">',
+                            resultMarkup += '<h2>'+ result[i].name +'</h2>Data: '+ result[i].timestamp +'',
+                            resultMarkup += '<br><a target="_blank" class="btn btn-xs btn-success" href="index.php?u=visualizar.html&image='+ result[i].hash +'"><i class="fa fa-search"></i></a>',
+                            resultMarkup += '</div></div>',
                             resultMarkup += '</div>',
                             //console.log(result[i].$id),
                             $('#gallery').append(resultMarkup)
@@ -451,8 +456,12 @@ function GetData() {
                     resultMarkup = '',
                         returned++;
                 } else {
-                    if (returned == 0) p = '<div class="container"><p class="col-lg-12 text-center">Você não possui imagens.</p><div>';
-                    else p = '<div class="container"><p class="col-lg-12 text-center">Não há mais imagens a serem carregadas.</p><div>';
+                    if (returned == 0) p = '<div class="container"><div class="alert alert-warning text-center">'
+                        + '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'
+                        + 'Não há nenhuma imagem a ser mostrada.<div>';
+                    else p = '<div class="container"><div class="alert alert-warning text-center">'
+                            + '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'
+                            + 'Não há mais imagens a serem carregadas.<div>';
                     if (noresults == 0) $('#gallery').append(p);
                     noresults++;
                 }

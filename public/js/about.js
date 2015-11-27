@@ -40,7 +40,19 @@ function editComplete(data) {
 
 $(document).ready(function() {
     /* Uploading Profile BackGround Image */
-    $('body').on('change', '#bgphotoimg', function() {
+    $('body').on('change', '#bgphotoimg', function(r) {
+        var data = new FormData();
+        data.append('photoimg', r.target.files[0]);
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function(e) {
+            result = JSON.parse(e.target.responseText);
+            //alert(e);
+            $("#cover-bg").css("background-image", "url("+result+")");
+        };
+        xhr.open("POST", "public/php/uploadcover.php");
+        xhr.send(data);
+    });
+/*    $('body').on('change', '#bgphotoimg', function() {
         $("#bgimageform").ajaxForm({
             target: '#timelineBackground',
             beforeSubmit: function() {},
@@ -51,7 +63,7 @@ $(document).ready(function() {
             },
             error: function() {}
         }).submit();
-    });
+    });*/
     /* Banner position drag */
     $("body").on('mouseover', '.headerimage', function() {
         var y1 = $('#timelineBackground').height();

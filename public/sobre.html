@@ -40,9 +40,9 @@
                             <div class="row">
                                 <br>
                                 <div class="col-md-12">
-                                    <?php $id = $user['cover']; $position = $user['position'];?>
-                                    <div class="col-md-12">
-                                        <div id="timelineBackground" class="cover-container">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <?php $id = $user['cover']; $position = $user['position']; ?>
+                                        <div id="cover-bg" class="cover-container" style="background-image: url(<?php echo PUBLIC_DIR."/php/search.php?id=$id";?>);">
                                             <div id="timelineShade">
                                                 <button class="btn btn-warning btn-file" title="Selecione uma imagem para sua capa."><i class="fa fa-camera"></i>
                                                 <form id="bgimageform" method="post" enctype="multipart/form-data" action="<?php echo PUBLIC_DIR; ?>/php/uploadcover.php">
@@ -52,14 +52,50 @@
                                                 </form>
                                                 </button>
                                             </div>
-                                            <img src="<?php echo PUBLIC_DIR."/php/search.php?id=$id";?>" class="bgImage" style="margin-top: <?php echo $position; ?>;">
-                                            <!-- <div class="social-cover"></div> -->
+                                            <div class="social-cover"></div>
                                             <div class="social-avatar" >
+                                                <?php 
+                                                    if (isset($_GET['search']) && $_GET['search'] != "") {
+                                                        try {
+                                                            $user = $class->SelectOne(array('_id' => new MongoId($_GET['search'])));
+                                                        } catch (Exception $e) {
+                                                            
+                                                        }
+                                                    }
+                                                ?>
                                                 <img id="profilepicture" class="img-avatar" src="public/php/search.php?id=<?php echo $user['profilepicture']; ?>" height="100" width="100">
                                                 <h4 class="fg-white text-center text-shadow"><?php echo $user['name']; ?></h4>
                                                 <h5 class="fg-white text-center" style="opacity:0.8;"><?php echo $user['job']; ?></h5>
                                                 <hr class="border-black75 text-shadow" style="border-width:2px;" >
-                                                <div class="text-center"> <button role="button" class="btn btn-primary" type="button" data-toggle="modal" data-target="#profilePicture"> <i class="fa fa-image"> Imagem do Perfil</i></button> </div>
+                                                <div class="text-center">
+                                                    <?php 
+                                                        if(isset($_GET['search']) && !empty($_GET['search']) && $_SESSION['_id'] != $_GET['search']){
+                                                            $friend = new Friends();
+                                                            $data = array('_id' => $_SESSION['_id'], 'search' => $_GET['search']);
+                                                            $result = $friend->check($data);
+                                                            $c = $result->count();
+                                                            if ($c != 0) {
+                                                                foreach ($result as $line) {
+                                                                    if ($line['status'] == 1) {
+                                                                        echo '<button id="friends" name="'.$line['_id'].'" role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue" type="button" onclick="unfriend(this.name);">Amigos <i class="fa fa-check"></i></button>';
+                                                                    } else {
+                                                                        if ($line['friend_one'] == $_SESSION['_id']) {
+                                                                            echo '<input id="add" role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue disabled" type="button" value="Convite Pendente" />';
+                                                                        } else if ($line['status'] == 0){
+                                                                            echo '<button id="acptreq" name="'.$line['_id'].'" role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue" onclick="confirm(this.name);" type="button">Aceitar Convite</button>';
+                                                                        } else {
+                                                                            echo '<button id="friends" name="'.$line['_id'].'" role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue" type="button" onclick="unfriend(this.name);">Amigos <i class="fa fa-check"></i></button>';
+                                                                        }
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                echo '<input name="'.$_GET['search'].'" id="add" role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue" onclick="add(this.name);" type="button" value="Adicionar" />';
+                                                            }
+                                                        } else {
+                                                            echo '<div class="text-center"> <button role="button" class="btn btn-primary" type="button" data-toggle="modal" data-target="#profilePicture"> <i class="fa fa-image"> Imagem do Perfil</i></button> </div>';
+                                                        }
+                                                    ?>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

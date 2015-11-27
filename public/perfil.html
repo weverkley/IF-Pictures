@@ -37,7 +37,8 @@
                                 <br>
                                 <div class="col-md-12">
 									<div class="col-md-12 col-sm-12 col-xs-12">
-										<div class="cover-container" style="background-image:url(public/upload/cover/game.jpg);">
+										<?php $id = $user['cover']; $position = $user['position']; ?>
+										<div class="cover-container" style="background-image:url(<?php echo PUBLIC_DIR."/php/search.php?id=$id";?>);">
 											<div class="social-cover"></div>
 											<div class="social-avatar" >
 												<?php 
@@ -106,25 +107,58 @@
 									<div class="panel panel-default panel-user-detail">
 										<div class="panel-body">
 											<ul class="list-unstyled">
-												<li><i class="fa fa-suitcase"></i>Works at <a href="#">software development</a></li>
+												<?php 
+													$friends = new Friends(); 
+													$or = array('$or' => array(array('friend_one' => $_SESSION['_id'], 'status' => 1), array('friend_two' => $_SESSION['_id'], 'status' => 1)));
+													$c = $friends->select($or)->count();
+												?>
 												<li><i class="fa fa-calendar"></i>Aniversário <?php echo Utils::birthday($user['borndate']); ?></li>
-												<li><i class="fa fa-users"></i>Nº de Amigos 0 </li>
+												<li><i class="fa fa-users"></i>Nº de Amigos <?php echo $c; ?> </li>
 											</ul>
 										</div>
-										<div class="panel-footer text-center"> <a href="#" class="btn btn-success">Veja mais...</a></div>
+										<div class="panel-footer text-center"> <a href="<?php echo SITE_URL.'/index.php?u=sobre.html'; ?>" class="btn btn-success">Veja mais...</a></div>
 									</div>
 									<div class="panel panel-white panel-friends">
 										<div class="panel-heading">
-											<a href="#" class="pull-right">View all&nbsp;<i class="fa fa-share-square-o"></i></a> 
-											<h3 class="panel-title">Friends</h3>
+											<a href="<?php echo SITE_URL.'/index.php?u=amigos.html'; ?>" class="pull-right">Visualizar todos&nbsp;<i class="fa fa-share-square-o"></i></a> 
+											<h3 class="panel-title">Amigos</h3>
 										</div>
 										<div class="panel-body text-center">
 											<ul class="friends">
-												<li><a href="" title=""></a></li>
+											<?php 
+                                                $or = array('$or' => array(array('friend_one' => $_SESSION['_id'], 'status' => 1), array('friend_two' => $_SESSION['_id'], 'status' => 1)));
+                                                $find = $friends->select($or);
+                                                $fv = array();
+                                                foreach ($find as $d) {
+                                                    if ($d['friend_one'] != $_SESSION['_id']) {
+                                                        $fv[] = $d['friend_one'];
+                                                    }
+                                                    if ($d['friend_two'] != $_SESSION['_id']) {
+                                                        $fv[] = $d['friend_two'];
+                                                    }
+                                                }
+                                                $userid = new User();
+                                                foreach ($fv as $u) {
+                                                    $data = $userid->Select(array('_id' => $u))->sort(array('_id' => -1))->limit(3);
+                                                    foreach ($data as $user) {?>
+                                                    <li>
+                                                        <a href="<?php echo SITE_URL.'/index.php?u=perfil.html&search='.$user['_id']; ?>">
+                                                            <div class="well">
+                                                                <img class="center-block" src="public/php/search.php?id=<?php echo $user['profilepicture']; ?>" width="100">
+                                                                <p class="text-center" style="margin-top: 10px;"><?php echo $user['name']; ?></p>
+                                                            </div>
+                                                        </a>
+
+                                                    </li>
+
+                                                <?php 
+                                                }
+                                                }
+                                            ?>
 											</ul>
 										</div>
 									</div>
-									<div class="panel panel-white">
+									<!-- <div class="panel panel-white">
 										<div class="panel-heading">
 											<a href="#" class="pull-right">View all&nbsp;<i class="fa fa-share-square-o"></i></a> 
 											<h3 class="panel-title">Photos</h3>
@@ -134,7 +168,7 @@
 												<li><a href="" title=""></a></li>
 											</ul>
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<div class="col-md-7">
 									<?php if (!isset($_GET['search']) || $_SESSION['_id'] == $_GET['search']){?>

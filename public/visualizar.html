@@ -1,3 +1,12 @@
+<?php 
+if (!Utils::imageExists($_GET['image'])) {
+    if (isset($_SESSION['logged-in']) && isset($_SESSION['_id'])){
+        header('Location: index.php?u=404.html');
+    } else {
+        header('Location: index.php?p=404.html');
+    }
+}
+?>
 <body id="voltar-topo">
 	<style type="text/css" media="screen">
 		.indicator {
@@ -56,9 +65,7 @@
                             <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?php echo SITE_URL.'/index.php?p=visualizar.html&image='.$_GET['image']; ?>" class="btn btn-primary"><i class="fa fa-linkedin"></i> Linkedin</a>
                         </div>
                         <div id="image-preview" class="row">
-                            <?php if (isset($_GET['image']) && strlen($_GET['image']) > 30) { if (Utils::imageExists($_GET['image'])){ ?>
-                                <img src="public/upload/large/<?php echo $_GET['image']; ?>" class="img-responsive center-block">
-                            <?php }} ?>
+                            <img src="public/upload/large/<?php echo $_GET['image']; ?>" class="img-responsive center-block">
                         </div>
                         <br>
                         <div class="row">
@@ -70,7 +77,7 @@
                                         foreach ($result as $image) {
                                             $name = $image['name'];
                                             $id = $image['_id'];
-                                            $comments = $image['totalComments'];
+                                            (isset($image['totalComments']))? $comments = $image['totalComments'] :  $comments = 0;
                                             $comment = $image['comments'];
                                         }
                                     ?>

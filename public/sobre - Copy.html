@@ -40,51 +40,26 @@
                             <div class="row">
                                 <br>
                                 <div class="col-md-12">
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <?php $id = $user['cover']; $position = $user['position']; ?>
-                                        <div class="cover-container" style="background-image:url(<?php echo PUBLIC_DIR."/php/search.php?id=$id";?>);">
-                                            <div class="social-cover"></div>
+                                    <?php $id = $user['cover']; $position = $user['position'];?>
+                                    <div class="col-md-12">
+                                        <div id="timelineBackground" class="cover-container">
+                                            <div id="timelineShade">
+                                                <button class="btn btn-warning btn-file" title="Selecione uma imagem para sua capa."><i class="fa fa-camera"></i>
+                                                <form id="bgimageform" method="post" enctype="multipart/form-data" action="<?php echo PUBLIC_DIR; ?>/php/uploadcover.php">
+                                                    <div class="uploadFile timelineUploadBG">
+                                                        <input type="file" name="photoimg" id="bgphotoimg" class="custom-file-input" original-title="Change Cover Picture">
+                                                    </div>
+                                                </form>
+                                                </button>
+                                            </div>
+                                            <img src="<?php echo PUBLIC_DIR."/php/search.php?id=$id";?>" class="bgImage" style="margin-top: <?php echo $position; ?>;">
+                                            <!-- <div class="social-cover"></div> -->
                                             <div class="social-avatar" >
-                                                <?php 
-                                                    if (isset($_GET['search']) && $_GET['search'] != "") {
-                                                        try {
-                                                            $user = $class->SelectOne(array('_id' => new MongoId($_GET['search'])));
-                                                        } catch (Exception $e) {
-                                                            
-                                                        }
-                                                    }
-                                                ?>
                                                 <img id="profilepicture" class="img-avatar" src="public/php/search.php?id=<?php echo $user['profilepicture']; ?>" height="100" width="100">
                                                 <h4 class="fg-white text-center text-shadow"><?php echo $user['name']; ?></h4>
                                                 <h5 class="fg-white text-center" style="opacity:0.8;"><?php echo $user['job']; ?></h5>
                                                 <hr class="border-black75 text-shadow" style="border-width:2px;" >
-                                                <div class="text-center">
-                                                    <?php 
-                                                        if(isset($_GET['search']) && !empty($_GET['search']) && $_SESSION['_id'] != $_GET['search']){
-                                                            $friend = new Friends();
-                                                            $data = array('_id' => $_SESSION['_id'], 'search' => $_GET['search']);
-                                                            $result = $friend->check($data);
-                                                            $c = $result->count();
-                                                            if ($c != 0) {
-                                                                foreach ($result as $line) {
-                                                                    if ($line['status'] == 1) {
-                                                                        echo '<button id="friends" name="'.$line['_id'].'" role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue" type="button" onclick="unfriend(this.name);">Amigos <i class="fa fa-check"></i></button>';
-                                                                    } else {
-                                                                        if ($line['friend_one'] == $_SESSION['_id']) {
-                                                                            echo '<input id="add" role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue disabled" type="button" value="Convite Pendente" />';
-                                                                        } else if ($line['status'] == 0){
-                                                                            echo '<button id="acptreq" name="'.$line['_id'].'" role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue" onclick="confirm(this.name);" type="button">Aceitar Convite</button>';
-                                                                        } else {
-                                                                            echo '<button id="friends" name="'.$line['_id'].'" role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue" type="button" onclick="unfriend(this.name);">Amigos <i class="fa fa-check"></i></button>';
-                                                                        }
-                                                                    }
-                                                                }
-                                                            } else {
-                                                                echo '<input name="'.$_GET['search'].'" id="add" role="button" class="btn btn-inverse btn-outlined btn-retainBg btn-brightblue" onclick="add(this.name);" type="button" value="Adicionar" />';
-                                                            }
-                                                        }
-                                                    ?>
-                                                </div>
+                                                <div class="text-center"> <button role="button" class="btn btn-primary" type="button" data-toggle="modal" data-target="#profilePicture"> <i class="fa fa-image"> Imagem do Perfil</i></button> </div>
                                             </div>
                                         </div>
                                     </div>
@@ -96,8 +71,8 @@
                                                     <div class="collapse navbar-collapse" id="profile-opts-navbar">
                                                         <ul class="nav navbar-nav navbar-right">
                                                             <li><a href="<?php echo SITE_URL; ?>/index.php?u=perfil.html"><i class="fa fa-tasks"></i>Linha do Tempo</a></li>
-                                                            <li><a href="<?php echo SITE_URL; ?>/index.php?u=sobre.html"><i class="fa fa-info-circle"></i>Sobre</a></li>
-                                                            <li class="active"><a href="<?php echo SITE_URL; ?>/index.php?u=amigos.html"><i class="fa fa-users"></i>Amigos</a></li>
+                                                            <li class="active"><a href="<?php echo SITE_URL; ?>/index.php?u=sobre.html"><i class="fa fa-info-circle"></i>Sobre</a></li>
+                                                            <li><a href="<?php echo SITE_URL; ?>/index.php?u=amigos.html"><i class="fa fa-users"></i>Amigos</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -109,41 +84,21 @@
                             <div class="container-fluid">
                                 <div class="panel panel-white panel-about">
                                     <div class="panel-heading">
-                                        <h3 class="panel-title">Amigos</h3>
+                                        <h3 class="panel-title">Sobre <?php echo $user['name']; ?>
+                                        </h3>
                                     </div>
                                     <div class="panel-body">
                                         <div class="col-md-12">
-                                            <br>
-                                            <?php 
-                                                $friends = new Friends();
-                                                $or = array('$or' => array(array('friend_one' => $_SESSION['_id'], 'status' => 1), array('friend_two' => $_SESSION['_id'], 'status' => 1)));
-                                                $find = $friends->select($or);
-                                                $fv = array();
-                                                foreach ($find as $d) {
-                                                    if ($d['friend_one'] != $_SESSION['_id']) {
-                                                        $fv[] = $d['friend_one'];
-                                                    }
-                                                    if ($d['friend_two'] != $_SESSION['_id']) {
-                                                        $fv[] = $d['friend_two'];
-                                                    }
-                                                }
-                                                $userid = new User();
-                                                foreach ($fv as $u) {
-                                                    $data = $userid->Select(array('_id' => $u))->sort(array('_id' => -1));
-                                                    foreach ($data as $user) {?>
-                                                    <div class="col-md-2">
-                                                        <a href="<?php echo SITE_URL.'/index.php?u=perfil.html&search='.$user['_id']; ?>">
-                                                            <div class="well">
-                                                                <img class="center-block" src="public/php/search.php?id=<?php echo $user['profilepicture']; ?>" width="100">
-                                                                <p class="text-center" style="margin-top: 10px;"><?php echo $user['name']; ?></p>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-
-                                                <?php 
-                                                }
-                                                }
-                                            ?>
+                                            <div class="col-md-3"><p><strong>Nome:</strong></p></div>
+                                            <div class="col-md-9"><?php echo "<p><span id='name' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu nome.'>".$user['name']."</span></p>"; ?></div>
+                                            <div class="col-md-3"><p><strong>Sobrenome:</strong></p></div>
+                                            <div class="col-md-9"><?php echo "<p><span id='surname' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu sobrenome.'>".$user['surname']."</span></p>"; ?></div>
+                                            <div class="col-md-3"><p><strong>Emprego:</strong></p></div>
+                                            <div class="col-md-9"><?php echo "<p><span id='job' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu emprego.'>".$user['job']."</span></p>"; ?></div>
+                                            <div class="col-md-3"><p><strong>Estado:</strong></p></div>
+                                            <div class="col-md-9"><?php echo "<p><span id='state' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar seu estado.'>".$user['state']."</span></p>"; ?></div>
+                                            <div class="col-md-3"><p><strong>Cidade:</strong></p></div>
+                                            <div class="col-md-9"><?php echo "<p><span id='city' class='editable' data-toggle='tooltip' data-placement='top' title='Clique para editar sua cidade.'>".$user['city']."</span></p>"; ?></div>
                                         </div>
                                     </div>
                                     <!-- Modal -->

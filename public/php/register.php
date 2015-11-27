@@ -16,7 +16,11 @@ if ($_POST['login']) {
 }
 
 if ($data == 0) {
-	$sex = $_POST['sex'];
+	if ($_POST['sex'] == 'm') {
+		$sex = 'public/img/panel/user_male.png',
+	} else {
+		$sex = 'public/img/panel/user_female.png',
+	}
 	$user = new User();
 	$data = array(
 		'name' => $_POST['name'],
@@ -29,11 +33,7 @@ if ($data == 0) {
 		'question' => $_POST['question'],
 		'answer' => $_POST['answer'],
 		'cover' => null,
-		if ($sex == 'm') {
-			'profilepicture' => 'public/img/panel/user_male.png',
-		} else {
-			'profilepicture' => 'public/img/panel/user_female.png',
-		}
+		'profilepicture' => $sex,
 		'job' => null,
 		'state' => null,
 		'city' => null,

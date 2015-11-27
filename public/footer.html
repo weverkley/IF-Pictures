@@ -58,11 +58,6 @@
               });
         </script>
         <script type="text/javascript">
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        </script>
-        <script type="text/javascript">
         $(document).ready(function() {
             $('#registerForm').bootstrapValidator({
                 message: 'This value is not valid',
@@ -133,7 +128,7 @@
                             },
                             regexp: {
                                 regexp: /^[a-zA-Z0-9_\.]+$/,
-                                message: 'O usuário só pode consistir de alfabética, número, ponto e sublinhado'
+                                message: 'O usuário só pode consistir de letras, números, ponto e underline'
                             }
                         }
                     },
@@ -270,7 +265,6 @@
             $(document).ready(function() {
                 $('#login-form').bootstrapValidator({
                     message: 'This value is not valid',
-            //        live: 'disabled',
                     container: 'tooltip',
                     feedbackIcons: {
                         valid: 'fa fa-check',
@@ -316,7 +310,6 @@
                     $.post($form.attr('action'), $form.serialize(), function(data) {
                         switch (data) {
                             case 3:
-                                //console.log(data);
                                 location.reload();
                                 break;
                             case 2:
@@ -325,30 +318,44 @@
                                 msgIcon = 'fa fa-exclamation-triangle',
                                 $('#login').val(""),
                                 $('#password').val(""),
-                                inputFocus = '#login'
+                                inputFocus = '#login',
+		                        $.notify({
+		                                icon: msgIcon,
+		                                message: msgInfo
+		                            }, {
+		                                type: msgType,
+		                                animate: {
+		                                    enter: 'animated bounceIn',
+		                                    exit: 'animated bounceOut'
+		                                },
+		                                placement: {
+		                                    from: "bottom",
+		                                    align: "left"
+		                                }
+		                            });
                                 break;
                             case 1:
                                 msgInfo = 'A senha não confere com o usuário',
                                 msgType = 'warning',
                                 msgIcon = 'fa fa-exclamation',
                                 $('#password').val(""),
-                                inputFocus = '#password'
+                                inputFocus = '#password',
+		                        $.notify({
+		                                icon: msgIcon,
+		                                message: msgInfo
+		                            }, {
+		                                type: msgType,
+		                                animate: {
+		                                    enter: 'animated bounceIn',
+		                                    exit: 'animated bounceOut'
+		                                },
+		                                placement: {
+		                                    from: "bottom",
+		                                    align: "left"
+		                                }
+		                            });
                                 break;
                         }
-                        $.notify({
-                                icon: msgIcon,
-                                message: msgInfo
-                            }, {
-                                type: msgType,
-                                animate: {
-                                    enter: 'animated bounceIn',
-                                    exit: 'animated bounceOut'
-                                },
-                                placement: {
-                                    from: "bottom",
-                                    align: "left"
-                                }
-                            });
                     }, 'json');
                 });
             });
@@ -475,7 +482,7 @@
                                align: "left"
                            }
                         });
-                    console.log(result);
+                    //console.log(result);
                 }, 'json');
             });
         });

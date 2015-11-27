@@ -11,7 +11,7 @@ if (isset($_POST) && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['_i
         if (in_array($ext, $valid_formats)) {
             if ($size < (1024 * 1024)) {
                 $hash = time() . $_SESSION['_id'] . "." . $ext;
-                $bgSave = '<div id="uX' . $_SESSION['_id'] . '" class="bgSave wallbutton blackButton btn-file"><button type="button" class="btn btn-success" style="font-weight: bold;"><i class="fa fa-floppy-o"></i></button></div>';
+                //$bgSave = '<div id="uX' . $_SESSION['_id'] . '" class="bgSave wallbutton blackButton btn-file"><button type="button" class="btn btn-success" style="font-weight: bold;"><i class="fa fa-floppy-o"></i></button></div>';
 
                 $conn = new MongoClient();         // Connect
 			    $db = $conn->ifpi;                // Select DB
@@ -24,7 +24,8 @@ if (isset($_POST) && $_SERVER['REQUEST_METHOD'] == "POST" && isset($_SESSION['_i
                     $data = array('$set' => array('cover' => $file));
                     $res = $user->update(array('_id' => $_SESSION['_id']), $data);
                     if ($res){
-                    	echo $bgSave . '<img src="public/php/search.php?id='.$file.'"  id="timelineBGload" class="headerimage ui-corner-all" style="top:0px"/>';
+                    	//echo $bgSave . '<img src="public/php/search.php?id='.$file.'"  id="timelineBGload" class="headerimage ui-corner-all" style="top:0px"/>';
+                        echo json_encode('public/php/search.php?id='.$file);
 			    		$conn->close(); // Close connection
 			    	}
                 } 

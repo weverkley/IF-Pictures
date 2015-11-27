@@ -87,7 +87,7 @@ class Utils
 	}
 
 	public static function imageExists($var){
-		if ('public/upload/large/'.file_exists($var)) return true;
+		if (file_exists('public/upload/large/'.$var)) return true;
 		else return false;
 	}
 }

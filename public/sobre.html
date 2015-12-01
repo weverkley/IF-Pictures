@@ -41,8 +41,16 @@
                                 <br>
                                 <div class="col-md-12">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <?php $id = $user['cover']; $position = $user['position']; ?>
-                                        <div id="cover-bg" class="cover-container" style="background-image: url(<?php echo PUBLIC_DIR."/php/search.php?id=$id";?>);">
+                                        <?php 
+                                            if (isset($_GET['search']) && $_GET['search'] != "") {
+                                                try {
+                                                    $user = $class->SelectOne(array('_id' => new MongoId($_GET['search'])));
+                                                } catch (Exception $e) {
+                                                    
+                                                }
+                                            }
+                                        ?>
+                                        <div id="cover-bg" class="cover-container" style="background-image:url(<?php echo Utils::profileCover($user['cover']); ?>);">
                                             <div id="timelineShade">
                                                 <button class="btn btn-warning btn-file" title="Selecione uma imagem para sua capa."><i class="fa fa-camera"></i>
                                                 <form id="bgimageform" method="post" enctype="multipart/form-data" action="<?php echo PUBLIC_DIR; ?>/php/uploadcover.php">
@@ -54,16 +62,7 @@
                                             </div>
                                             <div class="social-cover"></div>
                                             <div class="social-avatar" >
-                                                <?php 
-                                                    if (isset($_GET['search']) && $_GET['search'] != "") {
-                                                        try {
-                                                            $user = $class->SelectOne(array('_id' => new MongoId($_GET['search'])));
-                                                        } catch (Exception $e) {
-                                                            
-                                                        }
-                                                    }
-                                                ?>
-                                                <img id="profilepicture" class="img-avatar" src="public/php/search.php?id=<?php echo $user['profilepicture']; ?>" height="100" width="100">
+                                                <img id="profilepicture" class="img-avatar" src="<?php echo Utils::profilePicture($user['profilepicture']); ?>" height="100" width="100">
                                                 <h4 class="fg-white text-center text-shadow"><?php echo $user['name']; ?></h4>
                                                 <h5 class="fg-white text-center" style="opacity:0.8;"><?php echo $user['job']; ?></h5>
                                                 <hr class="border-black75 text-shadow" style="border-width:2px;" >
@@ -148,7 +147,7 @@
                                                 </div>
                                                 <div class="modal-body text-center">
                                                     <p id="resultImageProfile"></p>
-                                                    <p class="myImage"><img id="profilemodal" src="public/php/search.php?id=<?php echo $user['profilepicture']; ?>" width="100" alt="" /></p>
+                                                    <p class="myImage"><img id="profilemodal" src="<?php echo Utils::profilePicture($user['profilepicture']); ?>" width="100" alt="" /></p>
                                                     <button class="btn btn-info btn-file" title="Selecione uma imagem para seu perfil."><i class="fa fa-camera"></i> Selecione uma imagem
                                                     <form id="bgimageform" method="post" enctype="multipart/form-data" action="public/php/uploadcover.php">
                                                         <div class="uploadFile timelineUploadBG">

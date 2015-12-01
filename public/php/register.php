@@ -17,23 +17,23 @@ if ($_POST['login']) {
 
 if ($data == 0) {
 	if ($_POST['sex'] == 'm') {
-		$sex = 'public/img/panel/user_male.png',
+		$profile = 'public/img/panel/user_male.png';
 	} else {
-		$sex = 'public/img/panel/user_female.png',
+		$profile = 'public/img/panel/user_female.png';
 	}
 	$user = new User();
 	$data = array(
 		'name' => $_POST['name'],
 		'surname' => $_POST['surname'],
 		'borndate' => $_POST['born'],
-		'sex' => $sex,
+		'sex' => $_POST['sex'],
 		'login' => $_POST['login'],
 		'password' => md5($_POST['password']),
 		'email' => $_POST['email'],
 		'question' => $_POST['question'],
 		'answer' => $_POST['answer'],
-		'cover' => null,
-		'profilepicture' => $sex,
+		'cover' => 'public/img/panel/cover.jpg',
+		'profilepicture' => $profile,
 		'job' => null,
 		'state' => null,
 		'city' => null,

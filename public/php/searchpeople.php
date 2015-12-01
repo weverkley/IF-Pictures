@@ -21,7 +21,7 @@ if (isset($_POST['search_keyword'])) {
     $boldString = '<strong>' . $string . '</strong>';
     if ($count > 0) {
         foreach ($cursor as $field) {
-        	echo '<a href="index.php?u=perfil.html&search='.$field['_id'].'"><div class="show" align="left"><img src="public/img/panel/user_male.png" width="30" alt=""> <span class="searchName">'.$field['name'].' '.$field['surname'].'</span></div></a>';
+        	echo '<a href="index.php?u=perfil.html&search='.$field['_id'].'"><div class="show" align="left"><img src="'.Utils::profilePicture($field['profilepicture']).'" width="30" alt=""> <span class="searchName">'.$field['name'].' '.$field['surname'].'</span></div></a>';
         }
     } 
     else {

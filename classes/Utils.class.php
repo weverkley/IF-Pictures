@@ -90,5 +90,17 @@ class Utils
 		if (file_exists('public/upload/large/'.$var)) return true;
 		else return false;
 	}
+
+	public static function profilePicture($img){
+		if(preg_match("/.png/i", $img)){
+			return (preg_match("/user_male/i", $img))? PUBLIC_DIR.'/img/panel/user_male.png' : PUBLIC_DIR.'/img/panel/user_female.png';
+		} else return PUBLIC_DIR."/php/search.php?id=".$img; 
+	}
+
+	public static function profileCover($img){
+		if(preg_match("/cover.jpg/i", $img)){
+			return PUBLIC_DIR.'/img/panel/cover.png';
+		} else return PUBLIC_DIR."/php/search.php?id=".$img; 
+	}
 }
 ?>

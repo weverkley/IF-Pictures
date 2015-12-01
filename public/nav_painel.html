@@ -4,7 +4,7 @@
 
 ?>
 <li id="user-picture" class="disabled">
-    <p><img class="lazy img-thumbnail" src="<?php echo PUBLIC_DIR."/php/search.php?id=".$user['profilepicture']; ?>" alt="profile" width="100"></p>
+    <p><img class="lazy img-thumbnail" src="<?php echo Utils::profilePicture($user['profilepicture']); ?>" alt="profile" width="100"></p>
     <p class="profile-name"><?php echo $user['name']; ?></p>
 </li>
 <!-- <li><a>link2<span class="sub_icon fa fa-link"></span></a></li> -->

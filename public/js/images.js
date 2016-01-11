@@ -435,12 +435,11 @@ function GetData() {
                 //format the result and display them
                 if (result.length && noresults == 0) {
                     for (var i = 0; i < result.length; i++) {
-                            resultMarkup = '<div class="Image_Wrapper ImageWrapper ContentWrapperB chrome-fix">',
-                            resultMarkup += '<a><img data-id="' + result[i].hash + '"class="context" src="public/upload/thumbnail/' + result[i].hash + '" ></a>',
-                            resultMarkup += '<div class="ContentB">',
+                            resultMarkup = '<div data-id="' + result[i].hash + '" class="Image_Wrapper ImageWrapper ContentWrapperNe chrome-fix context">',
+                            resultMarkup += '<a><img data-id="' + result[i].hash + '" class="context" src="public/upload/thumbnail/' + result[i].hash + '" ></a>',
+                            resultMarkup += '<div class="ContentNe">',
                             resultMarkup += '<div class="Content">',
                             resultMarkup += '<h2>'+ result[i].name +'</h2>Data: '+ result[i].timestamp +'',
-                            resultMarkup += '<br><a target="_blank" class="btn btn-xs btn-success" href="index.php?u=visualizar.html&image='+ result[i].hash +'"><i class="fa fa-search"></i></a>',
                             resultMarkup += '</div></div>',
                             resultMarkup += '</div>',
                             //console.log(result[i].$id),

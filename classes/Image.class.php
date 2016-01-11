@@ -122,10 +122,12 @@ class Image extends DB
 	}
 
 	public function insertComment($id, $userid, $text){
+		$up = new User();
+    	$va = $up->SelectOne(array('_id' => $_SESSION['_id']));	
 		$data = array (
 		    '_id' => new MongoId(),
 			'userId' => $userid,
-			'profilepicture' => $_SESSION['profilepicture'],
+			'profilepicture' => $va['profilepicture'],
 		    'text' => $text,
 		    'timestamp' => new MongoDate(),
 		    );

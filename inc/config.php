@@ -5,13 +5,14 @@ error_reporting(E_ALL|E_STRCT);
 date_default_timezone_set( 'America/Sao_Paulo' );
 
 // pasta onde está localizado o site
-$url = 'IF-Pictures';
+/*$url = '/IF-Pictures';*/
+$url = '/IF-Pictures';
 
 // dominio do website com http ou https
 if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
-	if (!defined('SITE_URL')) define('SITE_URL', 'https://'.$_SERVER['SERVER_NAME'].'/'.$url);
+	if (!defined('SITE_URL')) define('SITE_URL', 'https://'.$_SERVER['SERVER_NAME'].$url);
 } else {
-	if (!defined('SITE_URL')) define('SITE_URL', 'http://'.$_SERVER['SERVER_NAME'].'/'.$url);
+	if (!defined('SITE_URL')) define('SITE_URL', 'http://'.$_SERVER['SERVER_NAME'].$url);
 }
 // separador de diretorio
 if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);

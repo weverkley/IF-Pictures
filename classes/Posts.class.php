@@ -55,8 +55,8 @@ class Posts extends DB
 		}
 	}
 
-	public function showPosts(){
-		return $this->posts->find()->sort(array('_id'=>-1)); 
+	public function showPosts($where = null){
+		return $this->posts->find($where)->sort(array('_id'=>-1)); 
 	}
 
 	public function findAuthor($id){

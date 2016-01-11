@@ -79,7 +79,7 @@ class Friends extends DB
 				foreach ($r as $v) {
 					$u = $user->SelectOne(array('_id' => $v['friend_one']));
 					$div .= '<li id="'.$v['_id'].'" class="dropdown-submenu">
-							 <a href="index.php?u=perfil.html&search='.$u['_id'].'">'.$u['name'].'</a><a class="pull-right" tabindex="-1" href=""><i class="fa fa-bars"></i></a>
+							 <a href="index.php?u=perfil.html&search='.$u['_id'].'">'.$u['name'].'</a>
 							 <ul class="dropdown-menu">
 							 	<li role="presentation" align="center" style="margin-bottom: 3px;"><button type="button" name="'.$v['_id'].'" class="btn btn-xs btn-primary" onclick="confirmDropdown(this.name);"><i class="fa fa-plus-square"></i> Confirmar</button></li>
 							 	<li role="presentation" align="center"><button type="button" name="'.$v['_id'].'" class="btn btn-xs btn-warning" onclick="declineDropdown(this.name);"><i class="fa fa-minus-square"></i> Recusar</button></li>

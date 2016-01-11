@@ -143,7 +143,7 @@
                                                     <li>
                                                         <a href="<?php echo SITE_URL.'/index.php?u=perfil.html&search='.$user['_id']; ?>">
                                                             <div class="well">
-                                                                <img class="center-block" src="public/php/search.php?id=<?php echo $user['profilepicture']; ?>" width="100">
+                                                                <img class="center-block" src="<?php echo Utils::profilePicture($user['profilepicture']); ?>" width="100">
                                                                 <p class="text-center" style="margin-top: 10px;"><?php echo $user['name']; ?></p>
                                                             </div>
                                                         </a>
@@ -187,7 +187,11 @@
 	                                <div id="post_stream">
 										<?php 
 											$posts = new Posts();
-											$return = $posts->showPosts();
+											if (isset($_GET['search']) && $_SESSION['_id'] != $_GET['search']) {
+												$return = $posts->showPosts(array('author' => new MongoId($_GET['search'])));
+											} else {
+												$return = $posts->showPosts(array('author' => $_SESSION['_id']));
+											}
 											foreach ($return as $post) {
 											    $post_comment_count_id =  $post['_id'].'_comment_count';
 											    $post_comment_count=$post['totalComments'];
@@ -211,7 +215,7 @@
 											    	?>
 											    	<div class="comment" id="<?php echo $post['comments'][$i]['_id']; ?>">
 														<a class="pull-left" href="#">
-														    <img width="50px" class="media-object" src="http://placehold.it/64x64" alt="">
+														    <img width="50px" class="media-object" src="<?= Utils::profilePicture($author['profilepicture']); ?>" alt="">
 														</a>
 														<div class="media-body" style="padding-left: 5px;">
 														    <h4 class="media-heading"><?php echo $author['name']; ?>
@@ -229,7 +233,7 @@
 											            <div class="media-footer">
 											                <hr>
 											                <a class="pull-left" href="#">
-											                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+											                    <img class="media-object" width="50" src="<?= PUBLIC_DIR.'/img/panel/Android-Messages.png'; ?>" alt="">
 											                </a>
 											                <div id="media-body" class="media-body">
 											                    <textarea class="form-control" placeholder="Escrever um comentário..." id="<?php echo $post_comment_text_box_id; ?>" onKeyPress="return new_comment(this,event,'<?php echo $_SESSION['_id']; ?>')"></textarea>
@@ -241,7 +245,7 @@
 											            <div class="media-footer">
 											                <hr>
 											                <a class="pull-left" href="#">
-											                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+											                    <img class="media-object" width="50" src="<?= PUBLIC_DIR.'/img/panel/Android-Messages.png'; ?>" alt="">
 											                </a>
 											                <div id="media-body" class="media-body">
 											                    <textarea class="form-control" placeholder="Escrever um comentário..." id="<?php echo $post_comment_text_box_id; ?>" onKeyPress="return new_comment(this,event,'<?php echo $_SESSION['_id']; ?>')"></textarea>

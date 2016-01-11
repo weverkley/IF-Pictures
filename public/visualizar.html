@@ -111,7 +111,7 @@ if (!Utils::imageExists($_GET['image'])) {
 								?>
 									<div class="comment" id="<?php echo $comment[$i]['_id']; ?>">
 										<a class="pull-left" href="#">
-										    <img width="50px" class="media-object" src="<?php echo 'public/php/search.php?id'.$comment[$i]['profilepicture']; ?>" alt="profile">
+										    <img width="50px" class="media-object" src="<?php echo Utils::profilepicture($comment[$i]['profilepicture']); ?>" alt="profile">
 										</a>
 										<div class="media-body" style="padding-left: 5px;">
 										    <h4 class="media-heading"><?php echo $author['name']; ?>

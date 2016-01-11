@@ -97,7 +97,7 @@ $.inlineEdit.defaults = {
     save: '',
     cancel: '', 
     buttons: '<button class="save">Salvar</button> <button class="cancel">Cancelar</button>',
-    placeholder: 'Click to edit',
+    placeholder: 'Clique para editar',
     control: 'input',
     cancelOnBlur: false,
     saveOnBlur: false,

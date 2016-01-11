@@ -25,7 +25,7 @@ if (isset($_POST) && !empty($_POST['post_text'])) {
             <div class="media-footer">
                 <hr>
                 <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placehold.it/50x50" alt="">
+                    <img class="media-object" width="50" src="<?= PUBLIC_DIR.'/img/panel/Android-Messages.png'; ?>" alt="">
                 </a>
                 <div id="media-body" class="media-body">
                     <textarea class="form-control" placeholder="Escrever um comentário..." id="<?php echo $post_comment_text_box_id; ?>" onKeyPress="return new_comment(this,event,'<?php echo $_SESSION['_id']; ?>')"></textarea>
